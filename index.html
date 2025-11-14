@@ -18,34 +18,26 @@
   <style>
     html,body { height: 100%; margin: 0; }
     html { scroll-behavior: smooth; }
-    .parallax-layer { position: absolute; inset: 0; background-position: center; background-repeat: no-repeat; background-size: cover; }
     .modal-backdrop { background: rgba(0,0,0,0.65); }
   </style>
 </head>
-<body class="min-h-screen bg-gradient-to-br from-black via-blue-900 to-red-900 text-white font-sans">
+<body class="min-h-screen bg-neutral-100 text-slate-900 font-sans">
 
   <div id="root"></div>
 
   <script type="text/babel">
-    const { useState, useEffect } = React;
+    const { useState } = React;
 
     function App() {
       const [selected, setSelected] = useState(null);
       const [currentIndex, setCurrentIndex] = useState(0);
       const [resumeOpen, setResumeOpen] = useState(false);
-      const [y, setY] = useState(0);
-
-      useEffect(() => {
-        const onScroll = () => setY(window.scrollY || 0);
-        onScroll();
-        window.addEventListener('scroll', onScroll, { passive: true });
-        return () => window.removeEventListener('scroll', onScroll);
-      }, []);
 
       const projects = [
         {
           id: 1,
           title: "Brand Identity",
+          subtitle: "Logo, visual identity, and packaging",
           images: [
             "https://i.imgur.com/s9FyiEt.jpg",
             "https://i.imgur.com/Cz91Ew3.jpg",
@@ -58,11 +50,12 @@
             "https://i.imgur.com/tVCtVhn.jpg",
             "https://i.imgur.com/jDFMhMF.jpg"
           ],
-          desc: "Logo and visual identity showcase."
+          desc: "A selection of identity systems, logo marks, and supporting visual assets that help brands feel cohesive and memorable across print and digital."
         },
         {
           id: 2,
           title: "Packaging Design",
+          subtitle: "Corrugated, retail, and specialty packaging",
           images: [
             "https://i.imgur.com/adKEq9K.jpg",
             "https://i.imgur.com/GeJrXWp.jpg",
@@ -75,53 +68,257 @@
             "https://i.imgur.com/WMxj9vW.jpg",
             "https://i.imgur.com/ViSRl8p.jpg"
           ],
-          desc: "Creative box design."
+          desc: "Award-winning corrugated and retail packaging, built to balance structure, print constraints, and strong shelf presence."
         }
       ];
 
-      const t1 = `translateY(${y * 0.12}px)`;
+      const openProject = (project) => {
+        setSelected(project);
+        setCurrentIndex(0);
+      };
+
+      const prevImage = () => {
+        if (!selected) return;
+        setCurrentIndex((currentIndex - 1 + selected.images.length) % selected.images.length);
+      };
+
+      const nextImage = () => {
+        if (!selected) return;
+        setCurrentIndex((currentIndex + 1) % selected.images.length);
+      };
 
       return (
-        <div className='min-h-screen text-white'>
-
-          {/* HERO */}
-          <header className="relative h-screen flex items-center justify-center text-center overflow-hidden px-4">
-            <div className="parallax-layer" style={{transform: t1, backgroundImage: "url('https://picsum.photos/id/119/1600/900')", opacity: 0.35}} />
-            <div className="relative z-10 space-y-4">
-              <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-extrabold mb-4 inline-block">Hi, I'm <span className="text-red-400">Richie</span></h1>
-              <p className="text-lg sm:text-xl md:text-2xl mb-6">Graphic Designer • Visual Storyteller • Creative Thinker</p>
-              <div className="flex flex-col sm:flex-row justify-center gap-4">
-                {/* remove brackets to go back <a href="#" onClick={() => setResumeOpen(true)} className="inline-block bg-blue-800 hover:bg-blue-900 text-lg sm:text-lg px-6 py-3 rounded-2xl">Resume</a> */}
-               <a href="#portfolio" className="inline-block bg-red-600 hover:bg-red-700 text-lg sm:text-lg px-6 py-3 rounded-2xl">Portfolio</a>
-              </div>
+        <div className="min-h-screen flex flex-col">
+          {/* NAV */}
+          <header className="sticky top-0 z-30 bg-neutral-100/90 backdrop-blur border-b border-neutral-200">
+            <div className="max-w-5xl mx-auto px-4 py-4 flex items-center justify-between">
+              <a href="#" className="font-semibold tracking-tight">
+                Richie Gray
+              </a>
+              <nav className="hidden sm:flex items-center gap-6 text-sm">
+                <a href="#work" className="hover:text-slate-600 transition">Work</a>
+                <a href="#about" className="hover:text-slate-600 transition">About</a>
+                <a href="#contact" className="hover:text-slate-600 transition">Contact</a>
+                <button
+                  onClick={() => setResumeOpen(true)}
+                  className="ml-4 rounded-full border border-slate-300 px-4 py-1.5 text-xs font-medium hover:bg-slate-900 hover:text-white transition"
+                >
+                  View Resume
+                </button>
+              </nav>
+              {/* Mobile resume button */}
+              <button
+                onClick={() => setResumeOpen(true)}
+                className="sm:hidden rounded-full border border-slate-300 px-3 py-1 text-xs font-medium hover:bg-slate-900 hover:text-white transition"
+              >
+                Resume
+              </button>
             </div>
           </header>
 
-          {/* ABOUT */}
-          <section id="about" className="max-w-4xl mx-auto py-20 px-4 sm:px-6">
-            <h2 className="text-3xl sm:text-4xl font-bold mb-6 text-center">About Me</h2>
-            <p className="text-base sm:text-lg text-gray-300 text-center">
-              I’m a passionate graphic designer with over 20 years of experience creating brand identities,
-              packaging, and digital experiences. I believe design should be fun, bold, and unforgettable.
-            </p>
-          </section>
-
-          {/* PORTFOLIO */}
-          <section id="portfolio" className="py-20 px-4 sm:px-6 bg-black/30">
-            <h2 className="text-3xl sm:text-4xl font-bold mb-12 text-center">Portfolio</h2>
-            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-2 gap-8 max-w-6xl mx-auto">
-              {projects.map(p => (
-                <div key={p.id} className="rounded-2xl overflow-hidden cursor-pointer transform transition hover:scale-105 bg-white/10" onClick={() => {setSelected(p); setCurrentIndex(0);}}>
-                  <img src={p.images[0]} className="w-full h-48 sm:h-56 md:h-64 object-cover" alt={p.title} />
-                  <div className="p-4">
-                    <h3 className="text-lg sm:text-xl md:text-xl font-bold">{p.title}</h3>
+          <main className="flex-1">
+            {/* HERO */}
+            <section className="border-b border-neutral-200">
+              <div className="max-w-5xl mx-auto px-4 py-16 md:py-24 grid md:grid-cols-[1.3fr,1fr] gap-10 items-center">
+                <div>
+                  <p className="uppercase tracking-[0.2em] text-xs text-slate-500 mb-4">
+                    Graphic Design & Packaging
+                  </p>
+                  <h1 className="text-3xl sm:text-4xl md:text-5xl font-semibold tracking-tight mb-4">
+                    Hi, I’m <span className="text-red-500">Richie</span>.
+                  </h1>
+                  <p className="text-base sm:text-lg text-slate-700 mb-6 leading-relaxed">
+                    I’m a senior graphic designer and digital pre-production artist with 20+ years of experience
+                    in visual identity, corrugated packaging, and print-ready artwork. I help brands move from
+                    rough ideas to clear, production-ready designs that actually work on press and on shelf.
+                  </p>
+                  <div className="flex flex-wrap gap-3">
+                    <a
+                      href="#work"
+                      className="inline-flex items-center justify-center rounded-full bg-slate-900 text-white px-6 py-2 text-sm font-medium hover:bg-slate-800 transition"
+                    >
+                      View Selected Work
+                    </a>
+                    <a
+                      href="#contact"
+                      className="inline-flex items-center justify-center rounded-full border border-slate-300 px-6 py-2 text-sm font-medium hover:bg-slate-100 transition"
+                    >
+                      Let’s Work Together
+                    </a>
                   </div>
                 </div>
-              ))}
-            </div>
-          </section>
+                <div className="hidden md:block">
+                  <div className="rounded-2xl overflow-hidden border border-neutral-200 bg-white shadow-sm">
+                    <img
+                      src="https://i.imgur.com/s9FyiEt.jpg"
+                      alt="Brand identity preview"
+                      className="w-full h-64 object-cover"
+                    />
+                  </div>
+                </div>
+              </div>
+            </section>
 
-          {/* MODAL with slider */}
+            {/* WORK / PORTFOLIO */}
+            <section id="work" className="border-b border-neutral-200 bg-white">
+              <div className="max-w-5xl mx-auto px-4 py-16 md:py-20">
+                <h2 className="text-2xl sm:text-3xl font-semibold tracking-tight mb-8">
+                  Selected Work
+                </h2>
+
+                <div className="space-y-10">
+                  {projects.map((p) => (
+                    <article
+                      key={p.id}
+                      className="grid md:grid-cols-[1.4fr,1fr] gap-6 md:gap-10 items-start"
+                    >
+                      <div className="space-y-4 cursor-pointer" onClick={() => openProject(p)}>
+                        <div className="grid grid-cols-2 gap-2 rounded-2xl overflow-hidden border border-neutral-200 bg-neutral-50">
+                          <img
+                            src={p.images[0]}
+                            alt={p.title}
+                            className="w-full h-40 sm:h-52 object-cover"
+                          />
+                          <img
+                            src={p.images[1] || p.images[0]}
+                            alt={p.title + ' detail'}
+                            className="w-full h-40 sm:h-52 object-cover"
+                          />
+                        </div>
+                      </div>
+                      <div className="space-y-3">
+                        <h3 className="text-xl sm:text-2xl font-semibold tracking-tight">{p.title}</h3>
+                        {p.subtitle && (
+                          <p className="text-sm uppercase tracking-[0.18em] text-slate-500">
+                            {p.subtitle}
+                          </p>
+                        )}
+                        <p className="text-sm sm:text-base text-slate-700 leading-relaxed">
+                          {p.desc}
+                        </p>
+                        <button
+                          onClick={() => openProject(p)}
+                          className="mt-2 inline-flex items-center text-sm font-medium text-slate-900 hover:underline"
+                        >
+                          View project images
+                          <span className="ml-1">↗</span>
+                        </button>
+                      </div>
+                    </article>
+                  ))}
+                </div>
+              </div>
+            </section>
+
+            {/* ABOUT */}
+            <section id="about" className="border-b border-neutral-200 bg-neutral-50">
+              <div className="max-w-5xl mx-auto px-4 py-16 md:py-20 grid md:grid-cols-2 gap-10 items-start">
+                <div>
+                  <h2 className="text-2xl sm:text-3xl font-semibold tracking-tight mb-4">
+                    About Richie
+                  </h2>
+                  <p className="text-sm sm:text-base text-slate-700 leading-relaxed mb-4">
+                    I’ve spent my career at the intersection of design and production—bridging the gap between
+                    what looks great on screen and what actually runs well on press. From corrugated displays and
+                    retail packaging to logos and marketing collateral, I’m deeply familiar with how ink, board,
+                    and brand strategy work together.
+                  </p>
+                  <p className="text-sm sm:text-base text-slate-700 leading-relaxed">
+                    I enjoy collaborating with sales teams, production, and clients to solve real problems:
+                    tightening up files, improving readability, and building packaging that stands out while
+                    staying within budget and print constraints.
+                  </p>
+                </div>
+                <div>
+                  <h3 className="text-sm font-semibold tracking-[0.2em] text-slate-500 mb-4 uppercase">
+                    Focus Areas
+                  </h3>
+                  <ul className="space-y-2 text-sm sm:text-base text-slate-700">
+                    <li>• Corrugated packaging & POP displays</li>
+                    <li>• Visual identity and logo systems</li>
+                    <li>• Pre-press and digital pre-production</li>
+                    <li>• Layout, typography, and print-ready artwork</li>
+                    <li>• Web graphics and basic HTML/CSS front-end</li>
+                  </ul>
+                </div>
+              </div>
+            </section>
+
+            {/* SKILLS + CONTACT */}
+            <section id="contact" className="bg-white">
+              <div className="max-w-5xl mx-auto px-4 py-16 md:py-20 grid md:grid-cols-[1.4fr,1fr] gap-12 items-start">
+                {/* Skills */}
+                <div>
+                  <h2 className="text-2xl sm:text-3xl font-semibold tracking-tight mb-6">
+                    Skills & Tools
+                  </h2>
+                  <div className="grid grid-cols-2 sm:grid-cols-3 gap-4">
+                    {[
+                      "CorelDraw",
+                      "Illustrator",
+                      "Photoshop",
+                      "Layout Design",
+                      "Design Concepts",
+                      "Marketing (Digital, Social & Print)",
+                      "Pre-Production Management",
+                      "Web Development (HTML5 & CSS3)",
+                      "Typography & Font Management",
+                      "Printing Processes",
+                      "ArtiosCad (Limited)",
+                      "Corrugated Box Design"
+                    ].map((skill) => (
+                      <div
+                        key={skill}
+                        className="bg-neutral-100 border border-neutral-200 px-3 py-2 rounded-lg text-xs sm:text-sm text-slate-800"
+                      >
+                        {skill}
+                      </div>
+                    ))}
+                  </div>
+                </div>
+
+                {/* Contact */}
+                <div className="space-y-4">
+                  <h2 className="text-2xl sm:text-3xl font-semibold tracking-tight">
+                    Let’s Work Together.
+                  </h2>
+                  <p className="text-sm sm:text-base text-slate-700 leading-relaxed">
+                    Whether you need a packaging refresh, a new identity system, or production-ready artwork,
+                    I’m always open to talking about thoughtful, practical design work.
+                  </p>
+                  <div className="space-y-1 text-sm sm:text-base">
+                    <p><span className="font-medium">Email:</span> <a href="mailto:rgray1983@gmail.com" className="underline">rgray1983@gmail.com</a></p>
+                    <p><span className="font-medium">Phone:</span> <a href="tel:8434532282" className="underline">(843) 453-2282</a></p>
+                    <p>
+                      <span className="font-medium">LinkedIn:</span>{" "}
+                      <a
+                        href="https://www.linkedin.com/in/drgdesign/"
+                        target="_blank"
+                        rel="noreferrer"
+                        className="underline"
+                      >
+                        linkedin.com/in/drgdesign
+                      </a>
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </section>
+          </main>
+
+          {/* FOOTER */}
+          <footer className="border-t border-neutral-200 bg-neutral-50">
+            <div className="max-w-5xl mx-auto px-4 py-6 flex flex-col sm:flex-row items-center justify-between gap-2 text-sm text-slate-500">
+              <span>© {new Date().getFullYear()} Richie Gray. All rights reserved.</span>
+              <div className="flex gap-4 text-lg">
+                <a href="mailto:rgray1983@gmail.com" aria-label="email" className="hover:text-slate-700">📧</a>
+                <a href="tel:8434532282" aria-label="phone" className="hover:text-slate-700">📞</a>
+                <a href="https://www.linkedin.com/in/drgdesign/" aria-label="linkedin" className="hover:text-slate-700">🔗</a>
+              </div>
+            </div>
+          </footer>
+
+          {/* PROJECT MODAL */}
           {selected && (
             <div className="fixed inset-0 z-50 flex items-center justify-center px-2 sm:px-4">
               <div className="absolute inset-0 modal-backdrop" onClick={() => setSelected(null)} />
@@ -132,37 +329,70 @@
                     alt={selected.title}
                     className="max-w-[100%] max-h-[80vh] rounded-lg object-contain"
                   />
-                  <button onClick={() => setCurrentIndex((currentIndex - 1 + selected.images.length) % selected.images.length)} className="absolute top-1/2 left-2 -translate-y-1/2 bg-black/40 text-white px-3 py-1 rounded text-xl sm:text-2xl">◀</button>
-                  <button onClick={() => setCurrentIndex((currentIndex + 1) % selected.images.length)} className="absolute top-1/2 right-2 -translate-y-1/2 bg-black/40 text-white px-3 py-1 rounded text-xl sm:text-2xl">▶</button>
+                  <button
+                    onClick={() => setCurrentIndex((currentIndex - 1 + selected.images.length) % selected.images.length)}
+                    className="absolute top-1/2 left-2 -translate-y-1/2 bg-black/40 text-white px-3 py-1 rounded text-xl sm:text-2xl"
+                  >
+                    ◀
+                  </button>
+                  <button
+                    onClick={() => setCurrentIndex((currentIndex + 1) % selected.images.length)}
+                    className="absolute top-1/2 right-2 -translate-y-1/2 bg-black/40 text-white px-3 py-1 rounded text-xl sm:text-2xl"
+                  >
+                    ▶
+                  </button>
                 </div>
-                <h3 className="text-xl sm:text-2xl font-bold mb-2 mt-4">{selected.title}</h3>
-                <p className="mb-4 text-gray-700">{selected.desc}</p>
+                <h3 className="text-xl sm:text-2xl font-semibold mb-1 mt-4">{selected.title}</h3>
+                {selected.subtitle && (
+                  <p className="text-xs uppercase tracking-[0.18em] text-slate-500 mb-2">
+                    {selected.subtitle}
+                  </p>
+                )}
+                <p className="mb-4 text-sm sm:text-base text-slate-700 text-center max-w-xl">
+                  {selected.desc}
+                </p>
                 <div className="flex justify-end w-full">
-                  <button onClick={() => setSelected(null)} className="px-4 py-2 rounded-lg bg-red-600 hover:bg-red-700 text-white">Close</button>
+                  <button
+                    onClick={() => setSelected(null)}
+                    className="px-4 py-2 rounded-lg bg-slate-900 hover:bg-slate-800 text-white text-sm"
+                  >
+                    Close
+                  </button>
                 </div>
               </div>
             </div>
           )}
 
-          {/* Resume Modal */}
+          {/* RESUME MODAL */}
           {resumeOpen && (
             <div className="fixed inset-0 z-50 flex items-center justify-center px-2 sm:px-4">
               <div className="absolute inset-0 modal-backdrop" onClick={() => setResumeOpen(false)} />
-              <div className="relative p-6 rounded-2xl bg-white text-black max-w-3xl mx-2 sm:mx-4 overflow-y-auto max-h-[90%]">
-                <span className="absolute top-2 right-4 cursor-pointer text-2xl" onClick={() => setResumeOpen(false)}>&times;</span>
+              <div className="relative p-6 rounded-2xl bg-white text-black max-w-3xl mx-2 sm:mx-4 overflow-y-auto max-h-[90%] shadow-xl">
+                <span
+                  className="absolute top-2 right-4 cursor-pointer text-2xl"
+                  onClick={() => setResumeOpen(false)}
+                >
+                  &times;
+                </span>
                 <h2 className="text-2xl font-bold mb-4 border-b border-gray-300 pb-2">Resume</h2>
-                <div className="space-y-4 text-left text-gray-800">
+                <div className="space-y-4 text-left text-gray-800 text-sm sm:text-base">
                   <p className="font-bold text-lg">David R. Gray III (Richie)</p>
                   <p>563 Bullard Ford Rd, Hartsville, SC 29550</p>
                   <p>rgray1983@gmail.com - 843-453-2282</p>
                   <hr className="border-gray-300" />
 
                   <p className="font-bold">WORK EXPERIENCE</p>
-                  <p>With 20+ years as a graphic designer, I specialize in turning brand stories into compelling visuals that connect with audiences and drive results. Expertise spans branding, print, and digital media, transforming complex ideas into clear, impactful designs. Detail-oriented and collaborative, dedicated to delivering creative, high-quality solutions.</p>
+                  <p>
+                    With 20+ years as a graphic designer, I specialize in turning brand stories into
+                    compelling visuals that connect with audiences and drive results. Expertise spans
+                    branding, print, and digital media, transforming complex ideas into clear, impactful
+                    designs. Detail-oriented and collaborative, dedicated to delivering creative,
+                    high-quality solutions.
+                  </p>
 
                   <p className="font-semibold mt-2">Sr. Graphic Designer and Digital Pre-Production Artist</p>
                   <p>Hood Container Corporation - Sumter, SC - March 2015 - Present</p>
-                  <ul className="list-disc list-inside ml-4">
+                  <ul className="list-disc list-inside ml-4 space-y-1">
                     <li>Create and adjust designs for POP Displays, Shelf Displays, and Corrugated Box Design</li>
                     <li>Designed a new brochure and responsive website (HTML5 & CSS3)</li>
                     <li>Worked with salesmen and customers to ensure highest design quality</li>
@@ -171,7 +401,7 @@
 
                   <p className="font-semibold mt-2">Sr. Graphic Designer/Pre-Production Artist</p>
                   <p>Carolina Printing, Sports, and Trophy - Hartsville, SC - Aug 2010 - Mar 2015</p>
-                  <ul className="list-disc list-inside ml-4">
+                  <ul className="list-disc list-inside ml-4 space-y-1">
                     <li>Designed artwork for t-shirts, signs, banners, business cards, decals</li>
                     <li>Produced 20–30 different designs weekly, totaling over 6,000 designs in 5 years</li>
                     <li>Specialized in design and pre-production proofing</li>
@@ -179,7 +409,7 @@
 
                   <p className="font-semibold mt-2">Graphic Designer/Pre-Production Artist</p>
                   <p>Southern Graphics Systems - McBee, SC - Apr 2009 - Dec 2009</p>
-                  <ul className="list-disc list-inside ml-4">
+                  <ul className="list-disc list-inside ml-4 space-y-1">
                     <li>Prepared artwork from major brands (KRAFT, Georgia Pacific, Dixie Cups, Panasonic) for printing</li>
                     <li>Worked with corrugated design for product packaging</li>
                     <li>Created Illustrator script to minimize material use in pre-press platemaking, saving thousands of dollars</li>
@@ -187,14 +417,14 @@
 
                   <p className="font-semibold mt-2">Graphic Designer/Programmer</p>
                   <p>School Dynamics Systems - Hartsville, SC - Jan 2006 - Aug 2006</p>
-                  <ul className="list-disc list-inside ml-4">
+                  <ul className="list-disc list-inside ml-4 space-y-1">
                     <li>Designed marketing materials (instructional videos, flyers, brochures)</li>
                     <li>Converted software from Microsoft Access to HTML-based, reducing travel and installation costs</li>
                   </ul>
 
                   <p className="font-semibold mt-2">Graphic Designer/Pre-Production Artist</p>
                   <p>AmeriServ Printers LLC - Hartsville, SC - Jan 2003 - Dec 2005</p>
-                  <ul className="list-disc list-inside ml-4">
+                  <ul className="list-disc list-inside ml-4 space-y-1">
                     <li>Designed and laid out artwork from invoices to business cards</li>
                     <li>Refined copy-proof processes to reduce costs and improve efficiency</li>
                   </ul>
@@ -203,7 +433,7 @@
                   <p>Graphic Design - Coker College, Hartsville, SC (2002 - 2007)</p>
 
                   <p className="font-bold mt-4">GROUPS</p>
-                  <ul className="list-disc list-inside ml-4">
+                  <ul className="list-disc list-inside ml-4 space-y-1">
                     <li>Hartsville Downtown Development Association (HDDA) Design Committee Co-Chair, Jul 2012 - Mar 2015</li>
                     <li>Hartsville Young Professionals Member, Jul 2012 - Mar 2015</li>
                   </ul>
@@ -211,47 +441,6 @@
               </div>
             </div>
           )}
-
-          {/* Skills + Let’s Work Together Section */}
-          <section id="contact" className="py-16 px-4 sm:px-6 bg-black/40 text-center">
-            <div className="max-w-6xl mx-auto text-center">
-              <h2 className="text-3xl sm:text-4xl font-bold mb-8">Skills</h2>
-              <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-3 gap-6 mb-12">
-                {[
-                  "CorelDraw",
-                  "Illustrator",
-                  "Photoshop",
-                  "Layout Design",
-                  "Design Concepts",
-                  "Marketing (Digital, Social & Print)",
-                  "Pre-Production Management",
-                  "Web Development (HTML5 & CSS3)",
-                  "Typography & Font Management",
-                  "Printing Processes",
-                  "ArtiosCad (Limited)",
-                  "Corrugated Box Design"
-                ].map((skill) => (
-                  <div
-                    key={skill}
-                    className="bg-white/10 p-4 rounded-lg text-white text-base sm:text-lg font-medium"
-                  >
-                    {skill}
-                  </div>
-                ))}
-              </div>
-
-              <h2 className="text-3xl sm:text-4xl font-bold mb-6">Let’s Work Together!</h2>
-              <p className="mb-6 text-gray-300">
-                Get in touch via email or socials below:
-              </p>
-              <div className="flex justify-center gap-6 text-2xl">
-                <a href="mailto:rgray1983@gmail.com" className="hover:text-red-400" aria-label="email">📧</a>
-                <a href="tel:8434532282" className="hover:text-red-400" aria-label="phone">📞</a>
-                <a href="https://www.linkedin.com/in/drgdesign/" className="hover:text-red-400" aria-label="linkedin">🔗</a>
-              </div>
-            </div>
-          </section>
-
         </div>
       );
     }
