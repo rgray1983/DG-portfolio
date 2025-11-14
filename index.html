@@ -21,7 +21,7 @@
     .modal-backdrop { background: rgba(0,0,0,0.65); }
   </style>
 </head>
-<body class="min-h-screen bg-neutral-100 text-slate-900 font-sans">
+<body class="min-h-screen bg-slate-950 text-slate-100 font-sans">
 
   <div id="root"></div>
 
@@ -32,6 +32,11 @@
       const [selected, setSelected] = useState(null);
       const [currentIndex, setCurrentIndex] = useState(0);
       const [resumeOpen, setResumeOpen] = useState(false);
+
+      // which project is active in the Selected Work carousel
+      const [activeProjectIndex, setActiveProjectIndex] = useState(0);
+      // which image is showing in the thumbnail carousel
+      const [thumbIndex, setThumbIndex] = useState(0);
 
       const projects = [
         {
@@ -72,9 +77,11 @@
         }
       ];
 
-      const openProject = (project) => {
+      const activeProject = projects[activeProjectIndex];
+
+      const openProject = (project, index) => {
         setSelected(project);
-        setCurrentIndex(0);
+        setCurrentIndex(index ?? 0);
       };
 
       const prevImage = () => {
@@ -87,21 +94,45 @@
         setCurrentIndex((currentIndex + 1) % selected.images.length);
       };
 
+      // project-level carousel controls
+      const prevProject = () => {
+        const nextIndex = (activeProjectIndex - 1 + projects.length) % projects.length;
+        setActiveProjectIndex(nextIndex);
+        setThumbIndex(0); // reset to first image of the new project
+      };
+
+      const nextProject = () => {
+        const nextIndex = (activeProjectIndex + 1) % projects.length;
+        setActiveProjectIndex(nextIndex);
+        setThumbIndex(0); // reset to first image of the new project
+      };
+
+      // image-level carousel controls inside the thumbnail area
+      const prevThumb = () => {
+        setThumbIndex((prev) => (prev - 1 + activeProject.images.length) % activeProject.images.length);
+      };
+
+      const nextThumb = () => {
+        setThumbIndex((prev) => (prev + 1) % activeProject.images.length);
+      };
+
       return (
         <div className="min-h-screen flex flex-col">
           {/* NAV */}
-          <header className="sticky top-0 z-30 bg-neutral-100/90 backdrop-blur border-b border-neutral-200">
+          <header className="sticky top-0 z-30 bg-slate-950/95 backdrop-blur border-b border-slate-800">
             <div className="max-w-5xl mx-auto px-4 py-4 flex items-center justify-between">
-              <a href="#" className="font-semibold tracking-tight">
-                Richie Gray
+              <a href="#" className="flex items-center gap-2 font-semibold tracking-tight">
+                {/* Replace this text with your logo image if you want: */}
+                <img src="https://imgur.com/bNX4BKZ.png" alt="Richie Logo" className="h-9 w-auto" />
+                <span>Richie Gray's Portfolio</span> 
               </a>
-              <nav className="hidden sm:flex items-center gap-6 text-sm">
-                <a href="#work" className="hover:text-slate-600 transition">Work</a>
-                <a href="#about" className="hover:text-slate-600 transition">About</a>
-                <a href="#contact" className="hover:text-slate-600 transition">Contact</a>
+              <nav className="hidden sm:flex items-center gap-6 text-sm text-slate-200">
+                <a href="#work" className="hover:text-slate-100 transition">Work</a>
+                <a href="#about" className="hover:text-slate-100 transition">About</a>
+                <a href="#contact" className="hover:text-slate-100 transition">Contact</a>
                 <button
                   onClick={() => setResumeOpen(true)}
-                  className="ml-4 rounded-full border border-slate-300 px-4 py-1.5 text-xs font-medium hover:bg-slate-900 hover:text-white transition"
+                  className="ml-4 rounded-full border border-slate-600 px-4 py-1.5 text-xs font-medium hover:bg-slate-100 hover:text-slate-900 transition"
                 >
                   View Resume
                 </button>
@@ -109,7 +140,7 @@
               {/* Mobile resume button */}
               <button
                 onClick={() => setResumeOpen(true)}
-                className="sm:hidden rounded-full border border-slate-300 px-3 py-1 text-xs font-medium hover:bg-slate-900 hover:text-white transition"
+                className="sm:hidden rounded-full border border-slate-600 px-3 py-1 text-xs font-medium hover:bg-slate-100 hover:text-slate-900 transition"
               >
                 Resume
               </button>
@@ -118,138 +149,177 @@
 
           <main className="flex-1">
             {/* HERO */}
-            <section className="border-b border-neutral-200">
+            <section className="border-b border-slate-800 bg-slate-950">
               <div className="max-w-5xl mx-auto px-4 py-16 md:py-24 grid md:grid-cols-[1.3fr,1fr] gap-10 items-center">
-                <div>
-                  <p className="uppercase tracking-[0.2em] text-xs text-slate-500 mb-4">
-                    Graphic Design & Packaging
+                {/* Headshot first on mobile, second on desktop */}
+                <div className="order-1 md:order-2 flex justify-center mb-8 md:mb-0">
+                  <div className="w-40 h-40 md:w-52 md:h-52 rounded-full overflow-hidden border border-slate-700 bg-slate-900 shadow-md flex items-center justify-center">
+                    <img
+                      src="https://imgur.com/O9YXhyP.jpg"
+                      alt="Richie headshot"
+                      className="w-full h-full object-cover"
+                    />
+                  </div>
+                </div>
+
+                {/* Text second on mobile, first on desktop */}
+                <div className="order-2 md:order-1">
+                  <p className="uppercase tracking-[0.2em] text-xs text-slate-400 mb-4">
+                    Graphic Design & Brand Marketing
                   </p>
                   <h1 className="text-3xl sm:text-4xl md:text-5xl font-semibold tracking-tight mb-4">
-                    Hi, I’m <span className="text-red-500">Richie</span>.
+                    Hi, I’m <span className="text-red-400">Richie</span>.
                   </h1>
-                  <p className="text-base sm:text-lg text-slate-700 mb-6 leading-relaxed">
-                    I’m a senior graphic designer and digital pre-production artist with 20+ years of experience
-                    in visual identity, corrugated packaging, and print-ready artwork. I help brands move from
-                    rough ideas to clear, production-ready designs that actually work on press and on shelf.
+                  <p className="text-base sm:text-lg text-slate-300 mb-6 leading-relaxed">
+                    Design that drives growth. Branding that builds loyalty. Creativity that gets results.
                   </p>
                   <div className="flex flex-wrap gap-3">
                     <a
                       href="#work"
-                      className="inline-flex items-center justify-center rounded-full bg-slate-900 text-white px-6 py-2 text-sm font-medium hover:bg-slate-800 transition"
+                      className="inline-flex items-center justify-center rounded-full bg-slate-100 text-slate-900 px-6 py-2 text-sm font-medium hover:bg-white transition"
                     >
                       View Selected Work
                     </a>
                     <a
                       href="#contact"
-                      className="inline-flex items-center justify-center rounded-full border border-slate-300 px-6 py-2 text-sm font-medium hover:bg-slate-100 transition"
+                      className="inline-flex items-center justify-center rounded-full border border-slate-600 px-6 py-2 text-sm font-medium hover:bg-slate-800 transition"
                     >
                       Let’s Work Together
                     </a>
                   </div>
                 </div>
-                <div className="hidden md:block">
-                  <div className="rounded-2xl overflow-hidden border border-neutral-200 bg-white shadow-sm">
+              </div>
+            </section>
+
+            {/* WORK / PORTFOLIO – project carousel + thumbnail image carousel */}
+            <section id="work" className="border-b border-slate-800 bg-slate-900">
+              <div className="max-w-5xl mx-auto px-4 py-16 md:py-20">
+                <div className="flex items-center justify-between mb-6">
+                  <h2 className="text-2xl sm:text-3xl font-semibold tracking-tight text-slate-50">
+                    Selected Work
+                  </h2>
+                  <div className="flex items-center gap-3 text-xs text-slate-400">
+                    <span>{activeProjectIndex + 1} / {projects.length}</span>
+                    <div className="flex gap-1">
+                      <button
+                        onClick={prevProject}
+                        className="h-7 w-7 flex items-center justify-center rounded-full border border-slate-600 hover:bg-slate-800 hover:text-slate-100 transition"
+                        aria-label="Previous project"
+                      >
+                        ◀
+                      </button>
+                      <button
+                        onClick={nextProject}
+                        className="h-7 w-7 flex items-center justify-center rounded-full border border-slate-600 hover:bg-slate-800 hover:text-slate-100 transition"
+                        aria-label="Next project"
+                      >
+                        ▶
+                      </button>
+                    </div>
+                  </div>
+                </div>
+
+                <article className="grid md:grid-cols-[1.4fr,1fr] gap-6 md:gap-10 items-start">
+                  {/* Thumbnail carousel area */}
+                  <div
+                    className="space-y-4 cursor-pointer"
+                    onClick={() => openProject(activeProject, thumbIndex)}
+                  >
+                    <div className="relative rounded-2xl overflow-hidden border border-slate-800 bg-slate-800">
+                      <img
+                        src={activeProject.images[thumbIndex]}
+                        alt={activeProject.title}
+                        className="w-full h-56 sm:h-72 object-cover"
+                      />
+                      {/* subtle overlay gradient */}
+                      <div className="absolute inset-0 bg-gradient-to-t from-slate-950/40 via-transparent to-transparent pointer-events-none" />
+                      {/* Small arrows inside the thumbnail area */}
+                      <button
+                        onClick={(e) => { e.stopPropagation(); prevThumb(); }}
+                        className="absolute top-1/2 left-3 -translate-y-1/2 bg-black/50 text-white w-8 h-8 flex items-center justify-center rounded-full text-sm hover:bg-black/70 transition"
+                        aria-label="Previous image"
+                      >
+                        ◀
+                      </button>
+                      <button
+                        onClick={(e) => { e.stopPropagation(); nextThumb(); }}
+                        className="absolute top-1/2 right-3 -translate-y-1/2 bg-black/50 text-white w-8 h-8 flex items-center justify-center rounded-full text-sm hover:bg-black/70 transition"
+                        aria-label="Next image"
+                      >
+                        ▶
+                      </button>
+                      {/* Small index indicator */}
+                      <div className="absolute bottom-3 right-4 text-xs px-2 py-0.5 rounded-full bg-black/60 text-slate-100">
+                        {thumbIndex + 1} / {activeProject.images.length}
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* Text area */}
+                  <div className="space-y-3">
+                    <h3 className="text-xl sm:text-2xl font-semibold tracking-tight text-slate-50">
+                      {activeProject.title}
+                    </h3>
+                    {activeProject.subtitle && (
+                      <p className="text-sm uppercase tracking-[0.18em] text-slate-400">
+                        {activeProject.subtitle}
+                      </p>
+                    )}
+                    <p className="text-sm sm:text-base text-slate-300 leading-relaxed">
+                      {activeProject.desc}
+                    </p>
+                    <button
+                      onClick={() => openProject(activeProject, thumbIndex)}
+                      className="mt-2 inline-flex items-center text-sm font-medium text-slate-100 hover:underline"
+                    >
+                      View project images
+                      <span className="ml-1">↗</span>
+                    </button>
+                  </div>
+                </article>
+              </div>
+            </section>
+
+            {/* ABOUT */}
+            <section id="about" className="border-b border-slate-800 bg-slate-950">
+              <div className="max-w-5xl mx-auto px-4 py-16 md:py-20 grid md:grid-cols-2 gap-10 items-start">
+                <div>
+                  <h2 className="text-2xl sm:text-3xl font-semibold tracking-tight mb-4 text-slate-50">
+                    About Richie
+                  </h2>
+                  <p className="text-base sm:text-lg text-slate-300 mb-4 leading-relaxed">
+                    I’m a brand builder, logo-obsessed designer, and creative problem-solver with a passion for turning big ideas into visuals people actually remember. I’ve spent over 20 years helping businesses stand out with bold identities, strong storytelling, and design that makes people stop and say, “Whoa… who 					made that?”
+				  </p>
+				  <p className="text-base sm:text-lg text-slate-300 mb-4 leading-relaxed">
+					I love working with driven brands, startups, and creators who want to level up their look and elevate their presence — whether it’s a killer new logo, a full rebrand, or digital visuals that punch through the noise. My creative style is equal parts strategy, personality, and clean craftsmanship.
+				  </p>
+				  <p className="text-base sm:text-lg text-slate-300 mb-4 leading-relaxed">	
+					When I’m not designing, you’ll probably find me hanging with my wife and daughters, editing YouTube videos, gaming with friends, or building wild creative ideas just for fun.
+				  </p>	
+				  <p className="text-base sm:text-lg text-slate-300 mb-4 leading-relaxed">	
+					If you’re looking for a designer who brings high energy, real passion, and zero boring design, we’re definitely going to get along great.
+                  </p>
+                </div>
+                {/* RIGHT COLUMN: Family photo */}
+                <div className="flex justify-center md:justify-center">
+                  <div className="rounded-2xl overflow-hidden border border-slate-800 bg-slate-900 shadow-md w-100 h-100 sm:w-150 sm:h-150 flex items-center md:justify-center">
                     <img
-                      src="https://i.imgur.com/s9FyiEt.jpg"
-                      alt="Brand identity preview"
-                      className="w-full h-64 object-cover"
+                      src="https://imgur.com/7rnCSDu.jpg"
+                      alt="Richie and family"
+                      className="w-full h-full object-cover"
                     />
+                    {/* Replace the src above with your actual family photo URL */}
                   </div>
                 </div>
               </div>
             </section>
 
-            {/* WORK / PORTFOLIO */}
-            <section id="work" className="border-b border-neutral-200 bg-white">
-              <div className="max-w-5xl mx-auto px-4 py-16 md:py-20">
-                <h2 className="text-2xl sm:text-3xl font-semibold tracking-tight mb-8">
-                  Selected Work
-                </h2>
-
-                <div className="space-y-10">
-                  {projects.map((p) => (
-                    <article
-                      key={p.id}
-                      className="grid md:grid-cols-[1.4fr,1fr] gap-6 md:gap-10 items-start"
-                    >
-                      <div className="space-y-4 cursor-pointer" onClick={() => openProject(p)}>
-                        <div className="grid grid-cols-2 gap-2 rounded-2xl overflow-hidden border border-neutral-200 bg-neutral-50">
-                          <img
-                            src={p.images[0]}
-                            alt={p.title}
-                            className="w-full h-40 sm:h-52 object-cover"
-                          />
-                          <img
-                            src={p.images[1] || p.images[0]}
-                            alt={p.title + ' detail'}
-                            className="w-full h-40 sm:h-52 object-cover"
-                          />
-                        </div>
-                      </div>
-                      <div className="space-y-3">
-                        <h3 className="text-xl sm:text-2xl font-semibold tracking-tight">{p.title}</h3>
-                        {p.subtitle && (
-                          <p className="text-sm uppercase tracking-[0.18em] text-slate-500">
-                            {p.subtitle}
-                          </p>
-                        )}
-                        <p className="text-sm sm:text-base text-slate-700 leading-relaxed">
-                          {p.desc}
-                        </p>
-                        <button
-                          onClick={() => openProject(p)}
-                          className="mt-2 inline-flex items-center text-sm font-medium text-slate-900 hover:underline"
-                        >
-                          View project images
-                          <span className="ml-1">↗</span>
-                        </button>
-                      </div>
-                    </article>
-                  ))}
-                </div>
-              </div>
-            </section>
-
-            {/* ABOUT */}
-            <section id="about" className="border-b border-neutral-200 bg-neutral-50">
-              <div className="max-w-5xl mx-auto px-4 py-16 md:py-20 grid md:grid-cols-2 gap-10 items-start">
-                <div>
-                  <h2 className="text-2xl sm:text-3xl font-semibold tracking-tight mb-4">
-                    About Richie
-                  </h2>
-                  <p className="text-sm sm:text-base text-slate-700 leading-relaxed mb-4">
-                    I’ve spent my career at the intersection of design and production—bridging the gap between
-                    what looks great on screen and what actually runs well on press. From corrugated displays and
-                    retail packaging to logos and marketing collateral, I’m deeply familiar with how ink, board,
-                    and brand strategy work together.
-                  </p>
-                  <p className="text-sm sm:text-base text-slate-700 leading-relaxed">
-                    I enjoy collaborating with sales teams, production, and clients to solve real problems:
-                    tightening up files, improving readability, and building packaging that stands out while
-                    staying within budget and print constraints.
-                  </p>
-                </div>
-                <div>
-                  <h3 className="text-sm font-semibold tracking-[0.2em] text-slate-500 mb-4 uppercase">
-                    Focus Areas
-                  </h3>
-                  <ul className="space-y-2 text-sm sm:text-base text-slate-700">
-                    <li>• Corrugated packaging & POP displays</li>
-                    <li>• Visual identity and logo systems</li>
-                    <li>• Pre-press and digital pre-production</li>
-                    <li>• Layout, typography, and print-ready artwork</li>
-                    <li>• Web graphics and basic HTML/CSS front-end</li>
-                  </ul>
-                </div>
-              </div>
-            </section>
-
             {/* SKILLS + CONTACT */}
-            <section id="contact" className="bg-white">
+            <section id="contact" className="bg-slate-900">
               <div className="max-w-5xl mx-auto px-4 py-16 md:py-20 grid md:grid-cols-[1.4fr,1fr] gap-12 items-start">
                 {/* Skills */}
                 <div>
-                  <h2 className="text-2xl sm:text-3xl font-semibold tracking-tight mb-6">
+                  <h2 className="text-2xl sm:text-3xl font-semibold tracking-tight mb-6 text-slate-50">
                     Skills & Tools
                   </h2>
                   <div className="grid grid-cols-2 sm:grid-cols-3 gap-4">
@@ -269,7 +339,7 @@
                     ].map((skill) => (
                       <div
                         key={skill}
-                        className="bg-neutral-100 border border-neutral-200 px-3 py-2 rounded-lg text-xs sm:text-sm text-slate-800"
+                        className="bg-slate-800 border border-slate-700 px-3 py-2 rounded-lg text-xs sm:text-sm text-slate-100"
                       >
                         {skill}
                       </div>
@@ -279,16 +349,25 @@
 
                 {/* Contact */}
                 <div className="space-y-4">
-                  <h2 className="text-2xl sm:text-3xl font-semibold tracking-tight">
+                  <h2 className="text-2xl sm:text-3xl font-semibold tracking-tight text-slate-50">
                     Let’s Work Together.
                   </h2>
-                  <p className="text-sm sm:text-base text-slate-700 leading-relaxed">
-                    Whether you need a packaging refresh, a new identity system, or production-ready artwork,
-                    I’m always open to talking about thoughtful, practical design work.
+                  <p className="text-sm sm:text-base text-slate-300 leading-relaxed">
+                    Looking for a designer who brings creativity, collaboration, and results?
+					I’m here to help elevate your brand with thoughtful design that aligns with business goals and stands out in the market.
+				  </p>
+                  <p className="text-sm sm:text-base text-slate-300 leading-relaxed">
+					Let’s create meaningful, high-impact work together.
                   </p>
-                  <div className="space-y-1 text-sm sm:text-base">
-                    <p><span className="font-medium">Email:</span> <a href="mailto:rgray1983@gmail.com" className="underline">rgray1983@gmail.com</a></p>
-                    <p><span className="font-medium">Phone:</span> <a href="tel:8434532282" className="underline">(843) 453-2282</a></p>
+                  <div className="space-y-1 text-sm sm:text-base text-slate-200">
+                    <p>
+                      <span className="font-medium">Email:</span>{" "}
+                      <a href="mailto:rgray1983@gmail.com" className="underline">rgray1983@gmail.com</a>
+                    </p>
+                    <p>
+                      <span className="font-medium">Phone:</span>{" "}
+                      <a href="tel:8434532282" className="underline">(843) 453-2282</a>
+                    </p>
                     <p>
                       <span className="font-medium">LinkedIn:</span>{" "}
                       <a
@@ -307,13 +386,13 @@
           </main>
 
           {/* FOOTER */}
-          <footer className="border-t border-neutral-200 bg-neutral-50">
+          <footer className="border-t border-slate-800 bg-slate-950">
             <div className="max-w-5xl mx-auto px-4 py-6 flex flex-col sm:flex-row items-center justify-between gap-2 text-sm text-slate-500">
               <span>© {new Date().getFullYear()} Richie Gray. All rights reserved.</span>
               <div className="flex gap-4 text-lg">
-                <a href="mailto:rgray1983@gmail.com" aria-label="email" className="hover:text-slate-700">📧</a>
-                <a href="tel:8434532282" aria-label="phone" className="hover:text-slate-700">📞</a>
-                <a href="https://www.linkedin.com/in/drgdesign/" aria-label="linkedin" className="hover:text-slate-700">🔗</a>
+                <a href="mailto:rgray1983@gmail.com" aria-label="email" className="hover:text-slate-200">📧</a>
+                <a href="tel:8434532282" aria-label="phone" className="hover:text-slate-200">📞</a>
+                <a href="https://www.linkedin.com/in/drgdesign/" aria-label="linkedin" className="hover:text-slate-200">🔗</a>
               </div>
             </div>
           </footer>
@@ -322,7 +401,7 @@
           {selected && (
             <div className="fixed inset-0 z-50 flex items-center justify-center px-2 sm:px-4">
               <div className="absolute inset-0 modal-backdrop" onClick={() => setSelected(null)} />
-              <div className="relative rounded-2xl bg-white text-black max-w-[90vw] max-h-[90vh] mx-2 sm:mx-4 flex flex-col items-center p-4 overflow-auto shadow-xl">
+              <div className="relative rounded-2xl bg-slate-950 text-slate-50 max-w-[90vw] max-h-[90vh] mx-2 sm:mx-4 flex flex-col items-center p-4 overflow-auto shadow-xl border border-slate-800">
                 <div className="relative w-full flex justify-center items-center">
                   <img
                     src={selected.images[currentIndex]}
@@ -330,31 +409,31 @@
                     className="max-w-[100%] max-h-[80vh] rounded-lg object-contain"
                   />
                   <button
-                    onClick={() => setCurrentIndex((currentIndex - 1 + selected.images.length) % selected.images.length)}
-                    className="absolute top-1/2 left-2 -translate-y-1/2 bg-black/40 text-white px-3 py-1 rounded text-xl sm:text-2xl"
+                    onClick={prevImage}
+                    className="absolute top-1/2 left-2 -translate-y-1/2 bg-black/60 text-white px-3 py-1 rounded text-xl sm:text-2xl"
                   >
                     ◀
                   </button>
                   <button
-                    onClick={() => setCurrentIndex((currentIndex + 1) % selected.images.length)}
-                    className="absolute top-1/2 right-2 -translate-y-1/2 bg-black/40 text-white px-3 py-1 rounded text-xl sm:text-2xl"
+                    onClick={nextImage}
+                    className="absolute top-1/2 right-2 -translate-y-1/2 bg-black/60 text-white px-3 py-1 rounded text-xl sm:text-2xl"
                   >
                     ▶
                   </button>
                 </div>
                 <h3 className="text-xl sm:text-2xl font-semibold mb-1 mt-4">{selected.title}</h3>
                 {selected.subtitle && (
-                  <p className="text-xs uppercase tracking-[0.18em] text-slate-500 mb-2">
+                  <p className="text-xs uppercase tracking-[0.18em] text-slate-400 mb-2">
                     {selected.subtitle}
                   </p>
                 )}
-                <p className="mb-4 text-sm sm:text-base text-slate-700 text-center max-w-xl">
+                <p className="mb-4 text-sm sm:text-base text-slate-200 text-center max-w-xl">
                   {selected.desc}
                 </p>
                 <div className="flex justify-end w-full">
                   <button
                     onClick={() => setSelected(null)}
-                    className="px-4 py-2 rounded-lg bg-slate-900 hover:bg-slate-800 text-white text-sm"
+                    className="px-4 py-2 rounded-lg bg-slate-100 hover:bg-white text-slate-900 text-sm"
                   >
                     Close
                   </button>
@@ -367,19 +446,19 @@
           {resumeOpen && (
             <div className="fixed inset-0 z-50 flex items-center justify-center px-2 sm:px-4">
               <div className="absolute inset-0 modal-backdrop" onClick={() => setResumeOpen(false)} />
-              <div className="relative p-6 rounded-2xl bg-white text-black max-w-3xl mx-2 sm:mx-4 overflow-y-auto max-h-[90%] shadow-xl">
+              <div className="relative p-6 rounded-2xl bg-slate-950 text-slate-50 max-w-3xl mx-2 sm:mx-4 overflow-y-auto max-h-[90%] shadow-xl border border-slate-800">
                 <span
                   className="absolute top-2 right-4 cursor-pointer text-2xl"
                   onClick={() => setResumeOpen(false)}
                 >
                   &times;
                 </span>
-                <h2 className="text-2xl font-bold mb-4 border-b border-gray-300 pb-2">Resume</h2>
-                <div className="space-y-4 text-left text-gray-800 text-sm sm:text-base">
+                <h2 className="text-2xl font-bold mb-4 border-b border-slate-700 pb-2">Resume</h2>
+                <div className="space-y-4 text-left text-slate-200 text-sm sm:text-base">
                   <p className="font-bold text-lg">David R. Gray III (Richie)</p>
                   <p>563 Bullard Ford Rd, Hartsville, SC 29550</p>
                   <p>rgray1983@gmail.com - 843-453-2282</p>
-                  <hr className="border-gray-300" />
+                  <hr className="border-slate-700" />
 
                   <p className="font-bold">WORK EXPERIENCE</p>
                   <p>
