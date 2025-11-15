@@ -35,31 +35,26 @@
 
       // which project is active in the Selected Work carousel
       const [activeProjectIndex, setActiveProjectIndex] = useState(0);
-      // which image is showing in the thumbnail carousel
       const [thumbIndex, setThumbIndex] = useState(0);
 
       const projects = [
         {
           id: 1,
-          title: "Brand Identity",
+          title: "Branding & Logo Design",
           subtitle: "Logo, visual identity, and packaging",
           images: [
-            "https://i.imgur.com/s9FyiEt.jpg",
-            "https://i.imgur.com/Cz91Ew3.jpg",
-            "https://i.imgur.com/oAAsl74.jpg",
-            "https://i.imgur.com/8p2ihGy.jpg",
-            "https://i.imgur.com/lC8whwv.jpg",
-            "https://i.imgur.com/TtIYM53.jpg",
-            "https://i.imgur.com/ssbSEwh.jpg",
-            "https://i.imgur.com/Ne3sEEe.jpg",
-            "https://i.imgur.com/tVCtVhn.jpg",
-            "https://i.imgur.com/jDFMhMF.jpg"
+            "https://imgur.com/WcVt5sV.jpg",
+            "https://imgur.com/tLB8JQw.jpg",
+            "https://imgur.com/GiL3HOZ.jpg",
+            "https://imgur.com/jQdbHPV.jpg",
+            "https://imgur.com/lNSiIuS.jpg",
+            "https://imgur.com/wn8KmkM.jpg"
           ],
           desc: "A selection of identity systems, logo marks, and supporting visual assets that help brands feel cohesive and memorable across print and digital."
         },
         {
           id: 2,
-          title: "Packaging Design",
+          title: "Retail & Apparel Design",
           subtitle: "Corrugated, retail, and specialty packaging",
           images: [
             "https://i.imgur.com/adKEq9K.jpg",
@@ -74,6 +69,17 @@
             "https://i.imgur.com/ViSRl8p.jpg"
           ],
           desc: "Award-winning corrugated and retail packaging, built to balance structure, print constraints, and strong shelf presence."
+        },
+        {
+          id: 3,
+          title: "Web Design",
+          subtitle: "Responsive websites, UX design, and landing pages",
+          images: [
+            "https://i.imgur.com/RzR5b1g.jpeg",
+            "https://i.imgur.com/fCaxgG7.jpeg",
+            "https://i.imgur.com/83LhC4C.jpeg"
+          ],
+          desc: "A collection of responsive website layouts, marketing landing pages, and interactive web experiences designed for clarity, usability, and conversion."
         }
       ];
 
@@ -94,20 +100,6 @@
         setCurrentIndex((currentIndex + 1) % selected.images.length);
       };
 
-      // project-level carousel controls
-      const prevProject = () => {
-        const nextIndex = (activeProjectIndex - 1 + projects.length) % projects.length;
-        setActiveProjectIndex(nextIndex);
-        setThumbIndex(0); // reset to first image of the new project
-      };
-
-      const nextProject = () => {
-        const nextIndex = (activeProjectIndex + 1) % projects.length;
-        setActiveProjectIndex(nextIndex);
-        setThumbIndex(0); // reset to first image of the new project
-      };
-
-      // image-level carousel controls inside the thumbnail area
       const prevThumb = () => {
         setThumbIndex((prev) => (prev - 1 + activeProject.images.length) % activeProject.images.length);
       };
@@ -118,13 +110,12 @@
 
       return (
         <div className="min-h-screen flex flex-col">
+
           {/* NAV */}
           <header className="sticky top-0 z-30 bg-slate-950/95 backdrop-blur border-b border-slate-800">
             <div className="max-w-5xl mx-auto px-4 py-4 flex items-center justify-between">
               <a href="#" className="flex items-center gap-2 font-semibold tracking-tight">
-                {/* Replace this text with your logo image if you want: */}
                 <img src="https://imgur.com/bNX4BKZ.png" alt="Richie Logo" className="h-9 w-auto" />
-                <span>Richie Gray's Portfolio</span> 
               </a>
               <nav className="hidden sm:flex items-center gap-6 text-sm text-slate-200">
                 <a href="#work" className="hover:text-slate-100 transition">Work</a>
@@ -137,7 +128,6 @@
                   View Resume
                 </button>
               </nav>
-              {/* Mobile resume button */}
               <button
                 onClick={() => setResumeOpen(true)}
                 className="sm:hidden rounded-full border border-slate-600 px-3 py-1 text-xs font-medium hover:bg-slate-100 hover:text-slate-900 transition"
@@ -148,10 +138,11 @@
           </header>
 
           <main className="flex-1">
+
             {/* HERO */}
             <section className="border-b border-slate-800 bg-slate-950">
               <div className="max-w-5xl mx-auto px-4 py-16 md:py-24 grid md:grid-cols-[1.3fr,1fr] gap-10 items-center">
-                {/* Headshot first on mobile, second on desktop */}
+
                 <div className="order-1 md:order-2 flex justify-center mb-8 md:mb-0">
                   <div className="w-40 h-40 md:w-52 md:h-52 rounded-full overflow-hidden border border-slate-700 bg-slate-900 shadow-md flex items-center justify-center">
                     <img
@@ -162,7 +153,6 @@
                   </div>
                 </div>
 
-                {/* Text second on mobile, first on desktop */}
                 <div className="order-2 md:order-1">
                   <p className="uppercase tracking-[0.2em] text-xs text-slate-400 mb-4">
                     Graphic Design & Brand Marketing
@@ -191,36 +181,41 @@
               </div>
             </section>
 
-            {/* WORK / PORTFOLIO – project carousel + thumbnail image carousel */}
+            {/* WORK */}
             <section id="work" className="border-b border-slate-800 bg-slate-900">
               <div className="max-w-5xl mx-auto px-4 py-16 md:py-20">
-                <div className="flex items-center justify-between mb-6">
+
+                <div className="flex items-center justify-between mb-6 gap-4">
                   <h2 className="text-2xl sm:text-3xl font-semibold tracking-tight text-slate-50">
                     Selected Work
                   </h2>
-                  <div className="flex items-center gap-3 text-xs text-slate-400">
-                    <span>{activeProjectIndex + 1} / {projects.length}</span>
-                    <div className="flex gap-1">
-                      <button
-                        onClick={prevProject}
-                        className="h-7 w-7 flex items-center justify-center rounded-full border border-slate-600 hover:bg-slate-800 hover:text-slate-100 transition"
-                        aria-label="Previous project"
-                      >
-                        ◀
-                      </button>
-                      <button
-                        onClick={nextProject}
-                        className="h-7 w-7 flex items-center justify-center rounded-full border border-slate-600 hover:bg-slate-800 hover:text-slate-100 transition"
-                        aria-label="Next project"
-                      >
-                        ▶
-                      </button>
-                    </div>
+
+                  <div className="flex flex-wrap gap-2 justify-start">
+                    {projects.map((project, index) => {
+                      const isActive = index === activeProjectIndex;
+                      return (
+                        <button
+                          key={project.id}
+                          onClick={() => {
+                            setActiveProjectIndex(index);
+                            setThumbIndex(0);
+                          }}
+                          className={
+                            "rounded-full border border-slate-600 px-4 py-1.5 text-xs font-medium transition " +
+                            (isActive
+                              ? "bg-slate-100 text-slate-900"
+                              : "text-slate-200 hover:bg-slate-100 hover:text-slate-900")
+                          }
+                        >
+                          {project.title}
+                        </button>
+                      );
+                    })}
                   </div>
                 </div>
 
                 <article className="grid md:grid-cols-[1.4fr,1fr] gap-6 md:gap-10 items-start">
-                  {/* Thumbnail carousel area */}
+
                   <div
                     className="space-y-4 cursor-pointer"
                     onClick={() => openProject(activeProject, thumbIndex)}
@@ -231,9 +226,8 @@
                         alt={activeProject.title}
                         className="w-full h-56 sm:h-72 object-cover"
                       />
-                      {/* subtle overlay gradient */}
                       <div className="absolute inset-0 bg-gradient-to-t from-slate-950/40 via-transparent to-transparent pointer-events-none" />
-                      {/* Small arrows inside the thumbnail area */}
+
                       <button
                         onClick={(e) => { e.stopPropagation(); prevThumb(); }}
                         className="absolute top-1/2 left-3 -translate-y-1/2 bg-black/50 text-white w-8 h-8 flex items-center justify-center rounded-full text-sm hover:bg-black/70 transition"
@@ -248,14 +242,13 @@
                       >
                         ▶
                       </button>
-                      {/* Small index indicator */}
+
                       <div className="absolute bottom-3 right-4 text-xs px-2 py-0.5 rounded-full bg-black/60 text-slate-100">
                         {thumbIndex + 1} / {activeProject.images.length}
                       </div>
                     </div>
                   </div>
 
-                  {/* Text area */}
                   <div className="space-y-3">
                     <h3 className="text-xl sm:text-2xl font-semibold tracking-tight text-slate-50">
                       {activeProject.title}
@@ -288,27 +281,26 @@
                     About Richie
                   </h2>
                   <p className="text-base sm:text-lg text-slate-300 mb-4 leading-relaxed">
-                    I’m a brand builder, logo-obsessed designer, and creative problem-solver with a passion for turning big ideas into visuals people actually remember. I’ve spent over 20 years helping businesses stand out with bold identities, strong storytelling, and design that makes people stop and say, “Whoa… who 					made that?”
-				  </p>
-				  <p className="text-base sm:text-lg text-slate-300 mb-4 leading-relaxed">
-					I love working with driven brands, startups, and creators who want to level up their look and elevate their presence — whether it’s a killer new logo, a full rebrand, or digital visuals that punch through the noise. My creative style is equal parts strategy, personality, and clean craftsmanship.
-				  </p>
-				  <p className="text-base sm:text-lg text-slate-300 mb-4 leading-relaxed">	
-					When I’m not designing, you’ll probably find me hanging with my wife and daughters, editing YouTube videos, gaming with friends, or building wild creative ideas just for fun.
-				  </p>	
-				  <p className="text-base sm:text-lg text-slate-300 mb-4 leading-relaxed">	
-					If you’re looking for a designer who brings high energy, real passion, and zero boring design, we’re definitely going to get along great.
+                    I’m a brand builder, logo-obsessed designer, and creative problem-solver with a passion for turning big ideas into visuals people actually remember. I’ve spent over 20 years helping businesses stand out with bold identities, strong storytelling, and design that makes people stop and say, “Whoa… who made that?”
+                  </p>
+                  <p className="text-base sm:text-lg text-slate-300 mb-4 leading-relaxed">
+                    I love working with driven brands, startups, and creators who want to level up their look and elevate their presence — whether it’s a killer new logo, a full rebrand, or digital visuals that punch through the noise. My creative style is equal parts strategy, personality, and clean craftsmanship.
+                  </p>
+                  <p className="text-base sm:text-lg text-slate-300 mb-4 leading-relaxed">
+                    When I’m not designing, you’ll probably find me hanging with my wife and daughters, editing YouTube videos, gaming with friends, or building wild creative ideas just for fun.
+                  </p>
+                  <p className="text-base sm:text-lg text-slate-300 mb-4 leading-relaxed">
+                    If you’re looking for a designer who brings high energy, real passion, and zero boring design, we’re definitely going to get along great.
                   </p>
                 </div>
-                {/* RIGHT COLUMN: Family photo */}
-                <div className="flex justify-center md:justify-center">
-                  <div className="rounded-2xl overflow-hidden border border-slate-800 bg-slate-900 shadow-md w-100 h-100 sm:w-150 sm:h-150 flex items-center md:justify-center">
+
+                <div className="flex justify-center">
+                  <div className="rounded-2xl overflow-hidden border border-slate-800 bg-slate-900 shadow-md w-full max-w-md aspect-[4/3]">
                     <img
                       src="https://imgur.com/7rnCSDu.jpg"
                       alt="Richie and family"
                       className="w-full h-full object-cover"
                     />
-                    {/* Replace the src above with your actual family photo URL */}
                   </div>
                 </div>
               </div>
@@ -317,7 +309,7 @@
             {/* SKILLS + CONTACT */}
             <section id="contact" className="bg-slate-900">
               <div className="max-w-5xl mx-auto px-4 py-16 md:py-20 grid md:grid-cols-[1.4fr,1fr] gap-12 items-start">
-                {/* Skills */}
+
                 <div>
                   <h2 className="text-2xl sm:text-3xl font-semibold tracking-tight mb-6 text-slate-50">
                     Skills & Tools
@@ -347,17 +339,16 @@
                   </div>
                 </div>
 
-                {/* Contact */}
                 <div className="space-y-4">
                   <h2 className="text-2xl sm:text-3xl font-semibold tracking-tight text-slate-50">
                     Let’s Work Together.
                   </h2>
                   <p className="text-sm sm:text-base text-slate-300 leading-relaxed">
                     Looking for a designer who brings creativity, collaboration, and results?
-					I’m here to help elevate your brand with thoughtful design that aligns with business goals and stands out in the market.
-				  </p>
+                    I’m here to help elevate your brand with thoughtful design that aligns with business goals and stands out in the market.
+                  </p>
                   <p className="text-sm sm:text-base text-slate-300 leading-relaxed">
-					Let’s create meaningful, high-impact work together.
+                    Let’s create meaningful, high-impact work together.
                   </p>
                   <div className="space-y-1 text-sm sm:text-base text-slate-200">
                     <p>
