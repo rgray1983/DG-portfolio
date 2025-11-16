@@ -37,18 +37,24 @@
       const [activeProjectIndex, setActiveProjectIndex] = useState(0);
       const [thumbIndex, setThumbIndex] = useState(0);
 
+      // Web Design site modal state
+      const [webModalOpen, setWebModalOpen] = useState(false);
+      const [webModalSite, setWebModalSite] = useState(null);
+
       const projects = [
         {
           id: 1,
           title: "Branding & Logo Design",
-          subtitle: "Logo, visual identity, and packaging",
+          subtitle: "Logo & visual identity",
           images: [
             "https://imgur.com/WcVt5sV.jpg",
             "https://imgur.com/tLB8JQw.jpg",
             "https://imgur.com/GiL3HOZ.jpg",
             "https://imgur.com/jQdbHPV.jpg",
             "https://imgur.com/lNSiIuS.jpg",
-            "https://imgur.com/wn8KmkM.jpg"
+            "https://imgur.com/wn8KmkM.jpg",
+            "https://imgur.com/Ff0PGcL.jpg",
+            "https://imgur.com/R9zbg0U.jpg"
           ],
           desc: "A selection of identity systems, logo marks, and supporting visual assets that help brands feel cohesive and memorable across print and digital."
         },
@@ -57,16 +63,17 @@
           title: "Retail & Apparel Design",
           subtitle: "Corrugated, retail, and specialty packaging",
           images: [
-            "https://i.imgur.com/adKEq9K.jpg",
-            "https://i.imgur.com/GeJrXWp.jpg",
-            "https://i.imgur.com/T0tyAag.jpg",
-            "https://i.imgur.com/thILgkh.jpg",
-            "https://i.imgur.com/jW001UK.jpg",
-            "https://i.imgur.com/u6unTby.jpg",
-            "https://i.imgur.com/XyKUHe2.jpg",
-            "https://i.imgur.com/E9h7Qik.jpg",
-            "https://i.imgur.com/WMxj9vW.jpg",
-            "https://i.imgur.com/ViSRl8p.jpg"
+            "https://imgur.com/Kysf9FX.jpg",
+            "https://imgur.com/pjp74QY.jpg",
+            "https://imgur.com/cTIqZW6.jpg",
+            "https://imgur.com/zGdLkAo.jpg",
+            "https://imgur.com/EDvW98h.jpg",
+            "https://imgur.com/5oUuQnz.jpg",
+            "https://imgur.com/26LwmiF.jpg",
+            "https://imgur.com/CRKnz3d.jpg",
+            "https://imgur.com/7wyiA3v.jpg",
+            "https://imgur.com/88RX0Tb.jpg",
+            "https://imgur.com/gdmzERa.jpg"
           ],
           desc: "Award-winning corrugated and retail packaging, built to balance structure, print constraints, and strong shelf presence."
         },
@@ -78,6 +85,33 @@
             "https://i.imgur.com/RzR5b1g.jpeg",
             "https://i.imgur.com/fCaxgG7.jpeg",
             "https://i.imgur.com/83LhC4C.jpeg"
+          ],
+          // New: site folders you’ll upload – update urls & preview images as needed
+          sites: [
+            {
+              id: "site1",
+              title: "Web Project One",
+              url: "./site1/index.html",              // update to your folder path
+              preview: "https://i.imgur.com/RzR5b1g.jpeg" // screenshot of site1
+            },
+            {
+              id: "site2",
+              title: "Web Project Two",
+              url: "./site2/index.html",
+              preview: "https://i.imgur.com/fCaxgG7.jpeg"
+            },
+            {
+              id: "site3",
+              title: "Web Project Three",
+              url: "./site3/index.html",
+              preview: "https://i.imgur.com/83LhC4C.jpeg"
+            },
+            {
+              id: "site4",
+              title: "Web Project Four",
+              url: "./site4/index.html",
+              preview: "https://i.imgur.com/83LhC4C.jpeg" // or a 4th unique screenshot
+            }
           ],
           desc: "A collection of responsive website layouts, marketing landing pages, and interactive web experiences designed for clarity, usability, and conversion."
         }
@@ -215,60 +249,121 @@
                 </div>
 
                 <article className="grid md:grid-cols-[1.4fr,1fr] gap-6 md:gap-10 items-start">
-
-                  <div
-                    className="space-y-4 cursor-pointer"
-                    onClick={() => openProject(activeProject, thumbIndex)}
-                  >
-                    <div className="relative rounded-2xl overflow-hidden border border-slate-800 bg-slate-800">
-                      <img
-                        src={activeProject.images[thumbIndex]}
-                        alt={activeProject.title}
-                        className="w-full h-56 sm:h-72 object-cover"
-                      />
-                      <div className="absolute inset-0 bg-gradient-to-t from-slate-950/40 via-transparent to-transparent pointer-events-none" />
-
-                      <button
-                        onClick={(e) => { e.stopPropagation(); prevThumb(); }}
-                        className="absolute top-1/2 left-3 -translate-y-1/2 bg-black/50 text-white w-8 h-8 flex items-center justify-center rounded-full text-sm hover:bg-black/70 transition"
-                        aria-label="Previous image"
-                      >
-                        ◀
-                      </button>
-                      <button
-                        onClick={(e) => { e.stopPropagation(); nextThumb(); }}
-                        className="absolute top-1/2 right-3 -translate-y-1/2 bg-black/50 text-white w-8 h-8 flex items-center justify-center rounded-full text-sm hover:bg-black/70 transition"
-                        aria-label="Next image"
-                      >
-                        ▶
-                      </button>
-
-                      <div className="absolute bottom-3 right-4 text-xs px-2 py-0.5 rounded-full bg-black/60 text-slate-100">
-                        {thumbIndex + 1} / {activeProject.images.length}
+                  {activeProject.title === "Web Design" ? (
+                    <>
+                      {/* Web Design: site previews grid */}
+                      <div className="space-y-4">
+                        <div className="grid sm:grid-cols-2 gap-4">
+                          {activeProject.sites && activeProject.sites.map((site) => (
+                            <button
+                              key={site.id}
+                              onClick={() => {
+                                setWebModalSite(site);
+                                setWebModalOpen(true);
+                              }}
+                              className="text-left rounded-2xl overflow-hidden border border-slate-800 bg-slate-800 hover:bg-slate-700 transition"
+                            >
+                              <div className="w-full h-40 bg-slate-900 overflow-hidden">
+                                {site.preview ? (
+                                  <img
+                                    src={site.preview}
+                                    alt={site.title}
+                                    className="w-full h-full object-cover"
+                                  />
+                                ) : (
+                                  <div className="w-full h-full flex items-center justify-center text-xs text-slate-400">
+                                    Preview coming soon
+                                  </div>
+                                )}
+                              </div>
+                              <div className="px-3 py-2 border-t border-slate-700 text-sm text-slate-100">
+                                {site.title}
+                              </div>
+                            </button>
+                          ))}
+                        </div>
                       </div>
-                    </div>
-                  </div>
 
-                  <div className="space-y-3">
-                    <h3 className="text-xl sm:text-2xl font-semibold tracking-tight text-slate-50">
-                      {activeProject.title}
-                    </h3>
-                    {activeProject.subtitle && (
-                      <p className="text-sm uppercase tracking-[0.18em] text-slate-400">
-                        {activeProject.subtitle}
-                      </p>
-                    )}
-                    <p className="text-sm sm:text-base text-slate-300 leading-relaxed">
-                      {activeProject.desc}
-                    </p>
-                    <button
-                      onClick={() => openProject(activeProject, thumbIndex)}
-                      className="mt-2 inline-flex items-center text-sm font-medium text-slate-100 hover:underline"
-                    >
-                      View project images
-                      <span className="ml-1">↗</span>
-                    </button>
-                  </div>
+                      {/* Text area (same wording as before) */}
+                      <div className="space-y-3">
+                        <h3 className="text-xl sm:text-2xl font-semibold tracking-tight text-slate-50">
+                          {activeProject.title}
+                        </h3>
+                        {activeProject.subtitle && (
+                          <p className="text-sm uppercase tracking-[0.18em] text-slate-400">
+                            {activeProject.subtitle}
+                          </p>
+                        )}
+                        <p className="text-sm sm:text-base text-slate-300 leading-relaxed">
+                          {activeProject.desc}
+                        </p>
+                        <button
+                          onClick={() => openProject(activeProject, thumbIndex)}
+                          className="mt-2 inline-flex items-center text-sm font-medium text-slate-100 hover:underline"
+                        >
+                          View project images
+                          <span className="ml-1">↗</span>
+                        </button>
+                      </div>
+                    </>
+                  ) : (
+                    <>
+                      {/* Original image carousel for Branding & Retail */}
+                      <div
+                        className="space-y-4 cursor-pointer"
+                        onClick={() => openProject(activeProject, thumbIndex)}
+                      >
+                        <div className="relative rounded-2xl overflow-hidden border border-slate-800 bg-slate-800">
+                          <img
+                            src={activeProject.images[thumbIndex]}
+                            alt={activeProject.title}
+                            className="w-full h-56 sm:h-72 object-cover"
+                          />
+                          <div className="absolute inset-0 bg-gradient-to-t from-slate-950/40 via-transparent to-transparent pointer-events-none" />
+
+                          <button
+                            onClick={(e) => { e.stopPropagation(); prevThumb(); }}
+                            className="absolute top-1/2 left-3 -translate-y-1/2 bg-black/50 text-white w-8 h-8 flex items-center justify-center rounded-full text-sm hover:bg-black/70 transition"
+                            aria-label="Previous image"
+                          >
+                            ◀
+                          </button>
+                          <button
+                            onClick={(e) => { e.stopPropagation(); nextThumb(); }}
+                            className="absolute top-1/2 right-3 -translate-y-1/2 bg-black/50 text-white w-8 h-8 flex items-center justify-center rounded-full text-sm hover:bg-black/70 transition"
+                            aria-label="Next image"
+                          >
+                            ▶
+                          </button>
+
+                          <div className="absolute bottom-3 right-4 text-xs px-2 py-0.5 rounded-full bg-black/60 text-slate-100">
+                            {thumbIndex + 1} / {activeProject.images.length}
+                          </div>
+                        </div>
+                      </div>
+
+                      <div className="space-y-3">
+                        <h3 className="text-xl sm:text-2xl font-semibold tracking-tight text-slate-50">
+                          {activeProject.title}
+                        </h3>
+                        {activeProject.subtitle && (
+                          <p className="text-sm uppercase tracking-[0.18em] text-slate-400">
+                            {activeProject.subtitle}
+                          </p>
+                        )}
+                        <p className="text-sm sm:text-base text-slate-300 leading-relaxed">
+                          {activeProject.desc}
+                        </p>
+                        <button
+                          onClick={() => openProject(activeProject, thumbIndex)}
+                          className="mt-2 inline-flex items-center text-sm font-medium text-slate-100 hover:underline"
+                        >
+                          View project images
+                          <span className="ml-1">↗</span>
+                        </button>
+                      </div>
+                    </>
+                  )}
                 </article>
               </div>
             </section>
@@ -301,6 +396,7 @@
                       alt="Richie and family"
                       className="w-full h-full object-cover"
                     />
+                    {/* Replace the src above with your actual family photo URL */}
                   </div>
                 </div>
               </div>
@@ -428,6 +524,43 @@
                   >
                     Close
                   </button>
+                </div>
+              </div>
+            </div>
+          )}
+
+          {/* WEB DESIGN SITE MODAL (IFRAME) */}
+          {webModalOpen && webModalSite && (
+            <div className="fixed inset-0 z-50 flex items-center justify-center px-2 sm:px-4">
+              <div
+                className="absolute inset-0 modal-backdrop"
+                onClick={() => {
+                  setWebModalOpen(false);
+                  setWebModalSite(null);
+                }}
+              />
+              <div className="relative rounded-2xl bg-slate-950 text-slate-50 max-w-[90vw] max-h-[90vh] w-full mx-2 sm:mx-4 overflow-hidden shadow-xl border border-slate-800 flex flex-col">
+                <div className="flex items-center justify-between px-4 py-3 border-b border-slate-800">
+                  <h3 className="text-sm sm:text-base font-semibold">
+                    {webModalSite.title}
+                  </h3>
+                  <button
+                    onClick={() => {
+                      setWebModalOpen(false);
+                      setWebModalSite(null);
+                    }}
+                    className="text-xl leading-none hover:text-slate-200"
+                    aria-label="Close"
+                  >
+                    &times;
+                  </button>
+                </div>
+                <div className="flex-1 bg-slate-900">
+                  <iframe
+                    src={webModalSite.url}
+                    title={webModalSite.title}
+                    className="w-full h-[70vh]"
+                  />
                 </div>
               </div>
             </div>
