@@ -1,0 +1,168 @@
+<!DOCTYPE HTML>
+
+
+<html>
+	<head>
+		<title>Design - SPC</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<!--[if lte IE 8]><script src="assets/js/ie/html5shiv.js"></script><![endif]-->
+		<link rel="stylesheet" href="assets/css/main.css" />
+		<!--[if lte IE 9]><link rel="stylesheet" href="assets/css/ie9.css" /><![endif]-->
+		<!--[if lte IE 8]><link rel="stylesheet" href="assets/css/ie8.css" /><![endif]-->
+	</head>
+	<body>
+
+		
+
+		<!-- Page Wrapper -->
+			<div id="page-wrapper">
+
+				<!-- Header -->
+					<header id="header">
+						<h1><a href="index.html">SPC HOME</a></h1>
+						<h1><a href="design.html">DESIGN</a></h1>
+						<h1><a href="aboutus.html">ABOUT US</a></h1>
+						<h1><a href="contact.html">CONTACT</a></h1>
+						<nav>
+							<a href="#menu">Menu</a>
+						</nav>
+					</header>
+
+				<!-- Menu -->
+					<nav id="menu">
+						<div class="inner">
+							<h2>Menu</h2>
+							<ul class="links">
+								<li><a href="index.html">Home</a></li>
+								<li><a href="aboutus.html">About Us</a></li>
+								<li><a href="design.html">Design</a></li>
+								<li><a href="contact.html">Contact Us</a></li>
+							</ul>
+							<a href="#" class="close">Close</a>
+						</div>
+					</nav>
+
+				<!-- Wrapper -->
+					<section id="wrapper">
+						<section id="banner">
+						<header>
+							<div class="inner">
+								<div class="logo"><span><img src="images/spclogo.png" width="106" height="98"/></span></div>
+								<h2>DESIGN</h2>
+								<p>Sumter Packaging Corporation's design team is ready to meet your packaging needs today! Our experienced team of professional package designers, engineers and specialists use the latest CAD and Digital Printing equipment to quickly turn your concepts into reality.</p>
+							</div>
+						</header>
+						</section>
+
+						<!-- Content -->
+							<div class="wrapper">
+								<div class="inner">
+
+									<h2 class="major">CUSTOMIZED FOR YOU</h2>
+									<h3><p>Sumter's design team can quickly tailor make designs for:</h3> 	
+										&bull; Point of Purchase (P.O.P.) Displays<BR />
+										&bull; Industrial Packaging<BR />
+										&bull; Boxes<BR />
+										&bull; Consumer Packaging<BR />
+										&bull; Specialties</p>
+								
+								<div class="features">	
+									<img class="image" src="images/pic19.jpg" border="0" align="middle" style="padding: 0 0 30px 30px" alt="" class="object-non-visible"  data-animation-effect="fadeInDownSmall" data-effect-delay="0" />
+								</div>			
+											
+
+									<p>In addition to corrugated board, we can also integrate a variety of other materials into the design such as foam, wood, and plastic. Foam inserts and build-ups, corrugated roll-ups and plastic corrugated are some of the materials we use to make sure our customers' products are protected in a variety of conditions. For each project, we work with you to help minimize setup time, optimize the design to work with your machinery, reduce waste, handle specialized environmental conditions and provide attractive packaging for your customers. For rush or confidential projects we also have the ability to rapidly develop prototypes while you are on-site allowing you to get to market quickly and securely.</p>
+									
+									<p><h3>Below are just few examples of the products we offer!</h3></p>
+									
+							
+								
+									<section class="features">
+											<ul class="locations">
+												<li><a href="images/pic16.JPG" class="lightbox_trigger"><img class="stackedimage" src="images/pic16.jpg" /></a></li>
+												<li><a href="images/pic20.JPG" class="lightbox_trigger"><img class="stackedimage" src="images/pic20.jpg" /></a></li>
+												<li><a href="images/pic17.JPG" class="lightbox_trigger"><img class="stackedimage" src="images/pic17.jpg" /></a></li>
+												<li><a href="images/pic18.JPG" class="lightbox_trigger"><img class="stackedimage" src="images/pic18.jpg" /></a></li>
+												<li><a href="images/pic21.JPG" class="lightbox_trigger"><img class="stackedimage" src="images/pic21.jpg" /></a></li>
+												<li><a href="images/pic22.JPG" class="lightbox_trigger"><img class="stackedimage" src="images/pic22.jpg" /></a></li>
+												<li><a href="images/pic23.JPG" class="lightbox_trigger"><img class="stackedimage" src="images/pic23.jpg" /></a></li>
+												<li><a href="images/pic24.JPG" class="lightbox_trigger"><img class="stackedimage" src="images/pic24.jpg" /></a></li>
+											</ul>
+									</section>
+
+								</div>
+							</div>
+
+					</section>
+
+					</section>
+					
+				<!-- Footer -->
+					<section id="footer">
+						<div class="inner">
+							<ul class="copyright">
+								<li>2016 &copy; Sumter Packaging Corporation All rights reserved.</li>
+							</ul>
+						</div>
+					</section>
+
+			</div>
+
+		<!-- Scripts -->
+			<script src="assets/js/jquery-1.12.0.min.js"></script>
+			
+			<script>
+				jQuery(document).ready(function($) {
+	
+					$('.lightbox_trigger').click(function(e) {
+
+						e.preventDefault();
+
+						var image_href = $(this).attr("href");
+						var $nextImage = $("<img>");
+
+						if ($('#lightbox').length > 0) {
+	
+							$('#content').html('<img src="' + image_href + '" />');
+		   	
+							$('#lightbox').fadeIn(700);
+			
+						}
+		
+						else { 
+							var lightbox = 
+								'<div id="lightbox">' +
+									'<div id="content">' + 
+										'<img src="' + image_href +'" />' +
+									'</div>' +
+									'<p>Click to anywhere close</p>' +	
+								'</div>';
+
+							$('body').append(lightbox);
+						}
+		
+						$('#lightbox').on('click', function() {
+
+						$('#lightbox').fadeOut(600);
+						});
+		
+					});
+
+				});
+			</script>			
+			
+			<script src="assets/js/skel.min.js"></script>
+			<script src="assets/js/jquery.min.js"></script>
+			<script src="assets/js/jquery.scrollex.min.js"></script>
+			<script src="assets/js/util.js"></script>
+			<!--[if lte IE 8]><script src="assets/js/ie/respond.min.js"></script><![endif]-->
+			<script src="assets/js/main.js"></script>
+			<script>
+				$.noConflict();
+			</script>
+			
+			
+
+	</body>
+</html>
