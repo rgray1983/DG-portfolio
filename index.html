@@ -46,6 +46,7 @@
     }
     .marquee-track { animation: marquee 28s linear infinite; }
     @keyframes marquee { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+    @keyframes fadeUp { to { opacity: 1; transform: translateY(0); } }
     .reveal { opacity: 0; transform: translateY(26px); transition: opacity .7s ease, transform .7s ease; }
     .reveal.visible { opacity: 1; transform: translateY(0); }
     .modal { opacity: 0; pointer-events: none; transition: opacity .25s ease; }
@@ -129,7 +130,7 @@
           </div>
         </div>
         <div class="reveal grid gap-6 border-t border-white/10 pt-7 md:grid-cols-[1.2fr_.8fr] md:items-end">
-          <p class="max-w-3xl text-[22px] font-semibold leading-tight text-soft md:text-[40px]">I build bold visual systems that connect, perform, and hold up in the real world.</p>
+          <p class="max-w-3xl text-[22px] font-semibold leading-tight text-soft md:text-[40px]">I build visual systems that connect, perform, and hold up in the real world.</p>
           <p class="max-w-xl text-sm leading-7 text-muted/90 md:justify-self-end">Brand identity, web design, brand guidelines, print, packaging, POP displays, digital design, and production-minded creative shaped by 20+ years of hands-on experience.</p>
         </div>
       </div>
@@ -222,6 +223,10 @@
         <div class="reveal grid gap-8 text-muted/90">
           <p class="text-2xl font-semibold leading-tight text-soft">I’m a senior graphic designer with 20+ years of experience across branding, web design, print, digital media, packaging, POP displays, brand guidelines, and production.</p>
           <p class="text-base leading-8">My strength is combining creative thinking with real-world production knowledge. I understand how design needs to look, print, scale, sell, and survive the handoff to production.</p>
+          <div class="border border-white/10 p-5">
+            <h3 class="mb-2 text-sm font-black uppercase text-soft">Approach</h3>
+            <p class="text-sm leading-6">I approach design as a system—balancing visual impact with real-world production, usability, and scalability across print, digital, and physical environments.</p>
+          </div>
           <div class="grid gap-4 md:grid-cols-2">
             <div class="border border-white/10 p-5">
               <h3 class="mb-2 text-sm font-black uppercase text-soft">What I Do</h3>
@@ -417,6 +422,11 @@
     </div>
   </div>
 
+  <div id="lightbox" class="fixed inset-0 z-[100] hidden items-center justify-center bg-black/90 p-4 backdrop-blur-md">
+    <button id="closeLightbox" class="absolute right-5 top-5 rounded-full border border-white/15 px-4 py-2 text-xs font-bold uppercase tracking-wide text-soft transition hover:border-accent hover:text-accent">Close</button>
+    <img id="lightboxImg" src="" alt="Expanded portfolio image" class="max-h-full max-w-full object-contain shadow-2xl" />
+  </div>
+
   <script>
     const projects = {
       ameriserv: {
@@ -426,16 +436,16 @@
         meta: ['Client: AmeriServ', 'Year: 2026', 'Services: Brand Identity, Web Design, Brand Guidelines, Print Design, Marketing Materials'],
         sections: [
           {
-            title: 'The Challenge',
-            copy: 'AmeriServ needed a stronger, more consistent identity that could represent the full range of services they offer while keeping the approachable, small-town feel that makes the company personal and trusted. The project also needed to extend beyond the logo into a usable website and clear brand guidelines.'
+            title: 'The Objective',
+            copy: 'Reposition a small-town print and promotional company to compete visually with larger providers while preserving the trust and personality of a local business. The goal was to create a cohesive system that could scale across print, web, and promotional products.'
           },
           {
-            title: 'The Approach',
-            copy: 'The rebrand centered around a bold eagle mark, a modern Americana-inspired palette, a responsive website, and a flexible brand guideline system designed to work across print, promotional products, business cards, signage, and digital platforms.'
+            title: 'Strategy & Approach',
+            copy: 'Developed a unified identity system centered around a bold, recognizable mark and a modern Americana-inspired palette. Extended the system into a responsive website and structured brand guidelines to ensure consistency across customer-facing materials, sales tools, and production outputs.'
           },
           {
-            title: 'The Result',
-            copy: 'The final system gives AmeriServ a cleaner, more professional presence across identity, website, print, and brand standards, creating a foundation that feels current, recognizable, and built for long-term use.'
+            title: 'Impact',
+            copy: 'Delivered a cohesive brand system that improved visual consistency, strengthened market positioning, and created a more professional foundation for sales, marketing, and future growth. The system was designed to be practical, scalable, and production-ready across all applications.'
           }
         ],
         images: [
@@ -456,16 +466,16 @@
         meta: ['Client: Goatwood', 'Services: Packaging, Signage, Product Graphics, Retail Display', 'Focus: Shelf impact and real-world visibility'],
         sections: [
           {
-            title: 'The Challenge',
-            copy: 'Goatwood needed high-impact graphics that could stand out in rugged retail and outdoor-use environments while clearly communicating the product benefit: kiln dried, easy-light firewood and fire-starter products.'
+            title: 'The Objective',
+            copy: 'Create high-impact retail graphics and packaging that could stand out in competitive environments while clearly communicating product benefits at a glance.'
           },
           {
-            title: 'The Approach',
-            copy: 'The visual direction leaned into bold contrast, oversized type, flame-driven energy, and strong product cues. The system was built to work across labels, signs, displays, social-style graphics, and real-world retail applications.'
+            title: 'Strategy & Approach',
+            copy: 'Focused on bold contrast, oversized typography, and strong visual hierarchy to maximize visibility in real-world retail conditions. Designed a flexible system that could extend across packaging, signage, and promotional materials.'
           },
           {
-            title: 'The Result',
-            copy: 'The finished work creates a strong shelf presence with a clear, memorable look that feels rugged, energetic, and ready for retail.'
+            title: 'Impact',
+            copy: 'Resulted in a cohesive visual presence with strong shelf impact and clear messaging, designed to perform in fast-paced retail environments and support product recognition across multiple touchpoints.'
           }
         ],
         images: [
@@ -522,12 +532,12 @@
         meta: ['Responsive Design', 'UI Layout', 'Marketing Sites'],
         sections: [],
         images: [
-		  ['images/web-design/CMS-SITE.png', 'Custom CMS website design for internal use'],
-		  ['images/web-design/PPH-SITE.png', 'Palmetto Playhouse booking and event website'],
-		  ['images/web-design/SOUTHERN-ASPHALT-SITE.png', 'Southern Asphalt branding and website'],
-		  ['images/web-design/SPC-SITE.png', 'Sumter Packaging corporate website redesign'],
-		  ['images/web-design/SUNPAK-SITE.png', 'SunPak packaging company website']
-		]
+          ['images/web-design/PPH-SITE.png', 'Palmetto Playhouse', 'Featured project. Designed and structured a booking-focused website with a clean, intuitive user experience for parents, event scheduling, and future growth.', true],
+          ['images/web-design/CMS-SITE.png', 'Internal CMS', 'Custom internal system design focused on making content and workflow management easier to navigate and maintain.'],
+          ['images/web-design/SOUTHERN-ASPHALT-SITE.png', 'Southern Asphalt', 'Brand-forward website layout created to communicate services clearly, professionally, and quickly.'],
+          ['images/web-design/SPC-SITE.png', 'Sumter Packaging', 'Corporate website redesign focused on clearer structure, usability, and a stronger digital presence.'],
+          ['images/web-design/SUNPAK-SITE.png', 'SunPak', 'Packaging company website designed for clean presentation, simple navigation, and customer-facing clarity.']
+        ]
       }
     };
 
@@ -539,6 +549,10 @@
     const resumeModal = document.getElementById('resumeModal');
     const openResumeModal = document.getElementById('openResumeModal');
     const closeResumeModal = document.getElementById('closeResumeModal');
+
+    const lightbox = document.getElementById('lightbox');
+    const lightboxImg = document.getElementById('lightboxImg');
+    const closeLightbox = document.getElementById('closeLightbox');
 
     function openProject(key) {
       const project = projects[key];
@@ -569,8 +583,9 @@
 
           <div class="grid gap-5 md:grid-cols-2">
             ${project.images.map((img, index) => `
-              <figure class="group overflow-hidden border border-white/10 bg-panel ${index === 0 ? 'md:col-span-2' : ''}">
-                <img src="${img[0]}" alt="${img[1]}" class="w-full object-cover transition duration-700 group-hover:scale-[1.03] group-hover:brightness-110 ${project.title === 'Web Design' ? 'object-top' : ''}" />
+              <figure class="group relative overflow-hidden border border-white/10 bg-panel ${index === 0 ? 'md:col-span-2' : ''}" style="opacity:0; transform:translateY(20px); animation:fadeUp .6s ease forwards; animation-delay:${index * 0.08}s">
+                ${img[3] ? `<div class="absolute left-4 top-4 z-10 rounded-full border border-accent/60 bg-ink/80 px-3 py-1 text-[10px] font-black uppercase tracking-[0.22em] text-accent backdrop-blur">Featured</div>` : ''}
+                <img src="${img[0]}" alt="${img[1]}" class="w-full cursor-pointer object-cover transition duration-700 group-hover:scale-[1.03] group-hover:brightness-110 ${project.title === 'Web Design' ? 'object-top' : ''}" loading="lazy" />
                 ${img[2] ? `
                 <figcaption class="border-t border-white/10 bg-panel p-5">
                   <h3 class="mb-2 text-sm font-black uppercase tracking-wider text-soft">${img[1]}</h3>
@@ -601,6 +616,18 @@
       document.body.style.overflow = '';
     }
 
+    function openLightbox(src) {
+      lightboxImg.src = src;
+      lightbox.classList.remove('hidden');
+      lightbox.classList.add('flex');
+    }
+
+    function hideLightbox() {
+      lightbox.classList.add('hidden');
+      lightbox.classList.remove('flex');
+      lightboxImg.src = '';
+    }
+
     document.querySelectorAll('[data-project]').forEach(card => {
       card.addEventListener('click', () => openProject(card.dataset.project));
     });
@@ -608,6 +635,17 @@
     closeModal.addEventListener('click', closeProject);
     openResumeModal.addEventListener('click', openResume);
     closeResumeModal.addEventListener('click', closeResume);
+
+    document.addEventListener('click', (event) => {
+      if (event.target.tagName === 'IMG' && event.target.closest('#modalContent')) {
+        openLightbox(event.target.src);
+      }
+    });
+
+    lightbox.addEventListener('click', (event) => {
+      if (event.target === lightbox || event.target === closeLightbox) hideLightbox();
+    });
+
     modal.addEventListener('click', (event) => {
       if (event.target === modal) closeProject();
     });
@@ -617,6 +655,10 @@
     });
     document.addEventListener('keydown', (event) => {
       if (event.key === 'Escape') {
+        if (!lightbox.classList.contains('hidden')) {
+          hideLightbox();
+          return;
+        }
         closeProject();
         closeResume();
       }
