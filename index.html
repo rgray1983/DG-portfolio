@@ -1,667 +1,638 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Richie – Portfolio</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Richie Gray | Senior Graphic Designer & Brand Builder</title>
+  <meta name="description" content="Portfolio of Richie Gray, a senior graphic designer specializing in brand identity, web design, brand guidelines, print, packaging, POP displays, and digital design." />
 
-  <!-- Tailwind -->
   <script src="https://cdn.tailwindcss.com"></script>
-
-  <!-- React and ReactDOM -->
-  <script crossorigin src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
-  <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
-
-  <!-- Babel -->
-  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
-
-  <style>
-    html,body { height: 100%; margin: 0; }
-    html { scroll-behavior: smooth; }
-    .modal-backdrop { background: rgba(0,0,0,0.65); }
-  </style>
-	
-	<!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-C6T1Y5HP0P"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-
-  gtag('config', 'G-C6T1Y5HP0P');
-</script>
-	
-</head>
-<body class="min-h-screen bg-slate-950 text-slate-100 font-sans">
-
-  <div id="root"></div>
-
-  <script type="text/babel">
-    const { useState } = React;
-
-    function App() {
-      const [selected, setSelected] = useState(null);
-      const [currentIndex, setCurrentIndex] = useState(0);
-      const [resumeOpen, setResumeOpen] = useState(false);
-
-      // which project is active in the Selected Work carousel
-      const [activeProjectIndex, setActiveProjectIndex] = useState(0);
-      const [thumbIndex, setThumbIndex] = useState(0);
-
-      // Web Design site modal state
-      const [webModalOpen, setWebModalOpen] = useState(false);
-      const [webModalSite, setWebModalSite] = useState(null);
-
-      const projects = [
-        {
-          id: 1,
-          title: "Branding & Logo Design",
-          subtitle: "Logo & visual identity",
-          images: [
-            "images/BRAND/CAROLINA CHAOS.jpg",
-            "images/BRAND/CE-LOGO.jpg",
-            "images/BRAND/PGS-LOGO.jpg",
-            "images/BRAND/PP-LOGO.jpg",
-            "images/BRAND/R&R-LOGO.jpg",
-            "images/BRAND/ST-PETERS.jpg",
-            "images/BRAND/TURBINE.jpg",
-            "images/BRAND/URGENT-CARE-LOGO.jpg"
-          ],
-          desc: "A selection of identity systems, logo marks, and supporting visual assets that help brands feel cohesive and memorable across print and digital."
-        },
-        {
-          id: 2,
-          title: "Retail & Apparel Design",
-          subtitle: "Corrugated, retail, and specialty packaging",
-          images: [
-            "images/RETAIL & APPAREL/GW-FANCY.jpg",
-            "images/RETAIL & APPAREL/GW-KRAFT.jpg",
-            "images/RETAIL & APPAREL/MATTRESS BOX.jpg",
-            "images/RETAIL & APPAREL/EARLY-BIRD.jpg",
-            "images/RETAIL & APPAREL/SIGNAL-POINT.jpg",
-            "images/RETAIL & APPAREL/HA-HOLIDAY-BOX.jpg",
-            "images/RETAIL & APPAREL/HERBIES.jpg",
-            "images/RETAIL & APPAREL/ALS-SHIRT.jpg",
-            "images/RETAIL & APPAREL/COKER-SHIRT.jpg",
-            "images/RETAIL & APPAREL/PMA-SHIRT.jpg",
-            "images/RETAIL & APPAREL/SC ALLSTAR SHIRT.jpg"
-          ],
-          desc: "Award-winning corrugated and retail packaging, built to balance structure, print constraints, and strong shelf presence."
-        },
-        {
-          id: 3,
-          title: "Web Design",
-          subtitle: "Responsive websites, UX design, and landing pages",
-          images: [
-            "https://i.imgur.com/RzR5b1g.jpeg",
-            "https://i.imgur.com/fCaxgG7.jpeg",
-            "https://i.imgur.com/83LhC4C.jpeg"
-          ],
-          // New: site folders you’ll upload – update urls & preview images as needed
-          sites: [
-            {
-              id: "site1",
-              title: "CMS Inc.",
-              url: "./CMS INC Site/index.html",              // update to your folder path
-              preview: "images/WEB DESIGN/CMS-SITE.png" // screenshot of site1
-            },
-            {
-              id: "site2",
-              title: "Southern Asphalt",
-              url: "./Southern Asphalt/index.html",
-              preview: "images/WEB DESIGN/SOUTHERN ASPHALT-SITE.png"
-            },
-            {
-              id: "site3",
-              title: "Sumter Packaging Corp.",
-              url: "./SPC HTML5 Site/index.html",
-              preview: "images/WEB DESIGN/SPC-SITE.png"
-            },
-            {
-              id: "site4",
-              title: "Palmetto Playhouse",
-              url: "https://palmettoplayhouse.com",
-              preview: "images/WEB DESIGN/PPH-SITE.png" // or a 4th unique screenshot
-            }
-          ],
-          desc: "A collection of responsive website layouts, marketing landing pages, and interactive web experiences designed for clarity, usability, and conversion."
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            ink: '#080808',
+            panel: '#111111',
+            soft: '#d8d4c9',
+            muted: '#8f8f8f',
+            line: '#252525',
+            accent: '#f04b23',
+            amerinavy: '#061a44',
+            amerired: '#c90d18'
+          },
+          fontFamily: {
+            sans: ['Inter', 'Arial', 'Helvetica', 'sans-serif'],
+            display: ['Arial Black', 'Arial', 'Helvetica', 'sans-serif']
+          }
         }
-      ];
-
-      const activeProject = projects[activeProjectIndex];
-
-      const openProject = (project, index) => {
-        setSelected(project);
-        setCurrentIndex(index ?? 0);
-      };
-
-      const prevImage = () => {
-        if (!selected) return;
-        setCurrentIndex((currentIndex - 1 + selected.images.length) % selected.images.length);
-      };
-
-      const nextImage = () => {
-        if (!selected) return;
-        setCurrentIndex((currentIndex + 1) % selected.images.length);
-      };
-
-      const prevThumb = () => {
-        setThumbIndex((prev) => (prev - 1 + activeProject.images.length) % activeProject.images.length);
-      };
-
-      const nextThumb = () => {
-        setThumbIndex((prev) => (prev + 1) % activeProject.images.length);
-      };
-
-      return (
-        <div className="min-h-screen flex flex-col">
-
-          {/* NAV */}
-          <header className="sticky top-0 z-30 bg-slate-950/95 backdrop-blur border-b border-slate-800">
-            <div className="max-w-5xl mx-auto px-4 py-4 flex items-center justify-between">
-              <a href="#" className="flex items-center gap-2 font-semibold tracking-tight">
-                <img src="images/RG-LOGO.png" alt="Richie Logo" className="h-9 w-auto" />
-                <span>Richie Gray's Portfolio</span>
-              </a>
-              <nav className="hidden sm:flex items-center gap-6 text-sm text-slate-200">
-                <a href="#work" className="hover:text-slate-100 transition">Work</a>
-                <a href="#about" className="hover:text-slate-100 transition">About</a>
-                <a href="#contact" className="hover:text-slate-100 transition">Contact</a>
-                <button
-                  onClick={() => setResumeOpen(true)}
-                  className="ml-4 rounded-full border border-slate-600 px-4 py-1.5 text-xs font-medium hover:bg-slate-100 hover:text-slate-900 transition"
-                >
-                  View Resume
-                </button>
-              </nav>
-              <button
-                onClick={() => setResumeOpen(true)}
-                className="sm:hidden rounded-full border border-slate-600 px-3 py-1 text-xs font-medium hover:bg-slate-100 hover:text-slate-900 transition"
-              >
-                Resume
-              </button>
-            </div>
-          </header>
-
-          <main className="flex-1">
-
-            {/* HERO */}
-            <section className="border-b border-slate-800 bg-slate-950">
-              <div className="max-w-5xl mx-auto px-4 py-16 md:py-24 grid md:grid-cols-[1.3fr,1fr] gap-10 items-center">
-
-                <div className="order-1 md:order-2 flex justify-center mb-8 md:mb-0">
-                  <div className="w-40 h-40 md:w-52 md:h-52 rounded-full overflow-hidden border border-slate-700 bg-slate-900 shadow-md flex items-center justify-center">
-                    <img
-                      src="images/RGprofile pic-color.png"
-                      alt="Richie headshot"
-                      className="w-full h-full object-cover"
-                    />
-                  </div>
-                </div>
-
-                <div className="order-2 md:order-1">
-                  <p className="uppercase tracking-[0.2em] text-xs text-slate-400 mb-4">
-                    Graphic Design & Brand Marketing
-                  </p>
-                  <h1 className="text-3xl sm:text-4xl md:text-5xl font-semibold tracking-tight mb-4">
-                    Hi, I’m <span className="text-red-400">Richie</span>.
-                  </h1>
-                  <p className="text-base sm:text-lg text-slate-300 mb-6 leading-relaxed">
-                    Design that drives growth. Branding that builds loyalty. Creativity that gets results.
-                  </p>
-                  <div className="flex flex-wrap gap-3">
-                    <a
-                      href="#work"
-                      className="inline-flex items-center justify-center rounded-full bg-slate-100 text-slate-900 px-6 py-2 text-sm font-medium hover:bg-white transition"
-                    >
-                      View Selected Work
-                    </a>
-                    <a
-                      href="#contact"
-                      className="inline-flex items-center justify-center rounded-full border border-slate-600 px-6 py-2 text-sm font-medium hover:bg-slate-800 transition"
-                    >
-                      Let’s Work Together
-                    </a>
-                  </div>
-                </div>
-              </div>
-            </section>
-
-            {/* WORK */}
-            <section id="work" className="border-b border-slate-800 bg-slate-900">
-              <div className="max-w-5xl mx-auto px-4 py-16 md:py-20">
-
-                <div className="flex items-center justify-between mb-6 gap-4">
-                  <h2 className="text-2xl sm:text-3xl font-semibold tracking-tight text-slate-50">
-                    Selected Work
-                  </h2>
-
-                  <div className="flex flex-wrap gap-2 justify-start">
-                    {projects.map((project, index) => {
-                      const isActive = index === activeProjectIndex;
-                      return (
-                        <button
-                          key={project.id}
-                          onClick={() => {
-                            setActiveProjectIndex(index);
-                            setThumbIndex(0);
-                          }}
-                          className={
-                            "rounded-full border border-slate-600 px-4 py-1.5 text-xs font-medium transition " +
-                            (isActive
-                              ? "bg-slate-100 text-slate-900"
-                              : "text-slate-200 hover:bg-slate-100 hover:text-slate-900")
-                          }
-                        >
-                          {project.title}
-                        </button>
-                      );
-                    })}
-                  </div>
-                </div>
-
-                <article className="grid md:grid-cols-[1.4fr,1fr] gap-6 md:gap-10 items-start">
-                  {activeProject.title === "Web Design" ? (
-                    <>
-                      {/* Web Design: site previews grid */}
-                      <div className="space-y-4">
-                        <div className="grid sm:grid-cols-2 gap-4">
-                          {activeProject.sites && activeProject.sites.map((site) => (
-                            <button
-                              key={site.id}
-                              onClick={() => {
-                                setWebModalSite(site);
-                                setWebModalOpen(true);
-                              }}
-                              className="text-left rounded-2xl overflow-hidden border border-slate-800 bg-slate-800 hover:bg-slate-700 transition"
-                            >
-                              <div className="w-full h-40 bg-slate-900 overflow-hidden">
-                                {site.preview ? (
-                                  <img
-                                    src={site.preview}
-                                    alt={site.title}
-                                    className="w-full h-full object-cover"
-                                  />
-                                ) : (
-                                  <div className="w-full h-full flex items-center justify-center text-xs text-slate-400">
-                                    Preview coming soon
-                                  </div>
-                                )}
-                              </div>
-                              <div className="px-3 py-2 border-t border-slate-700 text-sm text-slate-100">
-                                {site.title}
-                              </div>
-                            </button>
-                          ))}
-                        </div>
-                      </div>
-
-                      {/* Text area (same wording as before) */}
-                      <div className="space-y-3">
-                        <h3 className="text-xl sm:text-2xl font-semibold tracking-tight text-slate-50">
-                          {activeProject.title}
-                        </h3>
-                        {activeProject.subtitle && (
-                          <p className="text-sm uppercase tracking-[0.18em] text-slate-400">
-                            {activeProject.subtitle}
-                          </p>
-                        )}
-                        <p className="text-sm sm:text-base text-slate-300 leading-relaxed">
-                          {activeProject.desc}
-                        </p>
-                        <button
-                          onClick={() => openProject(activeProject, thumbIndex)}
-                          className="mt-2 inline-flex items-center text-sm font-medium text-slate-100 hover:underline"
-                        >
-                          View project images
-                          <span className="ml-1">↗</span>
-                        </button>
-                      </div>
-                    </>
-                  ) : (
-                    <>
-                      {/* Original image carousel for Branding & Retail */}
-                      <div
-                        className="space-y-4 cursor-pointer"
-                        onClick={() => openProject(activeProject, thumbIndex)}
-                      >
-                        <div className="relative rounded-2xl overflow-hidden border border-slate-800 bg-slate-800">
-                          <img
-                            src={activeProject.images[thumbIndex]}
-                            alt={activeProject.title}
-                            className="w-full h-56 sm:h-72 object-cover"
-                          />
-                          <div className="absolute inset-0 bg-gradient-to-t from-slate-950/40 via-transparent to-transparent pointer-events-none" />
-
-                          <button
-                            onClick={(e) => { e.stopPropagation(); prevThumb(); }}
-                            className="absolute top-1/2 left-3 -translate-y-1/2 bg-black/50 text-white w-8 h-8 flex items-center justify-center rounded-full text-sm hover:bg-black/70 transition"
-                            aria-label="Previous image"
-                          >
-                            ◀
-                          </button>
-                          <button
-                            onClick={(e) => { e.stopPropagation(); nextThumb(); }}
-                            className="absolute top-1/2 right-3 -translate-y-1/2 bg-black/50 text-white w-8 h-8 flex items-center justify-center rounded-full text-sm hover:bg-black/70 transition"
-                            aria-label="Next image"
-                          >
-                            ▶
-                          </button>
-
-                          <div className="absolute bottom-3 right-4 text-xs px-2 py-0.5 rounded-full bg-black/60 text-slate-100">
-                            {thumbIndex + 1} / {activeProject.images.length}
-                          </div>
-                        </div>
-                      </div>
-
-                      <div className="space-y-3">
-                        <h3 className="text-xl sm:text-2xl font-semibold tracking-tight text-slate-50">
-                          {activeProject.title}
-                        </h3>
-                        {activeProject.subtitle && (
-                          <p className="text-sm uppercase tracking-[0.18em] text-slate-400">
-                            {activeProject.subtitle}
-                          </p>
-                        )}
-                        <p className="text-sm sm:text-base text-slate-300 leading-relaxed">
-                          {activeProject.desc}
-                        </p>
-                        <button
-                          onClick={() => openProject(activeProject, thumbIndex)}
-                          className="mt-2 inline-flex items-center text-sm font-medium text-slate-100 hover:underline"
-                        >
-                          View project images
-                          <span className="ml-1">↗</span>
-                        </button>
-                      </div>
-                    </>
-                  )}
-                </article>
-              </div>
-            </section>
-
-            {/* ABOUT */}
-            <section id="about" className="border-b border-slate-800 bg-slate-950">
-              <div className="max-w-5xl mx-auto px-4 py-16 md:py-20 grid md:grid-cols-2 gap-10 items-start">
-                <div>
-                  <h2 className="text-2xl sm:text-3xl font-semibold tracking-tight mb-4 text-slate-50">
-                    About Richie
-                  </h2>
-                  <p className="text-base sm:text-lg text-slate-300 mb-4 leading-relaxed">
-                    I’m a brand builder, logo-obsessed designer, and creative problem-solver with a passion for turning big ideas into visuals people actually remember. I’ve spent over 20 years helping businesses stand out with bold identities, strong storytelling, and design that makes people stop and say, “Whoa… who made that?”
-                  </p>
-                  <p className="text-base sm:text-lg text-slate-300 mb-4 leading-relaxed">
-                    I love working with driven brands, startups, and creators who want to level up their look and elevate their presence — whether it’s a killer new logo, a full rebrand, or digital visuals that punch through the noise. My creative style is equal parts strategy, personality, and clean craftsmanship.
-                  </p>
-                  <p className="text-base sm:text-lg text-slate-300 mb-4 leading-relaxed">
-                    When I’m not designing, you’ll probably find me hanging with my wife and daughters, editing YouTube videos, gaming with friends, or building wild creative ideas just for fun.
-                  </p>
-                  <p className="text-base sm:text-lg text-slate-300 mb-4 leading-relaxed">
-                    If you’re looking for a designer who brings high energy, real passion, and zero boring design, we’re definitely going to get along great.
-                  </p>
-                </div>
-
-                <div className="flex justify-center">
-                  <div className="rounded-2xl overflow-hidden border border-slate-800 bg-slate-900 shadow-md w-full max-w-md aspect-[4/3]">
-                    <img
-                      src="images/FAMIILY-FUN.png"
-                      alt="Richie and family"
-                      className="w-full h-full object-cover"
-                    />
-                    {/* Replace the src above with your actual family photo URL */}
-                  </div>
-                </div>
-              </div>
-            </section>
-
-            {/* SKILLS + CONTACT */}
-            <section id="contact" className="bg-slate-900">
-              <div className="max-w-5xl mx-auto px-4 py-16 md:py-20 grid md:grid-cols-[1.4fr,1fr] gap-12 items-start">
-
-                <div>
-                  <h2 className="text-2xl sm:text-3xl font-semibold tracking-tight mb-6 text-slate-50">
-                    Skills & Tools
-                  </h2>
-                  <div className="grid grid-cols-2 sm:grid-cols-3 gap-4">
-                    {[
-                      "CorelDraw",
-                      "Illustrator",
-                      "Photoshop",
-                      "Layout Design",
-                      "Design Concepts",
-                      "Marketing (Digital, Social & Print)",
-                      "Pre-Production Management",
-                      "Web Development (HTML5 & CSS3)",
-                      "Typography & Font Management",
-                      "Printing Processes",
-                      "ArtiosCad (Limited)",
-                      "Corrugated Box Design"
-                    ].map((skill) => (
-                      <div
-                        key={skill}
-                        className="bg-slate-800 border border-slate-700 px-3 py-2 rounded-lg text-xs sm:text-sm text-slate-100"
-                      >
-                        {skill}
-                      </div>
-                    ))}
-                  </div>
-                </div>
-
-                <div className="space-y-4">
-                  <h2 className="text-2xl sm:text-3xl font-semibold tracking-tight text-slate-50">
-                    Let’s Work Together.
-                  </h2>
-                  <p className="text-sm sm:text-base text-slate-300 leading-relaxed">
-                    Looking for a designer who brings creativity, collaboration, and results?
-                    I’m here to help elevate your brand with thoughtful design that aligns with business goals and stands out in the market.
-                  </p>
-                  <p className="text-sm sm:text-base text-slate-300 leading-relaxed">
-                    Let’s create meaningful, high-impact work together.
-                  </p>
-                  <div className="space-y-1 text-sm sm:text-base text-slate-200">
-                    <p>
-                      <span className="font-medium">Email:</span>{" "}
-                      <a href="mailto:rgray1983@gmail.com" className="underline">rgray1983@gmail.com</a>
-                    </p>
-                    <p>
-                      <span className="font-medium">Phone:</span>{" "}
-                      <a href="tel:8434532282" className="underline">(843) 453-2282</a>
-                    </p>
-                    <p>
-                      <span className="font-medium">LinkedIn:</span>{" "}
-                      <a
-                        href="https://www.linkedin.com/in/drgdesign/"
-                        target="_blank"
-                        rel="noreferrer"
-                        className="underline"
-                      >
-                        linkedin.com/in/drgdesign
-                      </a>
-                    </p>
-                  </div>
-                </div>
-              </div>
-            </section>
-          </main>
-
-          {/* FOOTER */}
-          <footer className="border-t border-slate-800 bg-slate-950">
-            <div className="max-w-5xl mx-auto px-4 py-6 flex flex-col sm:flex-row items-center justify-between gap-2 text-sm text-slate-500">
-              <span>© {new Date().getFullYear()} Richie Gray. All rights reserved.</span>
-              <div className="flex gap-4 text-lg">
-                <a href="mailto:rgray1983@gmail.com" aria-label="email" className="hover:text-slate-200">📧</a>
-                <a href="tel:8434532282" aria-label="phone" className="hover:text-slate-200">📞</a>
-                <a href="https://www.linkedin.com/in/drgdesign/" aria-label="linkedin" className="hover:text-slate-200">🔗</a>
-              </div>
-            </div>
-          </footer>
-
-          {/* PROJECT MODAL */}
-          {selected && (
-            <div className="fixed inset-0 z-50 flex items-center justify-center px-2 sm:px-4">
-              <div className="absolute inset-0 modal-backdrop" onClick={() => setSelected(null)} />
-              <div className="relative rounded-2xl bg-slate-950 text-slate-50 max-w-[90vw] max-h-[90vh] mx-2 sm:mx-4 flex flex-col items-center p-4 overflow-auto shadow-xl border border-slate-800">
-                <div className="relative w-full flex justify-center items-center">
-                  <img
-                    src={selected.images[currentIndex]}
-                    alt={selected.title}
-                    className="max-w-[100%] max-h-[80vh] rounded-lg object-contain"
-                  />
-                  <button
-                    onClick={prevImage}
-                    className="absolute top-1/2 left-2 -translate-y-1/2 bg-black/60 text-white px-3 py-1 rounded text-xl sm:text-2xl"
-                  >
-                    ◀
-                  </button>
-                  <button
-                    onClick={nextImage}
-                    className="absolute top-1/2 right-2 -translate-y-1/2 bg-black/60 text-white px-3 py-1 rounded text-xl sm:text-2xl"
-                  >
-                    ▶
-                  </button>
-                </div>
-                <h3 className="text-xl sm:text-2xl font-semibold mb-1 mt-4">{selected.title}</h3>
-                {selected.subtitle && (
-                  <p className="text-xs uppercase tracking-[0.18em] text-slate-400 mb-2">
-                    {selected.subtitle}
-                  </p>
-                )}
-                <p className="mb-4 text-sm sm:text-base text-slate-200 text-center max-w-xl">
-                  {selected.desc}
-                </p>
-                <div className="flex justify-end w-full">
-                  <button
-                    onClick={() => setSelected(null)}
-                    className="px-4 py-2 rounded-lg bg-slate-100 hover:bg-white text-slate-900 text-sm"
-                  >
-                    Close
-                  </button>
-                </div>
-              </div>
-            </div>
-          )}
-
-          {/* WEB DESIGN SITE MODAL (IFRAME) */}
-          {webModalOpen && webModalSite && (
-            <div className="fixed inset-0 z-50 flex items-center justify-center px-2 sm:px-4">
-              <div
-                className="absolute inset-0 modal-backdrop"
-                onClick={() => {
-                  setWebModalOpen(false);
-                  setWebModalSite(null);
-                }}
-              />
-              <div className="relative rounded-2xl bg-slate-950 text-slate-50 max-w-[90vw] max-h-[90vh] w-full mx-2 sm:mx-4 overflow-hidden shadow-xl border border-slate-800 flex flex-col">
-                <div className="flex items-center justify-between px-4 py-3 border-b border-slate-800">
-                  <h3 className="text-sm sm:text-base font-semibold">
-                    {webModalSite.title}
-                  </h3>
-                  <button
-                    onClick={() => {
-                      setWebModalOpen(false);
-                      setWebModalSite(null);
-                    }}
-                    className="text-xl leading-none hover:text-slate-200"
-                    aria-label="Close"
-                  >
-                    &times;
-                  </button>
-                </div>
-                <div className="flex-1 bg-slate-900">
-                  <iframe
-                    src={webModalSite.url}
-                    title={webModalSite.title}
-                    className="w-full h-[70vh]"
-                  />
-                </div>
-              </div>
-            </div>
-          )}
-
-          {/* RESUME MODAL */}
-          {resumeOpen && (
-            <div className="fixed inset-0 z-50 flex items-center justify-center px-2 sm:px-4">
-              <div className="absolute inset-0 modal-backdrop" onClick={() => setResumeOpen(false)} />
-              <div className="relative p-6 rounded-2xl bg-slate-950 text-slate-50 max-w-3xl mx-2 sm:mx-4 overflow-y-auto max-h-[90%] shadow-xl border border-slate-800">
-                <span
-                  className="absolute top-2 right-4 cursor-pointer text-2xl"
-                  onClick={() => setResumeOpen(false)}
-                >
-                  &times;
-                </span>
-                <h2 className="text-2xl font-bold mb-4 border-b border-slate-700 pb-2">Resume</h2>
-                <div className="space-y-4 text-left text-slate-200 text-sm sm:text-base">
-                  <p className="font-bold text-lg">David R. Gray III (Richie)</p>
-                  <p>563 Bullard Ford Rd, Hartsville, SC 29550</p>
-                  <p>rgray1983@gmail.com - 843-453-2282</p>
-                  <hr className="border-slate-700" />
-
-                  <p className="font-bold">WORK EXPERIENCE</p>
-                  <p>
-                    With 20+ years as a graphic designer, I specialize in turning brand stories into
-                    compelling visuals that connect with audiences and drive results. Expertise spans
-                    branding, print, and digital media, transforming complex ideas into clear, impactful
-                    designs. Detail-oriented and collaborative, dedicated to delivering creative,
-                    high-quality solutions.
-                  </p>
-
-                  <p className="font-semibold mt-2">Sr. Graphic Designer and Digital Pre-Production Artist</p>
-                  <p>Hood Container Corporation - Sumter, SC - March 2015 - Present</p>
-                  <ul className="list-disc list-inside ml-4 space-y-1">
-                    <li>Create and adjust designs for POP Displays, Shelf Displays, and Corrugated Box Design</li>
-                    <li>Designed a new brochure and responsive website (HTML5 & CSS3)</li>
-                    <li>Worked with salesmen and customers to ensure highest design quality</li>
-                    <li>Entered designs into AICC and TAPPI competitions; won multiple awards including 1st and 2nd place and “People’s Choice” awards</li>
-                  </ul>
-
-                  <p className="font-semibold mt-2">Sr. Graphic Designer/Pre-Production Artist</p>
-                  <p>Carolina Printing, Sports, and Trophy - Hartsville, SC - Aug 2010 - Mar 2015</p>
-                  <ul className="list-disc list-inside ml-4 space-y-1">
-                    <li>Designed artwork for t-shirts, signs, banners, business cards, decals</li>
-                    <li>Produced 20–30 different designs weekly, totaling over 6,000 designs in 5 years</li>
-                    <li>Specialized in design and pre-production proofing</li>
-                  </ul>
-
-                  <p className="font-semibold mt-2">Graphic Designer/Pre-Production Artist</p>
-                  <p>Southern Graphics Systems - McBee, SC - Apr 2009 - Dec 2009</p>
-                  <ul className="list-disc list-inside ml-4 space-y-1">
-                    <li>Prepared artwork from major brands (KRAFT, Georgia Pacific, Dixie Cups, Panasonic) for printing</li>
-                    <li>Worked with corrugated design for product packaging</li>
-                    <li>Created Illustrator script to minimize material use in pre-press platemaking, saving thousands of dollars</li>
-                  </ul>
-
-                  <p className="font-semibold mt-2">Graphic Designer/Programmer</p>
-                  <p>School Dynamics Systems - Hartsville, SC - Jan 2006 - Aug 2006</p>
-                  <ul className="list-disc list-inside ml-4 space-y-1">
-                    <li>Designed marketing materials (instructional videos, flyers, brochures)</li>
-                    <li>Converted software from Microsoft Access to HTML-based, reducing travel and installation costs</li>
-                  </ul>
-
-                  <p className="font-semibold mt-2">Graphic Designer/Pre-Production Artist</p>
-                  <p>AmeriServ Printers LLC - Hartsville, SC - Jan 2003 - Dec 2005</p>
-                  <ul className="list-disc list-inside ml-4 space-y-1">
-                    <li>Designed and laid out artwork from invoices to business cards</li>
-                    <li>Refined copy-proof processes to reduce costs and improve efficiency</li>
-                  </ul>
-
-                  <p className="font-bold mt-4">EDUCATION</p>
-                  <p>Graphic Design - Coker College, Hartsville, SC (2002 - 2007)</p>
-
-                  <p className="font-bold mt-4">GROUPS</p>
-                  <ul className="list-disc list-inside ml-4 space-y-1">
-                    <li>Hartsville Downtown Development Association (HDDA) Design Committee Co-Chair, Jul 2012 - Mar 2015</li>
-                    <li>Hartsville Young Professionals Member, Jul 2012 - Mar 2015</li>
-                  </ul>
-                </div>
-              </div>
-            </div>
-          )}
-        </div>
-      );
+      }
     }
-
-    ReactDOM.createRoot(document.getElementById('root')).render(<App />);
   </script>
 
+  <style>
+    html { scroll-behavior: smooth; }
+    body { background: #080808; color: #f4f1e8; }
+    .grain::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: 60;
+      opacity: .05;
+      background-image: radial-gradient(#fff 1px, transparent 1px);
+      background-size: 4px 4px;
+      mix-blend-mode: screen;
+    }
+    .marquee-track { animation: marquee 28s linear infinite; }
+    @keyframes marquee { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+    .reveal { opacity: 0; transform: translateY(26px); transition: opacity .7s ease, transform .7s ease; }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+    .modal { opacity: 0; pointer-events: none; transition: opacity .25s ease; }
+    .modal.open { opacity: 1; pointer-events: auto; }
+    .modal-panel { transform: translateY(24px) scale(.98); transition: transform .25s ease; }
+    .modal.open .modal-panel { transform: translateY(0) scale(1); }
+    .project-card {
+      position: relative;
+      transition: transform .35s ease, box-shadow .35s ease, border-color .35s ease;
+    }
+    .project-card img {
+      transition: transform .7s ease, filter .7s ease;
+    }
+    .project-card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 20px 60px rgba(0,0,0,0.55), 0 0 0 1px rgba(240,75,35,0.35);
+      border-color: rgba(240,75,35,0.45);
+    }
+    .project-card:hover img {
+      transform: scale(1.045);
+      filter: brightness(1.08) contrast(1.02);
+    }
+    .project-card::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      opacity: 0;
+      transition: opacity .35s ease;
+      background: radial-gradient(600px 200px at 50% 0%, rgba(240,75,35,0.15), transparent 60%);
+    }
+    .project-card:hover::after { opacity: 1; }
+    .nav-link { position: relative; }
+    .nav-link::after { content: ''; position: absolute; left: 0; bottom: -5px; width: 0; height: 1px; background: #f4f1e8; transition: width .25s ease; }
+    .nav-link:hover::after { width: 100%; }
+    .hero-name { letter-spacing: -0.08em; }
+    @media (max-width: 768px) { .hero-name { letter-spacing: -0.055em; } }
+  </style>
+</head>
+<body class="grain font-sans antialiased">
+  <header class="fixed top-0 left-0 right-0 z-50 border-b border-white/10 bg-ink/75 backdrop-blur-xl">
+    <nav class="mx-auto flex max-w-7xl items-center justify-between px-5 py-5 md:px-8">
+      <a href="#top" class="flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-soft">
+        <span class="flex h-6 w-6 items-center justify-center">
+          <img src="images/RG-LOGO.png" alt="RG Logo" class="h-full w-full object-contain" onerror="this.style.display='none'; this.parentElement.innerHTML='RG'; this.parentElement.className='flex h-6 w-6 items-center justify-center border border-white/20 text-[10px] font-black';" />
+        </span>
+        RG Portfolio
+      </a>
+      <div class="hidden items-center gap-8 text-xs font-bold uppercase tracking-wide text-soft md:flex">
+        <a class="nav-link" href="#work">Work</a>
+        <a class="nav-link" href="#about">About</a>
+        <a class="nav-link" href="#resume">Resume</a>
+        <a class="nav-link" href="#contact">Contact</a>
+      </div>
+      <button id="mobileMenuBtn" class="rounded-full border border-white/15 px-4 py-2 text-xs font-bold uppercase tracking-wide text-soft md:hidden">Menu</button>
+    </nav>
+    <div id="mobileMenu" class="hidden border-t border-white/10 bg-ink px-5 py-5 md:hidden">
+      <div class="grid gap-4 text-sm font-bold uppercase tracking-wide text-soft">
+        <a href="#work">Work</a>
+        <a href="#about">About</a>
+        <a href="#resume">Resume</a>
+        <a href="#contact">Contact</a>
+      </div>
+    </div>
+  </header>
+
+  <main id="top">
+    <section class="relative flex min-h-screen items-center overflow-hidden px-5 pt-28 md:px-8">
+      <div class="absolute inset-0 opacity-30">
+        <div class="absolute left-1/2 top-1/2 h-[680px] w-[680px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-accent/10 blur-3xl"></div>
+      </div>
+      <div class="relative mx-auto grid w-full max-w-7xl gap-12">
+        <div class="reveal grid gap-8 md:grid-cols-[1.1fr_.9fr] md:items-end">
+          <div>
+            <p class="mb-5 text-xs font-bold uppercase tracking-[0.35em] text-accent">Senior Graphic Designer</p>
+            <h1 class="hero-name font-display text-[18vw] uppercase leading-[.78] text-soft md:text-[10vw]">Richie<br />Gray</h1>
+          </div>
+          <div class="relative mx-auto w-full max-w-[420px] justify-self-end overflow-hidden border border-white/10 bg-panel shadow-2xl md:mx-0">
+            <div class="absolute inset-0 bg-gradient-to-t from-ink/45 via-transparent to-transparent"></div>
+            <img src="images/RGprofile pic-color.png" alt="Richie Gray" class="aspect-[4/5] w-full object-cover grayscale transition duration-700 hover:grayscale-0" />
+          </div>
+        </div>
+        <div class="reveal grid gap-6 border-t border-white/10 pt-7 md:grid-cols-[1.2fr_.8fr] md:items-end">
+          <p class="max-w-3xl text-[22px] font-semibold leading-tight text-soft md:text-[40px]">I build bold visual systems that connect, perform, and hold up in the real world.</p>
+          <p class="max-w-xl text-sm leading-7 text-muted/90 md:justify-self-end">Brand identity, web design, brand guidelines, print, packaging, POP displays, digital design, and production-minded creative shaped by 20+ years of hands-on experience.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="overflow-hidden border-y border-white/10 bg-panel py-4">
+      <div class="marquee-track flex w-[200%] gap-8 whitespace-nowrap text-xs font-bold uppercase tracking-[0.25em] text-muted/90">
+        <span>Brand Identity</span><span>Web Design</span><span>Brand Guidelines</span><span>Packaging</span><span>POP Displays</span><span>Print Design</span><span>Digital Design</span><span>Pre-Production</span><span>Color Management</span><span>Marketing Materials</span>
+        <span>Brand Identity</span><span>Web Design</span><span>Brand Guidelines</span><span>Packaging</span><span>POP Displays</span><span>Print Design</span><span>Digital Design</span><span>Pre-Production</span><span>Color Management</span><span>Marketing Materials</span>
+      </div>
+    </section>
+
+    <section id="work" class="mx-auto max-w-7xl px-5 py-24 md:px-8 md:py-32">
+      <div class="reveal mb-10 flex items-end justify-between gap-6">
+        <div>
+          <p class="mb-3 text-xs font-bold uppercase tracking-[0.3em] text-accent">Selected Work</p>
+          <h2 class="font-display text-5xl uppercase leading-none text-soft md:text-7xl">Projects</h2>
+        </div>
+        <p class="hidden max-w-sm text-sm leading-6 text-muted/90 md:block">A focused mix of brand systems, web design, brand guidelines, packaging, retail graphics, and production-driven design.</p>
+      </div>
+
+      <div class="grid gap-6 md:grid-cols-2">
+        <button class="project-card reveal group overflow-hidden rounded-none border border-white/10 bg-panel text-left" data-project="ameriserv">
+          <div class="aspect-[16/9] overflow-hidden bg-white">
+            <img src="images/ASP/ASP-OLD-NEW.jpg" alt="AmeriServ rebrand old and new logo comparison" class="h-full w-full object-cover" />
+          </div>
+          <div class="p-6">
+            <div class="mb-3 flex flex-wrap gap-2 text-[10px] font-bold uppercase tracking-wider text-muted/90">
+              <span>Brand Identity</span><span>Web Design</span><span>Brand Guidelines</span><span>Rebrand</span>
+            </div>
+            <h3 class="mb-2 text-3xl font-black uppercase text-soft md:text-5xl">AmeriServ Rebrand</h3>
+            <p class="max-w-3xl text-sm leading-6 text-muted/90 md:text-base md:leading-7">A full brand refresh for a small-town print and promotional company, including identity design, website design, and brand guidelines.</p>
+          </div>
+        </button>
+
+        <button class="project-card reveal group overflow-hidden rounded-none border border-white/10 bg-panel text-left" data-project="goatwood">
+          <div class="aspect-[4/3] overflow-hidden bg-black">
+            <img src="images/Goatwood/GW-FirewoodSignArt-Final.jpg" alt="Goatwood firewood sign art" class="h-full w-full object-cover" />
+          </div>
+          <div class="p-6">
+            <div class="mb-3 flex flex-wrap gap-2 text-[10px] font-bold uppercase tracking-wider text-muted/90">
+              <span>Packaging</span><span>Retail Graphics</span><span>Display</span>
+            </div>
+            <h3 class="mb-2 text-2xl font-black uppercase text-soft">Goatwood Firewood</h3>
+            <p class="text-sm leading-6 text-muted/90">Bold packaging, retail signage, and promotional graphics for an all-American firewood brand.</p>
+          </div>
+        </button>
+      </div>
+
+      <div class="reveal mt-6 grid gap-6 md:grid-cols-3">
+        <button class="project-card overflow-hidden border border-white/10 bg-panel text-left" data-project="branding">
+          <div class="aspect-[4/3] overflow-hidden bg-black">
+            <img src="images/logos/CAROLINA CHAOS.jpg" alt="Branding and logo work preview" class="h-full w-full object-cover" />
+          </div>
+          <div class="p-6">
+            <p class="mb-3 text-xs font-bold uppercase tracking-[0.25em] text-accent">Collection</p>
+            <h3 class="mb-2 text-xl font-black uppercase text-soft">Branding + Logos</h3>
+            <p class="text-sm leading-6 text-muted/90">Logo systems, identity work, marks, and brand exploration.</p>
+          </div>
+        </button>
+        <button class="project-card overflow-hidden border border-white/10 bg-panel text-left" data-project="retail">
+          <div class="aspect-[4/3] overflow-hidden bg-black">
+            <img src="images/retail & apparel/EARLY-BIRD BOX.jpg" alt="Retail and apparel design preview" class="h-full w-full object-cover" />
+          </div>
+          <div class="p-6">
+            <p class="mb-3 text-xs font-bold uppercase tracking-[0.25em] text-accent">Collection</p>
+            <h3 class="mb-2 text-xl font-black uppercase text-soft">Retail & Apparel</h3>
+            <p class="text-sm leading-6 text-muted/90">Packaging, apparel graphics, display-ready visuals, and production-focused design.</p>
+          </div>
+        </button>
+        <button class="project-card overflow-hidden border border-white/10 bg-panel text-left" data-project="web">
+          <div class="aspect-[4/3] overflow-hidden bg-black">
+            <img src="images/web design/PPH-SITE.png" alt="Web design preview" class="h-full w-full object-cover object-top" />
+          </div>
+          <div class="p-6">
+            <p class="mb-3 text-xs font-bold uppercase tracking-[0.25em] text-accent">Collection</p>
+            <h3 class="mb-2 text-xl font-black uppercase text-soft">Web Design</h3>
+            <p class="text-sm leading-6 text-muted/90">Responsive websites, visual layouts, and digital experiences.</p>
+          </div>
+        </button>
+      </div>
+    </section>
+
+    <section id="about" class="border-y border-white/10 bg-panel">
+      <div class="mx-auto grid max-w-7xl gap-10 px-5 py-24 md:grid-cols-[.8fr_1.2fr] md:px-8 md:py-32">
+        <div class="reveal">
+          <p class="mb-3 text-xs font-bold uppercase tracking-[0.3em] text-accent">About</p>
+          <h2 class="font-display text-5xl uppercase leading-none text-soft md:text-7xl">Built for the real world.</h2>
+        </div>
+        <div class="reveal grid gap-8 text-muted/90">
+          <p class="text-2xl font-semibold leading-tight text-soft">I’m a senior graphic designer with 20+ years of experience across branding, web design, print, digital media, packaging, POP displays, brand guidelines, and production.</p>
+          <p class="text-base leading-8">My strength is combining creative thinking with real-world production knowledge. I understand how design needs to look, print, scale, sell, and survive the handoff to production.</p>
+          <div class="grid gap-4 md:grid-cols-2">
+            <div class="border border-white/10 p-5">
+              <h3 class="mb-2 text-sm font-black uppercase text-soft">What I Do</h3>
+              <p class="text-sm leading-6">Brand identity, web design, brand guidelines, print design, packaging, POP displays, pre-production, digital design, and marketing support.</p>
+            </div>
+            <div class="border border-white/10 p-5">
+              <h3 class="mb-2 text-sm font-black uppercase text-soft">How I Work</h3>
+              <p class="text-sm leading-6">Clear communication, practical thinking, strong visuals, and attention to how the final piece is actually produced.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="resume" class="mx-auto max-w-7xl px-5 py-24 md:px-8 md:py-32">
+      <div class="reveal grid gap-8 md:grid-cols-[.7fr_1.3fr]">
+        <div>
+          <p class="mb-3 text-xs font-bold uppercase tracking-[0.3em] text-accent">Resume</p>
+          <h2 class="font-display text-5xl uppercase leading-none text-soft md:text-7xl">Experience</h2>
+        </div>
+        <div class="grid gap-5">
+          <article class="border border-white/10 bg-panel p-6">
+            <div class="mb-3 flex flex-wrap justify-between gap-3 text-xs font-bold uppercase tracking-wider text-muted/90">
+              <span>Hood Container Corporation</span><span>2015 — Present</span>
+            </div>
+            <h3 class="mb-2 text-xl font-black uppercase text-soft">Sr. Graphic Designer & Digital Pre-Production Artist</h3>
+            <p class="text-sm leading-7 text-muted/90">Brand, web, POP display, corrugated, print, digital, and production-focused design work supporting sales, customers, and manufacturing.</p>
+          </article>
+          <article class="border border-white/10 bg-panel p-6">
+            <div class="mb-3 flex flex-wrap justify-between gap-3 text-xs font-bold uppercase tracking-wider text-muted/90">
+              <span>Carolina Printing, Sports, and Trophy</span><span>2010 — 2015</span>
+            </div>
+            <h3 class="mb-2 text-xl font-black uppercase text-soft">Sr. Graphic Designer / Pre-Production Artist</h3>
+            <p class="text-sm leading-7 text-muted/90">High-volume design and production work across apparel, signage, banners, decals, cards, and print materials.</p>
+          </article>
+          <div class="pt-3">
+            <button id="openResumeModal" class="rounded-full border border-white/15 px-5 py-3 text-xs font-bold uppercase tracking-wide text-soft transition hover:border-accent hover:text-accent">View Full Resume</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="contact" class="border-t border-white/10 bg-panel px-5 py-20 md:px-8">
+      <div class="mx-auto max-w-7xl">
+        <div class="reveal flex flex-col gap-8 md:flex-row md:items-end md:justify-between">
+          <div>
+            <p class="mb-3 text-xs font-bold uppercase tracking-[0.3em] text-accent">Get In Touch</p>
+            <h2 class="font-display text-5xl uppercase leading-none text-soft md:text-7xl">Let’s Work Together.</h2>
+          </div>
+          <div class="flex flex-wrap gap-4 text-sm font-bold uppercase tracking-wide text-soft">
+            <a class="nav-link" href="mailto:rgray1983@gmail.com">Email</a>
+            <a class="nav-link" href="https://www.linkedin.com/in/drgdesign/" target="_blank" rel="noreferrer">LinkedIn</a>
+            <a class="nav-link" href="tel:8434532282">Phone</a>
+          </div>
+        </div>
+        <p class="mt-12 text-xs uppercase tracking-wider text-muted/90">© 2026 Richie Gray.</p>
+      </div>
+    </section>
+  </main>
+
+  <div id="resumeModal" class="modal fixed inset-0 z-[90] overflow-y-auto bg-black/85 p-4 backdrop-blur-md md:p-8">
+    <div class="modal-panel mx-auto max-w-5xl border border-white/10 bg-ink shadow-2xl">
+      <div class="sticky top-0 z-10 flex items-center justify-between border-b border-white/10 bg-ink/95 p-5 backdrop-blur-xl">
+        <p class="text-xs font-bold uppercase tracking-[0.3em] text-accent">Full Resume</p>
+        <button id="closeResumeModal" class="rounded-full border border-white/15 px-4 py-2 text-xs font-bold uppercase tracking-wide text-soft transition hover:border-accent hover:text-accent">Close</button>
+      </div>
+      <div class="grid gap-10 p-5 md:p-10">
+        <div class="grid gap-5 border-b border-white/10 pb-8 md:grid-cols-[1fr_auto] md:items-end">
+          <div>
+            <h2 class="font-display text-5xl uppercase leading-none text-soft md:text-7xl">David R. Gray III</h2>
+            <p class="mt-3 text-sm font-bold uppercase tracking-[0.3em] text-accent">Richie</p>
+            <p class="mt-4 text-xl font-semibold leading-tight text-soft">Senior Graphic Designer & Digital Pre-Production Artist</p>
+            <p class="mt-3 max-w-3xl text-sm leading-7 text-muted/90">20+ years of experience turning brand stories into compelling visuals across branding, web design, print, packaging, POP displays, digital media, pre-production, and production-focused creative.</p>
+          </div>
+          <div class="grid gap-2 text-xs font-bold uppercase tracking-wider text-muted/90 md:text-right">
+            <a class="nav-link" href="mailto:rgray1983@gmail.com">rgray1983@gmail.com</a>
+            <a class="nav-link" href="tel:8434532282">843-453-2282</a>
+            <a class="nav-link" href="https://www.linkedin.com/in/drgdesign/" target="_blank" rel="noreferrer">LinkedIn</a>
+            <a class="nav-link" href="https://rgray1983.github.io/DG-portfolio/" target="_blank" rel="noreferrer">Portfolio</a>
+          </div>
+        </div>
+
+        <section class="grid gap-4">
+          <h3 class="text-xs font-black uppercase tracking-[0.3em] text-accent">Professional Summary</h3>
+          <p class="text-sm leading-7 text-muted/90">With 20+ years as a graphic designer, I specialize in turning brand stories into compelling visuals that connect with audiences and drive results. My experience spans branding, web design, brand guidelines, print, packaging, POP displays, digital media, and pre-production—transforming complex ideas into clear, impactful design that works in the real world.</p>
+        </section>
+
+        <section class="grid gap-5">
+          <h3 class="text-xs font-black uppercase tracking-[0.3em] text-accent">Work Experience</h3>
+
+          <article class="border border-white/10 bg-panel p-5">
+            <div class="mb-3 flex flex-wrap justify-between gap-3 text-xs font-bold uppercase tracking-wider text-muted/90">
+              <span>Hood Container Corporation — Sumter, SC</span><span>Mar 2015 — Present</span>
+            </div>
+            <h4 class="mb-3 text-lg font-black uppercase text-soft">Sr. Graphic Designer & Digital Pre-Production Artist</h4>
+            <ul class="grid gap-2 text-sm leading-7 text-muted/90">
+              <li>• Create and adjust designs for POP displays, shelf displays, and corrugated box design.</li>
+              <li>• Design brand materials, customer-facing visuals, print collateral, web design pieces, and production-ready graphics.</li>
+              <li>• Designed a new company brochure and responsive website using HTML5 and CSS3.</li>
+              <li>• Work with sales teams and customers to ensure strong design quality from concept through final output.</li>
+              <li>• Prepare digital pre-production files, support print readiness, and apply production-focused color and file knowledge.</li>
+              <li>• Entered designs into AICC and TAPPI competitions, earning multiple awards including 1st place, 2nd place, and People’s Choice recognition.</li>
+            </ul>
+          </article>
+
+          <article class="border border-white/10 bg-panel p-5">
+            <div class="mb-3 flex flex-wrap justify-between gap-3 text-xs font-bold uppercase tracking-wider text-muted/90">
+              <span>Carolina Printing, Sports, and Trophy — Hartsville, SC</span><span>Aug 2010 — Mar 2015</span>
+            </div>
+            <h4 class="mb-3 text-lg font-black uppercase text-soft">Sr. Graphic Designer / Pre-Production Artist</h4>
+            <ul class="grid gap-2 text-sm leading-7 text-muted/90">
+              <li>• Designed artwork for t-shirts, signs, banners, business cards, decals, and printed materials.</li>
+              <li>• Produced 20–30 different designs weekly, totaling over 6,000 designs in five years.</li>
+              <li>• Specialized in design, layout, proofing, and pre-production file preparation.</li>
+            </ul>
+          </article>
+
+          <article class="border border-white/10 bg-panel p-5">
+            <div class="mb-3 flex flex-wrap justify-between gap-3 text-xs font-bold uppercase tracking-wider text-muted/90">
+              <span>Southern Graphics Systems — McBee, SC</span><span>Apr 2009 — Dec 2009</span>
+            </div>
+            <h4 class="mb-3 text-lg font-black uppercase text-soft">Graphic Designer / Pre-Production Artist</h4>
+            <ul class="grid gap-2 text-sm leading-7 text-muted/90">
+              <li>• Prepared artwork from major brands including KRAFT, Georgia Pacific, Dixie Cups, and Panasonic for printing.</li>
+              <li>• Worked with corrugated design and product packaging production workflows.</li>
+              <li>• Created an Illustrator script to reduce material use in pre-press platemaking, helping save thousands of dollars.</li>
+            </ul>
+          </article>
+
+          <article class="border border-white/10 bg-panel p-5">
+            <div class="mb-3 flex flex-wrap justify-between gap-3 text-xs font-bold uppercase tracking-wider text-muted/90">
+              <span>School Dynamics Systems — Hartsville, SC</span><span>Jan 2006 — Aug 2006</span>
+            </div>
+            <h4 class="mb-3 text-lg font-black uppercase text-soft">Graphic Designer / Programmer</h4>
+            <ul class="grid gap-2 text-sm leading-7 text-muted/90">
+              <li>• Designed marketing materials including instructional videos, flyers, and brochures.</li>
+              <li>• Converted software from Microsoft Access to an HTML-based system, reducing travel and installation costs.</li>
+            </ul>
+          </article>
+
+          <article class="border border-white/10 bg-panel p-5">
+            <div class="mb-3 flex flex-wrap justify-between gap-3 text-xs font-bold uppercase tracking-wider text-muted/90">
+              <span>AmeriServ Printers LLC — Hartsville, SC</span><span>Jan 2003 — Dec 2005</span>
+            </div>
+            <h4 class="mb-3 text-lg font-black uppercase text-soft">Graphic Designer / Pre-Production Artist</h4>
+            <ul class="grid gap-2 text-sm leading-7 text-muted/90">
+              <li>• Designed and laid out artwork ranging from invoices to business cards.</li>
+              <li>• Refined copy-proof processes to reduce costs and improve efficiency.</li>
+            </ul>
+          </article>
+        </section>
+
+        <section class="grid gap-5 md:grid-cols-2">
+          <div class="border border-white/10 bg-panel p-5">
+            <h3 class="mb-4 text-xs font-black uppercase tracking-[0.3em] text-accent">Core Skills</h3>
+            <p class="text-sm leading-7 text-muted/90">Brand Identity, Brand Guidelines, Web Design, Print Design, Packaging, POP Displays, Shelf Displays, Corrugated Graphics, Digital Pre-Production, Color Management, Typography, Layout, Marketing Design, Production Art, Proofing, Customer Collaboration</p>
+          </div>
+          <div class="border border-white/10 bg-panel p-5">
+            <h3 class="mb-4 text-xs font-black uppercase tracking-[0.3em] text-accent">Software / Technical</h3>
+            <p class="text-sm leading-7 text-muted/90">Adobe Illustrator, Photoshop, InDesign, CorelDraw, HTML5, CSS3, font management tools, production/pre-press workflows, and digital file preparation.</p>
+          </div>
+        </section>
+
+        <section class="grid gap-5 md:grid-cols-2">
+          <div class="border border-white/10 bg-panel p-5">
+            <h3 class="mb-4 text-xs font-black uppercase tracking-[0.3em] text-accent">Education</h3>
+            <p class="text-sm leading-7 text-muted/90">Graphic Design — Coker College, Hartsville, SC<br />2002 — 2007</p>
+          </div>
+          <div class="border border-white/10 bg-panel p-5">
+            <h3 class="mb-4 text-xs font-black uppercase tracking-[0.3em] text-accent">Groups</h3>
+            <ul class="grid gap-2 text-sm leading-7 text-muted/90">
+              <li>• Hartsville Downtown Development Association Design Committee Co-Chair, Jul 2012 — Mar 2015</li>
+              <li>• Hartsville Young Professionals Member, Jul 2012 — Mar 2015</li>
+            </ul>
+          </div>
+        </section>
+
+        <section class="grid gap-4 border border-white/10 bg-panel p-5">
+          <h3 class="text-xs font-black uppercase tracking-[0.3em] text-accent">Recognition</h3>
+          <p class="text-sm leading-7 text-muted/90">AICC and TAPPI award recognition for packaging, corrugated, and POP display work, including multiple competition placements and People’s Choice honors.</p>
+        </section>
+      </div>
+    </div>
+  </div>
+
+  <div id="projectModal" class="modal fixed inset-0 z-[80] overflow-y-auto bg-black/85 p-4 backdrop-blur-md md:p-8">
+    <div class="modal-panel mx-auto max-w-6xl border border-white/10 bg-ink shadow-2xl">
+      <div class="sticky top-0 z-10 flex items-center justify-between border-b border-white/10 bg-ink/95 p-5 backdrop-blur-xl">
+        <p id="modalKicker" class="text-xs font-bold uppercase tracking-[0.3em] text-accent">Case Study</p>
+        <button id="closeModal" class="rounded-full border border-white/15 px-4 py-2 text-xs font-bold uppercase tracking-wide text-soft transition hover:border-accent hover:text-accent">Close</button>
+      </div>
+      <div id="modalContent" class="p-5 md:p-8"></div>
+    </div>
+  </div>
+
+  <script>
+    const projects = {
+      ameriserv: {
+        kicker: 'Brand Identity / Web Design / Brand Guidelines',
+        title: 'AmeriServ Rebrand',
+        intro: 'A full brand refresh for a small-town print and promotional company, including identity design, website design, and brand guidelines.',
+        meta: ['Client: AmeriServ', 'Year: 2026', 'Services: Brand Identity, Web Design, Brand Guidelines, Print Design, Marketing Materials'],
+        sections: [
+          {
+            title: 'The Challenge',
+            copy: 'AmeriServ needed a stronger, more consistent identity that could represent the full range of services they offer while keeping the approachable, small-town feel that makes the company personal and trusted. The project also needed to extend beyond the logo into a usable website and clear brand guidelines.'
+          },
+          {
+            title: 'The Approach',
+            copy: 'The rebrand centered around a bold eagle mark, a modern Americana-inspired palette, a responsive website, and a flexible brand guideline system designed to work across print, promotional products, business cards, signage, and digital platforms.'
+          },
+          {
+            title: 'The Result',
+            copy: 'The final system gives AmeriServ a cleaner, more professional presence across identity, website, print, and brand standards, creating a foundation that feels current, recognizable, and built for long-term use.'
+          }
+        ],
+        images: [
+          ['images/ASP/ASP-OLD-NEW.jpg', 'Old and new AmeriServ logo comparison'],
+          ['images/ASP/ASP-LOGO-HORIZONTAL.jpg', 'AmeriServ horizontal logo lockup'],
+          ['images/ASP/ASP-LOGO-VERTICAL.jpg', 'AmeriServ vertical logo lockup'],
+          ['images/ASP/bc-mockup.jpg', 'AmeriServ business card mockup'],
+          ['images/ASP/ameriserv-newsite.png', 'AmeriServ website design screenshot'],
+          ['images/ASP/ameriserv-brandguidelines.png', 'AmeriServ brand guidelines screenshot'],
+          ['images/ASP/AS-BusinessCard-front.jpg', 'AmeriServ business card front'],
+          ['images/ASP/AS-BusinessCard-back.jpg', 'AmeriServ business card back']
+        ]
+      },
+      goatwood: {
+        kicker: 'Packaging / Retail Graphics',
+        title: 'Goatwood Firewood',
+        intro: 'Bold packaging, retail signage, and promotional graphics for an all-American firewood brand.',
+        meta: ['Client: Goatwood', 'Services: Packaging, Signage, Product Graphics, Retail Display', 'Focus: Shelf impact and real-world visibility'],
+        sections: [
+          {
+            title: 'The Challenge',
+            copy: 'Goatwood needed high-impact graphics that could stand out in rugged retail and outdoor-use environments while clearly communicating the product benefit: kiln dried, easy-light firewood and fire-starter products.'
+          },
+          {
+            title: 'The Approach',
+            copy: 'The visual direction leaned into bold contrast, oversized type, flame-driven energy, and strong product cues. The system was built to work across labels, signs, displays, social-style graphics, and real-world retail applications.'
+          },
+          {
+            title: 'The Result',
+            copy: 'The finished work creates a strong shelf presence with a clear, memorable look that feels rugged, energetic, and ready for retail.'
+          }
+        ],
+        images: [
+          ['images/Goatwood/GW-FirewoodSignArt-Final.jpg', 'Goatwood firewood sign artwork'],
+          ['images/Goatwood/GW-COMMERCIAL-1.jpg', 'Goatwood commercial sign in real-world setting'],
+          ['images/Goatwood/GW-1lb label.png', 'Goatwood 1lb fire-starter label'],
+          ['images/Goatwood/GW-FATWOOD-1LB&1+HALFLB-PRODUCT-BBQ-idea-lowrez.jpg', 'Goatwood BBQ product promotional graphic'],
+          ['images/Goatwood/GW-Commercial-SignArt-Final.jpg', 'Goatwood commercial sign artwork'],
+          ['images/Goatwood/GW-Commercial-SignArt-FinalV2.jpg', 'Goatwood commercial sign artwork version 2'],
+          ['images/Goatwood/Rack.png', 'Goatwood retail firewood rack concept']
+        ]
+      },
+      branding: {
+        kicker: 'Branding / Logos',
+        title: 'Branding + Logos',
+        intro: 'A selection of logo systems, identity work, and brand exploration across industries.',
+        meta: ['Identity Systems', 'Logo Design', 'Brand Development'],
+        sections: [],
+        images: [
+          ['images/logos/CAROLINA CHAOS.jpg', 'Carolina Chaos branding and apparel concept'],
+          ['images/logos/CE-LOGO.jpg', 'Carolina Elite logo and hat mockup'],
+          ['images/logos/PGS-LOGO.jpg', 'Pawleys Island Guide Service logo'],
+          ['images/logos/PP-LOGO.jpg', 'Palmetto Punishers logo'],
+          ['images/logos/R&R-LOGO.jpg', 'Rhythm & Q’s event branding'],
+          ['images/logos/ST-PETERS.jpg', 'St. Peter’s Anglican Church logo concepts'],
+          ['images/logos/TURBINE.jpg', 'Fleet Turbine Services logo'],
+          ['images/logos/URGENT-CARE-LOGO.jpg', 'Hometown Urgent Care identity']
+        ]
+      },
+      retail: {
+        kicker: 'Retail / Apparel / Packaging',
+        title: 'Retail & Apparel',
+        intro: 'A curated mix of retail packaging, apparel graphics, display-ready visuals, and production-focused design.',
+        meta: ['Retail Packaging', 'Apparel Graphics', 'Production Design'],
+        sections: [],
+        images: [
+          ['images/retail & apparel/EARLY-BIRD BOX.jpg', 'Early Bird packaging box design'],
+          ['images/retail & apparel/GW-FANCY BOX.jpg', 'Goatwood fancy box packaging'],
+          ['images/retail & apparel/GW-KRAFT BOX.jpg', 'Goatwood kraft box packaging'],
+          ['images/retail & apparel/HA-HOLIDAY-BOX.jpg', 'Holiday Acres holiday box packaging'],
+          ['images/retail & apparel/HERBIES BOX.jpg', 'Herbie’s Fireworks retail display box'],
+          ['images/retail & apparel/MATTRESS BOX.jpg', 'Martha Stewart mattress packaging'],
+          ['images/retail & apparel/SIGNAL-POINT BOX.jpg', 'Signal Point vodka box packaging'],
+          ['images/retail & apparel/ALS-SHIRT.jpg', 'ALS Walk shirt design'],
+          ['images/retail & apparel/COKER-SHIRT.jpg', 'Coker Singers choir tour shirt'],
+          ['images/retail & apparel/PMA-SHIRT.jpg', 'PMA shirt design'],
+          ['images/retail & apparel/SC ALLSTAR SHIRT.jpg', 'South Carolina All-Stars shirt design']
+        ]
+      },
+      web: {
+        kicker: 'Web Design',
+        title: 'Web Design',
+        intro: 'Responsive websites, landing pages, and visual interface work created for local businesses, community projects, and internal company needs.',
+        meta: ['Responsive Design', 'UI Layout', 'Marketing Sites'],
+        sections: [],
+        images: [
+          ['images/web design/CMS-SITE.png', 'Community Museum Society Bean Market page', 'A community-focused web graphic blending local landmark photography with event branding for the Bean Market page.'],
+          ['images/web design/PPH-SITE.png', 'Palmetto Playhouse website', 'A bright, family-friendly website layout built around playful colors, clear booking calls-to-action, and an approachable brand feel.'],
+          ['images/web design/SOUTHERN ASPHALT-SITE.png', 'Southern Asphalt website', 'A practical contractor website design using strong navigation, large project imagery, and quick access to core service areas.'],
+          ['images/web design/SPC-SITE.png', 'Sumter Packaging Corporation website', 'A modernized industrial website concept with clean spacing, angled section breaks, and product-focused supporting imagery.'],
+          ['images/web design/SUNPAK-SITE.png', 'SunPak Logistics website', 'A dark, polished logistics website layout with a strong hero message and clear service-oriented positioning.']
+        ]
+      }
+    };
+
+    const modal = document.getElementById('projectModal');
+    const modalContent = document.getElementById('modalContent');
+    const modalKicker = document.getElementById('modalKicker');
+    const closeModal = document.getElementById('closeModal');
+
+    const resumeModal = document.getElementById('resumeModal');
+    const openResumeModal = document.getElementById('openResumeModal');
+    const closeResumeModal = document.getElementById('closeResumeModal');
+
+    function openProject(key) {
+      const project = projects[key];
+      if (!project) return;
+      modalKicker.textContent = project.kicker;
+      modalContent.innerHTML = `
+        <div class="grid gap-14 md:gap-20">
+          <div class="grid gap-6 md:grid-cols-[1.1fr_.9fr] md:items-end">
+            <div>
+              <h2 class="font-display text-5xl uppercase leading-none text-soft md:text-7xl">${project.title}</h2>
+              <p class="mt-5 max-w-3xl text-xl font-semibold leading-tight text-soft">${project.intro}</p>
+            </div>
+            <div class="grid gap-2 text-xs font-bold uppercase tracking-wider text-muted/90">
+              ${project.meta.map(item => `<p>${item}</p>`).join('')}
+            </div>
+          </div>
+
+          ${project.sections.length ? `
+          <div class="grid gap-5 md:grid-cols-3">
+            ${project.sections.map(section => `
+              <article class="border border-white/10 bg-panel p-5">
+                <h3 class="mb-3 text-xs font-black uppercase tracking-[0.3em] text-accent">${section.title}</h3>
+                <p class="text-sm leading-7 text-muted/90">${section.copy}</p>
+              </article>
+            `).join('')}
+          </div>
+          ` : ''}
+
+          <div class="grid gap-5 md:grid-cols-2">
+            ${project.images.map((img, index) => `
+              <figure class="group overflow-hidden border border-white/10 bg-panel ${index === 0 ? 'md:col-span-2' : ''}">
+                <img src="${img[0]}" alt="${img[1]}" class="w-full object-cover transition duration-700 group-hover:scale-[1.03] group-hover:brightness-110 ${project.title === 'Web Design' ? 'object-top' : ''}" />
+                ${img[2] ? `
+                <figcaption class="border-t border-white/10 bg-panel p-5">
+                  <h3 class="mb-2 text-sm font-black uppercase tracking-wider text-soft">${img[1]}</h3>
+                  <p class="text-sm leading-6 text-muted/90">${img[2]}</p>
+                </figcaption>
+                ` : ''}
+              </figure>
+            `).join('')}
+          </div>
+        </div>
+      `;
+      modal.classList.add('open');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeProject() {
+      modal.classList.remove('open');
+      document.body.style.overflow = '';
+    }
+
+    function openResume() {
+      resumeModal.classList.add('open');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeResume() {
+      resumeModal.classList.remove('open');
+      document.body.style.overflow = '';
+    }
+
+    document.querySelectorAll('[data-project]').forEach(card => {
+      card.addEventListener('click', () => openProject(card.dataset.project));
+    });
+
+    closeModal.addEventListener('click', closeProject);
+    openResumeModal.addEventListener('click', openResume);
+    closeResumeModal.addEventListener('click', closeResume);
+    modal.addEventListener('click', (event) => {
+      if (event.target === modal) closeProject();
+    });
+
+    resumeModal.addEventListener('click', (event) => {
+      if (event.target === resumeModal) closeResume();
+    });
+    document.addEventListener('keydown', (event) => {
+      if (event.key === 'Escape') {
+        closeProject();
+        closeResume();
+      }
+    });
+
+    const revealObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) entry.target.classList.add('visible');
+      });
+    }, { threshold: 0.12 });
+
+    document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
+
+    document.getElementById('mobileMenuBtn').addEventListener('click', () => {
+      document.getElementById('mobileMenu').classList.toggle('hidden');
+    });
+  </script>
 </body>
 </html>
