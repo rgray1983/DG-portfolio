@@ -84,6 +84,66 @@
     .nav-link:hover::after { width: 100%; }
     .hero-name { letter-spacing: -0.08em; }
     @media (max-width: 768px) { .hero-name { letter-spacing: -0.055em; } }
+    
+    @media print {
+	  body * {
+	    visibility: hidden;
+	  }
+	
+	  #resumeModal,
+	  #resumeModal * {
+	    visibility: visible;
+	  }
+	
+	  #resumeModal {
+	    position: absolute;
+	    inset: 0;
+	    overflow: visible;
+	    background: white !important;
+	    color: black !important;
+	    padding: 0 !important;
+	  }
+	
+	  #resumeModal .modal-panel {
+	    max-width: none !important;
+	    width: 100% !important;
+	    border: none !important;
+	    box-shadow: none !important;
+	    background: white !important;
+	    color: black !important;
+	    transform: none !important;
+	  }
+	
+	  #resumeModal .sticky,
+	  #printResume,
+	  #downloadResume,
+	  #closeResumeModal {
+	    display: none !important;
+	  }
+	
+	  #resumeModal .bg-ink,
+	  #resumeModal .bg-panel {
+	    background: white !important;
+	  }
+	
+	  #resumeModal .text-soft,
+	  #resumeModal .text-muted\/90,
+	  #resumeModal .text-accent {
+	    color: black !important;
+	  }
+	
+	  #resumeModal .border,
+	  #resumeModal .border-white\/10 {
+	    border-color: #ccc !important;
+	  }
+	
+	  a {
+	    color: black !important;
+	    text-decoration: none !important;
+	  }
+	}
+	    
+    
   </style>
   
   	<!-- Google tag (gtag.js) -->
@@ -150,7 +210,7 @@
 
     <section class="overflow-hidden border-y border-white/10 bg-panel py-4">
       <div class="marquee-track flex w-[200%] gap-8 whitespace-nowrap text-xs font-bold uppercase tracking-[0.25em] text-muted/90">
-        <span>Brand Identity</span><span>Web Design</span><span>Brand Guidelines</span><span>Packaging</span><<span>Print Design</span><span>Digital Design</span><span>Pre-Production</span><span>Color Management</span><span>Marketing Materials</span>
+        <span>Brand Identity</span><span>Web Design</span><span>Brand Guidelines</span><span>Packaging</span><span>Print Design</span><span>Digital Design</span><span>Pre-Production</span><span>Color Management</span><span>Marketing Materials</span>
         <span>Brand Identity</span><span>Web Design</span><span>Brand Guidelines</span><span>Packaging</span><span>Print Design</span><span>Digital Design</span><span>Pre-Production</span><span>Color Management</span><span>Marketing Materials</span>
       </div>
     </section>
@@ -299,130 +359,177 @@
     </section>
   </main>
 
-  <div id="resumeModal" class="modal fixed inset-0 z-[90] overflow-y-auto bg-black/85 p-4 backdrop-blur-md md:p-8">
-    <div class="modal-panel mx-auto max-w-5xl border border-white/10 bg-ink shadow-2xl">
-      <div class="sticky top-0 z-10 flex items-center justify-between border-b border-white/10 bg-ink/95 p-5 backdrop-blur-xl">
-        <p class="text-xs font-bold uppercase tracking-[0.3em] text-accent">Full Resume</p>
-        <button id="closeResumeModal" class="rounded-full border border-white/15 px-4 py-2 text-xs font-bold uppercase tracking-wide text-soft transition hover:border-accent hover:text-accent">Close</button>
-      </div>
-      <div class="grid gap-10 p-5 md:p-10">
-        <div class="grid gap-5 border-b border-white/10 pb-8 md:grid-cols-[1fr_auto] md:items-end">
-          <div>
-            <h2 class="font-display text-5xl uppercase leading-none text-soft md:text-7xl">David R. Gray III</h2>
-            <p class="mt-3 text-sm font-bold uppercase tracking-[0.3em] text-accent">Richie</p>
-            <p class="mt-4 text-xl font-semibold leading-tight text-soft">Senior Graphic Designer & Digital Pre-Production Artist</p>
-            <p class="mt-3 max-w-3xl text-sm leading-7 text-muted/90">20+ years of experience turning brand stories into compelling visuals across branding, web design, print, packaging, POP displays, digital media, pre-production, and production-focused creative.</p>
-          </div>
-          <div class="grid gap-2 text-xs font-bold uppercase tracking-wider text-muted/90 md:text-right">
-            <a class="nav-link" href="mailto:rgray1983@gmail.com">rgray1983@gmail.com</a>
-            <a class="nav-link" href="tel:8434532282">843-453-2282</a>
-            <a class="nav-link" href="https://www.linkedin.com/in/drgdesign/" target="_blank" rel="noreferrer">LinkedIn</a>
-            <a class="nav-link" href="https://rgray1983.github.io/DG-portfolio/" target="_blank" rel="noreferrer">Portfolio</a>
-          </div>
+<div id="resumeModal" class="modal fixed inset-0 z-[90] overflow-y-auto bg-black/85 p-4 backdrop-blur-md md:p-8">
+  <div class="modal-panel mx-auto max-w-5xl border border-white/10 bg-ink shadow-2xl">
+    <div class="sticky top-0 z-10 flex items-center justify-between border-b border-white/10 bg-ink/95 p-5 backdrop-blur-xl">
+      <p class="text-xs font-bold uppercase tracking-[0.3em] text-accent">Full Resume</p>
+      <div class="flex flex-wrap items-center gap-2">
+  <button id="printResume" class="rounded-full border border-white/15 px-4 py-2 text-xs font-bold uppercase tracking-wide text-soft transition hover:border-accent hover:text-accent">
+    Print
+  </button>
+
+  <button id="downloadResume" class="rounded-full border border-white/15 px-4 py-2 text-xs font-bold uppercase tracking-wide text-soft transition hover:border-accent hover:text-accent">
+    Download PDF
+  </button>
+
+  <button id="closeResumeModal" class="rounded-full border border-white/15 px-4 py-2 text-xs font-bold uppercase tracking-wide text-soft transition hover:border-accent hover:text-accent">
+    Close
+  </button>
+</div>
+    </div>
+
+    <div class="grid gap-10 p-5 md:p-10">
+
+      <div class="grid gap-5 border-b border-white/10 pb-8 md:grid-cols-[1fr_auto] md:items-end">
+        <div>
+          <h2 class="font-display text-5xl uppercase leading-none text-soft md:text-7xl">David R. Gray III</h2>
+          <p class="mt-3 text-sm font-bold uppercase tracking-[0.3em] text-accent">Richie</p>
+          <p class="mt-4 text-xl font-semibold leading-tight text-soft">Senior Graphic Designer & Digital Pre-Production Artist</p>
+          <p class="mt-3 max-w-3xl text-sm leading-7 text-muted/90">
+            Senior creative professional with 20+ years of experience developing brand systems, packaging, retail graphics, web design, and production-ready visual communication across print and digital environments.
+          </p>
         </div>
 
-        <section class="grid gap-4">
-          <h3 class="text-xs font-black uppercase tracking-[0.3em] text-accent">Professional Summary</h3>
-          <p class="text-sm leading-7 text-muted/90">With 20+ years as a graphic designer, I specialize in turning brand stories into compelling visuals that connect with audiences and drive results. My experience spans branding, web design, brand guidelines, print, packaging, digital media, and pre-production—transforming complex ideas into clear, impactful design that works in the real world.</p>
-        </section>
-
-        <section class="grid gap-5">
-          <h3 class="text-xs font-black uppercase tracking-[0.3em] text-accent">Work Experience</h3>
-
-          <article class="border border-white/10 bg-panel p-5">
-            <div class="mb-3 flex flex-wrap justify-between gap-3 text-xs font-bold uppercase tracking-wider text-muted/90">
-              <span>Hood Container Corporation — Sumter, SC</span><span>Mar 2015 — Present</span>
-            </div>
-            <h4 class="mb-3 text-lg font-black uppercase text-soft">Sr. Graphic Designer & Digital Pre-Production Artist</h4>
-            <ul class="grid gap-2 text-sm leading-7 text-muted/90">
-              <li>• Create and adjust designs for POP displays, shelf displays, and corrugated box design.</li>
-              <li>• Design brand materials, customer-facing visuals, print collateral, web design pieces, and production-ready graphics.</li>
-              <li>• Designed a new company brochure and responsive website using HTML5 and CSS3.</li>
-              <li>• Work with sales teams and customers to ensure strong design quality from concept through final output.</li>
-              <li>• Prepare digital pre-production files, support print readiness, and apply production-focused color and file knowledge.</li>
-              <li>• Entered designs into AICC and TAPPI competitions, earning multiple awards including 1st place, 2nd place, and People’s Choice recognition.</li>
-            </ul>
-          </article>
-
-          <article class="border border-white/10 bg-panel p-5">
-            <div class="mb-3 flex flex-wrap justify-between gap-3 text-xs font-bold uppercase tracking-wider text-muted/90">
-              <span>Carolina Printing, Sports, and Trophy — Hartsville, SC</span><span>Aug 2010 — Mar 2015</span>
-            </div>
-            <h4 class="mb-3 text-lg font-black uppercase text-soft">Sr. Graphic Designer / Pre-Production Artist</h4>
-            <ul class="grid gap-2 text-sm leading-7 text-muted/90">
-              <li>• Designed artwork for t-shirts, signs, banners, business cards, decals, and printed materials.</li>
-              <li>• Produced 20–30 different designs weekly, totaling over 6,000 designs in five years.</li>
-              <li>• Specialized in design, layout, proofing, and pre-production file preparation.</li>
-            </ul>
-          </article>
-
-          <article class="border border-white/10 bg-panel p-5">
-            <div class="mb-3 flex flex-wrap justify-between gap-3 text-xs font-bold uppercase tracking-wider text-muted/90">
-              <span>Southern Graphics Systems — McBee, SC</span><span>Apr 2009 — Dec 2009</span>
-            </div>
-            <h4 class="mb-3 text-lg font-black uppercase text-soft">Graphic Designer / Pre-Production Artist</h4>
-            <ul class="grid gap-2 text-sm leading-7 text-muted/90">
-              <li>• Prepared artwork from major brands including KRAFT, Georgia Pacific, Dixie Cups, and Panasonic for printing.</li>
-              <li>• Worked with corrugated design and product packaging production workflows.</li>
-              <li>• Created an Illustrator script to reduce material use in pre-press platemaking, helping save thousands of dollars.</li>
-            </ul>
-          </article>
-
-          <article class="border border-white/10 bg-panel p-5">
-            <div class="mb-3 flex flex-wrap justify-between gap-3 text-xs font-bold uppercase tracking-wider text-muted/90">
-              <span>School Dynamics Systems — Hartsville, SC</span><span>Jan 2006 — Aug 2006</span>
-            </div>
-            <h4 class="mb-3 text-lg font-black uppercase text-soft">Graphic Designer / Programmer</h4>
-            <ul class="grid gap-2 text-sm leading-7 text-muted/90">
-              <li>• Designed marketing materials including instructional videos, flyers, and brochures.</li>
-              <li>• Converted software from Microsoft Access to an HTML-based system, reducing travel and installation costs.</li>
-            </ul>
-          </article>
-
-          <article class="border border-white/10 bg-panel p-5">
-            <div class="mb-3 flex flex-wrap justify-between gap-3 text-xs font-bold uppercase tracking-wider text-muted/90">
-              <span>AmeriServ Printers LLC — Hartsville, SC</span><span>Jan 2003 — Dec 2005</span>
-            </div>
-            <h4 class="mb-3 text-lg font-black uppercase text-soft">Graphic Designer / Pre-Production Artist</h4>
-            <ul class="grid gap-2 text-sm leading-7 text-muted/90">
-              <li>• Designed and laid out artwork ranging from invoices to business cards.</li>
-              <li>• Refined copy-proof processes to reduce costs and improve efficiency.</li>
-            </ul>
-          </article>
-        </section>
-
-        <section class="grid gap-5 md:grid-cols-2">
-          <div class="border border-white/10 bg-panel p-5">
-            <h3 class="mb-4 text-xs font-black uppercase tracking-[0.3em] text-accent">Core Skills</h3>
-            <p class="text-sm leading-7 text-muted/90">Brand Identity, Brand Guidelines, Web Design, Print Design, Packaging, POP Displays, Shelf Displays, Corrugated Graphics, Digital Pre-Production, Color Management, Typography, Layout, Marketing Design, Production Art, Proofing, Customer Collaboration</p>
-          </div>
-          <div class="border border-white/10 bg-panel p-5">
-            <h3 class="mb-4 text-xs font-black uppercase tracking-[0.3em] text-accent">Software / Technical</h3>
-            <p class="text-sm leading-7 text-muted/90">Adobe Illustrator, Photoshop, InDesign, CorelDraw, HTML5, CSS3, font management tools, production/pre-press workflows, and digital file preparation.</p>
-          </div>
-        </section>
-
-        <section class="grid gap-5 md:grid-cols-2">
-          <div class="border border-white/10 bg-panel p-5">
-            <h3 class="mb-4 text-xs font-black uppercase tracking-[0.3em] text-accent">Education</h3>
-            <p class="text-sm leading-7 text-muted/90">Graphic Design — Coker College, Hartsville, SC<br />2002 — 2007</p>
-          </div>
-          <div class="border border-white/10 bg-panel p-5">
-            <h3 class="mb-4 text-xs font-black uppercase tracking-[0.3em] text-accent">Groups</h3>
-            <ul class="grid gap-2 text-sm leading-7 text-muted/90">
-              <li>• Hartsville Downtown Development Association Design Committee Co-Chair, Jul 2012 — Mar 2015</li>
-              <li>• Hartsville Young Professionals Member, Jul 2012 — Mar 2015</li>
-            </ul>
-          </div>
-        </section>
-
-        <section class="grid gap-4 border border-white/10 bg-panel p-5">
-          <h3 class="text-xs font-black uppercase tracking-[0.3em] text-accent">Recognition</h3>
-          <p class="text-sm leading-7 text-muted/90">AICC and TAPPI award recognition for packaging, corrugated, and POP display work, including multiple competition placements and People’s Choice honors.</p>
-        </section>
+        <div class="grid gap-2 text-xs font-bold uppercase tracking-wider text-muted/90 md:text-right">
+          <a class="nav-link" href="mailto:rgray1983@gmail.com">rgray1983@gmail.com</a>
+          <a class="nav-link" href="tel:8434532282">843-453-2282</a>
+          <a class="nav-link" href="https://www.linkedin.com/in/drgdesign/" target="_blank" rel="noreferrer">LinkedIn</a>
+          <a class="nav-link" href="https://rgray1983.github.io/DG-portfolio/" target="_blank" rel="noreferrer">Portfolio</a>
+        </div>
       </div>
+
+      <section class="grid gap-4">
+        <h3 class="text-xs font-black uppercase tracking-[0.3em] text-accent">Professional Summary</h3>
+        <p class="text-sm leading-7 text-muted/90">
+          Senior creative professional with 20+ years of experience developing brand systems, packaging, retail graphics, web design, and production-ready visual communication across print and digital environments. Known for combining strategic thinking with deep production knowledge to create scalable, real-world design solutions that support marketing, sales, manufacturing, and customer engagement.
+        </p>
+      </section>
+
+      <section class="grid gap-5">
+        <h3 class="text-xs font-black uppercase tracking-[0.3em] text-accent">Work Experience</h3>
+
+        <article class="border border-white/10 bg-panel p-5">
+          <div class="mb-3 flex flex-wrap justify-between gap-3 text-xs font-bold uppercase tracking-wider text-muted/90">
+            <span>Hood Container Corporation — Sumter, SC</span>
+            <span>Mar 2015 — Present</span>
+          </div>
+
+          <h4 class="mb-3 text-lg font-black uppercase text-soft">Sr. Graphic Designer & Digital Pre-Production Artist</h4>
+
+          <ul class="grid gap-2 text-sm leading-7 text-muted/90">
+            <li>• Lead development of visual systems for corrugated packaging, POP displays, retail graphics, and customer-facing marketing materials across print and digital channels.</li>
+            <li>• Collaborate with sales teams, customers, and production stakeholders to align creative direction with manufacturing requirements, structural constraints, and brand objectives.</li>
+            <li>• Designed and developed a responsive company website using HTML5 & CSS3 to modernize brand presentation and improve communication.</li>
+            <li>• Support production workflows through advanced pre-production knowledge, print readiness, color management, and scalable file preparation practices.</li>
+            <li>• Contributed award-winning work recognized through AICC and TAPPI competitions, including multiple placements and People’s Choice honors.</li>
+            <li>• Improve production consistency and operational efficiency by bridging creative execution with real-world manufacturing and production needs.</li>
+          </ul>
+        </article>
+
+        <article class="border border-white/10 bg-panel p-5">
+          <div class="mb-3 flex flex-wrap justify-between gap-3 text-xs font-bold uppercase tracking-wider text-muted/90">
+            <span>Carolina Printing, Sports, and Trophy — Hartsville, SC</span>
+            <span>Aug 2010 — Mar 2015</span>
+          </div>
+
+          <h4 class="mb-3 text-lg font-black uppercase text-soft">Sr. Graphic Designer / Pre-Production Artist</h4>
+
+          <ul class="grid gap-2 text-sm leading-7 text-muted/90">
+            <li>• Managed end-to-end creative development for apparel, signage, print collateral, and branded marketing materials in a high-volume production environment.</li>
+            <li>• Produced 20–30 unique design solutions weekly while maintaining strong quality control and fast turnaround times.</li>
+            <li>• Developed customer-facing visual assets that strengthened brand visibility across print and promotional channels.</li>
+            <li>• Oversaw proofing and pre-production preparation to ensure accuracy, consistency, and production efficiency at scale.</li>
+          </ul>
+        </article>
+
+        <article class="border border-white/10 bg-panel p-5">
+          <div class="mb-3 flex flex-wrap justify-between gap-3 text-xs font-bold uppercase tracking-wider text-muted/90">
+            <span>Southern Graphics Systems — McBee, SC</span>
+            <span>Apr 2009 — Dec 2009</span>
+          </div>
+
+          <h4 class="mb-3 text-lg font-black uppercase text-soft">Graphic Designer / Pre-Production Artist</h4>
+
+          <ul class="grid gap-2 text-sm leading-7 text-muted/90">
+            <li>• Supported national consumer brands including Kraft, Georgia-Pacific, Dixie, and Panasonic through production-focused packaging and pre-press design workflows.</li>
+            <li>• Developed an Illustrator automation script that reduced plate material usage and improved operational efficiency, saving thousands in production costs.</li>
+            <li>• Bridged creative intent with manufacturing requirements to improve accuracy, scalability, and production consistency.</li>
+          </ul>
+        </article>
+
+        <article class="border border-white/10 bg-panel p-5">
+          <div class="mb-3 flex flex-wrap justify-between gap-3 text-xs font-bold uppercase tracking-wider text-muted/90">
+            <span>School Dynamics Systems — Hartsville, SC</span>
+            <span>Jan 2006 — Aug 2006</span>
+          </div>
+
+          <h4 class="mb-3 text-lg font-black uppercase text-soft">Graphic Designer / Programmer</h4>
+
+          <ul class="grid gap-2 text-sm leading-7 text-muted/90">
+            <li>• Designed integrated marketing materials, brochures, instructional media, and educational graphics across print and digital platforms.</li>
+            <li>• Assisted in transitioning Microsoft Access-based software into an HTML/CSS web platform, improving scalability, usability, and long-term operational efficiency.</li>
+          </ul>
+        </article>
+
+        <article class="border border-white/10 bg-panel p-5">
+          <div class="mb-3 flex flex-wrap justify-between gap-3 text-xs font-bold uppercase tracking-wider text-muted/90">
+            <span>AmeriServ Printers LLC — Hartsville, SC</span>
+            <span>Jan 2003 — Dec 2005</span>
+          </div>
+
+          <h4 class="mb-3 text-lg font-black uppercase text-soft">Graphic Designer / Pre-Production Artist</h4>
+
+          <ul class="grid gap-2 text-sm leading-7 text-muted/90">
+            <li>• Designed a wide range of business collateral, print materials, and customer-facing graphics for commercial clients across multiple industries.</li>
+            <li>• Improved pre-press workflows and proofing processes to increase production accuracy and reduce turnaround inefficiencies.</li>
+            <li>• Collaborated directly with customers to develop visually consistent, production-ready brand materials.</li>
+          </ul>
+        </article>
+      </section>
+
+      <section class="grid gap-5 md:grid-cols-2">
+        <div class="border border-white/10 bg-panel p-5">
+          <h3 class="mb-4 text-xs font-black uppercase tracking-[0.3em] text-accent">Core Skills</h3>
+          <p class="text-sm leading-7 text-muted/90">
+            Brand Identity · Visual Systems · Packaging Design · POP & Retail Displays · Web Design · Responsive Design (HTML5/CSS3) · Print & Digital Marketing Materials · Typography · Color Management · Production Art · Pre-Press & Print Production · Creative Strategy · Cross-Functional Collaboration · Workflow Optimization · Adobe Illustrator · Photoshop · InDesign · CorelDraw · Video Editing & Motion Graphics
+          </p>
+        </div>
+
+        <div class="border border-white/10 bg-panel p-5">
+          <h3 class="mb-4 text-xs font-black uppercase tracking-[0.3em] text-accent">Software / Technical</h3>
+          <p class="text-sm leading-7 text-muted/90">
+            Adobe Illustrator, Photoshop, InDesign, CorelDraw, HTML5, CSS3, font management tools, production/pre-press workflows, and digital file preparation.
+          </p>
+        </div>
+      </section>
+
+      <section class="grid gap-5 md:grid-cols-2">
+        <div class="border border-white/10 bg-panel p-5">
+          <h3 class="mb-4 text-xs font-black uppercase tracking-[0.3em] text-accent">Education</h3>
+          <p class="text-sm leading-7 text-muted/90">
+            Graphic Design — Coker College, Hartsville, SC<br />2002 — 2007
+          </p>
+        </div>
+
+        <div class="border border-white/10 bg-panel p-5">
+          <h3 class="mb-4 text-xs font-black uppercase tracking-[0.3em] text-accent">Groups</h3>
+          <ul class="grid gap-2 text-sm leading-7 text-muted/90">
+            <li>• Hartsville Downtown Development Association Design Committee Co-Chair, Jul 2012 — Mar 2015</li>
+            <li>• Hartsville Young Professionals Member, Jul 2012 — Mar 2015</li>
+          </ul>
+        </div>
+      </section>
+
+      <section class="grid gap-4 border border-white/10 bg-panel p-5">
+        <h3 class="text-xs font-black uppercase tracking-[0.3em] text-accent">Recognition</h3>
+        <p class="text-sm leading-7 text-muted/90">
+          AICC and TAPPI award recognition for packaging, corrugated, and POP display work, including multiple competition placements and People’s Choice honors.
+        </p>
+      </section>
+
     </div>
   </div>
+</div>
 
   <div id="projectModal" class="modal fixed inset-0 z-[80] overflow-y-auto bg-black/85 p-4 backdrop-blur-md md:p-8">
     <div class="modal-panel mx-auto max-w-6xl border border-white/10 bg-ink shadow-2xl">
@@ -675,6 +782,17 @@
         closeResume();
       }
     });
+
+    const printResume = document.getElementById('printResume');
+const downloadResume = document.getElementById('downloadResume');
+
+printResume.addEventListener('click', () => {
+  window.print();
+});
+
+downloadResume.addEventListener('click', () => {
+  window.print();
+});
 
     const revealObserver = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
