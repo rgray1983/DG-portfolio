@@ -368,9 +368,13 @@
     Print
   </button>
 
-  <button id="downloadResume" class="rounded-full border border-white/15 px-4 py-2 text-xs font-bold uppercase tracking-wide text-soft transition hover:border-accent hover:text-accent">
-    Download PDF
-  </button>
+  <a 
+  href="resume/Richie-Gray-Resume.pdf"
+  target="_blank"
+  class="rounded-full border border-white/15 px-4 py-2 text-xs font-bold uppercase tracking-wide text-soft transition hover:border-accent hover:text-accent"
+>
+  Download PDF
+</a>
 
   <button id="closeResumeModal" class="rounded-full border border-white/15 px-4 py-2 text-xs font-bold uppercase tracking-wide text-soft transition hover:border-accent hover:text-accent">
     Close
@@ -784,15 +788,13 @@
     });
 
     const printResume = document.getElementById('printResume');
-const downloadResume = document.getElementById('downloadResume');
+
 
 printResume.addEventListener('click', () => {
   window.print();
 });
 
-downloadResume.addEventListener('click', () => {
-  window.print();
-});
+
 
     const revealObserver = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
