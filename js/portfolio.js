@@ -240,8 +240,11 @@
 
     const items = visibleItems();
     const idx = items.findIndex((entry) => entry.id === id);
-    if (prevBtn) prevBtn.disabled = idx <= 0;
-    if (nextBtn) nextBtn.disabled = idx === -1 || idx >= items.length - 1;
+    const currentProject = items[idx] && items[idx].project;
+    const hasPrev = idx > 0 && items.slice(0, idx).some((entry) => entry.project !== currentProject);
+    const hasNext = idx >= 0 && items.slice(idx + 1).some((entry) => entry.project !== currentProject);
+    if (prevBtn) prevBtn.disabled = !hasPrev;
+    if (nextBtn) nextBtn.disabled = !hasNext;
 
     const close = document.getElementById('closeModal');
     if (close) close.focus();
@@ -261,8 +264,14 @@
   function stepProject(delta) {
     const items = visibleItems();
     const idx = items.findIndex((entry) => entry.id === currentItemId);
-    const next = items[idx + delta];
-    if (next) openItem(next.id);
+    if (idx < 0) return;
+    const currentProject = items[idx].project;
+    for (let i = idx + delta; i >= 0 && i < items.length; i += delta) {
+      if (items[i].project !== currentProject) {
+        openItem(items[i].id);
+        return;
+      }
+    }
   }
 
   gallery.addEventListener('keydown', (event) => {
