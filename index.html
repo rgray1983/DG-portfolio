@@ -85,7 +85,7 @@
       .ed-intro {
         grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
       }
-      .ed-filters {
+      .ed-toolbar {
         grid-column: 1 / -1;
       }
     }
@@ -106,11 +106,26 @@
     @media (min-width: 900px) {
       .ed-lede { justify-self: end; }
     }
+    .ed-toolbar {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: baseline;
+      justify-content: space-between;
+      gap: 0.75rem 1.5rem;
+      padding-top: 0.2rem;
+    }
     .ed-filters {
       display: flex;
       flex-wrap: wrap;
       gap: 0.15rem 1.35rem;
-      padding-top: 0.4rem;
+    }
+    .ed-count {
+      font-size: 0.64rem;
+      font-weight: 700;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: #8f8f8f;
+      font-variant-numeric: tabular-nums;
     }
     .ed-filter {
       padding: 0.35rem 0;
@@ -133,18 +148,7 @@
       outline-offset: 4px;
     }
     .ed-sticky {
-      position: sticky;
-      top: 4.6rem;
-      z-index: 4;
-      display: flex;
-      justify-content: space-between;
-      margin-bottom: 1.75rem;
-      pointer-events: none;
-      font-size: 0.64rem;
-      font-weight: 700;
-      letter-spacing: 0.22em;
-      text-transform: uppercase;
-      color: #8f8f8f;
+      display: none;
     }
     .ed-row {
       display: grid;
@@ -152,7 +156,7 @@
       gap: clamp(2.25rem, 5vw, 3.5rem);
       margin-bottom: clamp(3.25rem, 8vw, 7.5rem);
     }
-    .ed-row--hero { margin-bottom: clamp(4.5rem, 11vw, 10.5rem); }
+    .ed-row--hero { margin-bottom: clamp(3.5rem, 8vw, 8rem); }
     .ed-row--chapter { margin-bottom: clamp(4rem, 9vw, 9rem); }
     .ed-row--pair { margin-bottom: clamp(3.25rem, 7vw, 7rem); }
     .ed-row--cluster { margin-bottom: clamp(3.5rem, 8vw, 8rem); }
@@ -402,6 +406,22 @@
       opacity: 0.35;
       pointer-events: none;
     }
+    @media (max-width: 640px) {
+      #projectModal .modal-panel > .sticky {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 0.85rem;
+      }
+      #projectModal .modal-actions {
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr;
+        width: 100%;
+      }
+      #projectModal .modal-actions button {
+        text-align: center;
+        padding: 0.7rem 0.4rem;
+      }
+    }
 
     @media (prefers-reduced-motion: reduce) {
       html { scroll-behavior: auto; }
@@ -556,13 +576,11 @@
           <h2 class="ed-kicker">Selected Work</h2>
         </div>
         <p class="ed-lede">A curated collection of branding, packaging, production, print and digital work created across more than two decades.</p>
-        <nav id="workFilters" class="ed-filters" aria-label="Filter selected work"></nav>
+        <div class="ed-toolbar">
+          <nav id="workFilters" class="ed-filters" aria-label="Filter selected work"></nav>
+          <p class="ed-count"><span id="workCount">00</span> selected</p>
+        </div>
       </header>
-
-      <div class="ed-sticky" aria-hidden="true">
-        <span>Work</span>
-        <span><span id="workCount">00</span> selected</span>
-      </div>
 
       <div id="workGallery" class="ed-stage"></div>
     </section>
@@ -830,7 +848,7 @@
     <div class="modal-panel mx-auto max-w-6xl border border-white/10 bg-ink shadow-2xl">
       <div class="sticky top-0 z-10 flex items-center justify-between border-b border-white/10 bg-ink/95 p-5 backdrop-blur-xl">
         <p id="modalKicker" class="text-xs font-bold uppercase tracking-[0.3em] text-accent">Case Study</p>
-        <div class="flex flex-wrap items-center gap-2">
+        <div class="flex flex-wrap items-center gap-2 modal-actions">
           <button id="prevProject" type="button" class="rounded-full border border-white/15 px-4 py-2 text-xs font-bold uppercase tracking-wide text-soft transition hover:border-accent hover:text-accent">Prev</button>
           <button id="nextProject" type="button" class="rounded-full border border-white/15 px-4 py-2 text-xs font-bold uppercase tracking-wide text-soft transition hover:border-accent hover:text-accent">Next</button>
           <button id="closeModal" type="button" class="rounded-full border border-white/15 px-4 py-2 text-xs font-bold uppercase tracking-wide text-soft transition hover:border-accent hover:text-accent">Close</button>
@@ -930,6 +948,11 @@
 
     document.getElementById('mobileMenuBtn').addEventListener('click', () => {
       document.getElementById('mobileMenu').classList.toggle('hidden');
+    });
+    document.querySelectorAll('#mobileMenu a').forEach((link) => {
+      link.addEventListener('click', () => {
+        document.getElementById('mobileMenu').classList.add('hidden');
+      });
     });
   </script>
   <script src="js/portfolio-data.js"></script>

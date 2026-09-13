@@ -125,7 +125,7 @@
       }).join('');
 
       return `<div class="ed-row ed-row--${row.rhythm} ed-row--${row.align}" data-row="${row.id}">${html}</div>`;
-    }).join('');
+    }).join('') || '<p class="ed-lede">No work in this category yet.</p>';
 
     if (countEl) {
       countEl.textContent = pad(total);
@@ -201,11 +201,10 @@
       <div class="ed-case">
         <header class="ed-case-head">
           <div>
-            <h2 id="modalTitle" class="ed-case-title">${item.title}</h2>
+            <h2 id="modalTitle" class="ed-case-title">${project.title}</h2>
             <p class="ed-case-intro">${project.intro}</p>
           </div>
           <div class="ed-case-meta">
-            <p>${disciplineLine(item)}</p>
             ${project.meta.map((entry) => `<p>${entry}</p>`).join('')}
           </div>
         </header>
