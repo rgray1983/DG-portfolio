@@ -12,6 +12,8 @@
   <meta property="og:url" content="https://rgray1983.github.io/DG-portfolio/" />
   <meta property="og:image" content="https://rgray1983.github.io/DG-portfolio/images/display/ameriserv-old-new.jpg" />
   <meta name="twitter:card" content="summary_large_image" />
+  <link rel="icon" type="image/png" href="images/RG-LOGO.png" />
+  <link rel="preload" as="image" href="images/RGprofile pic-color.png" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
@@ -560,7 +562,7 @@
           </div>
           <div class="relative mx-auto w-full max-w-[420px] justify-self-end overflow-hidden border border-white/10 bg-panel shadow-2xl md:mx-0">
             <div class="absolute inset-0 bg-gradient-to-t from-ink/45 via-transparent to-transparent"></div>
-            <img src="images/RGprofile pic-color.png" alt="Richie Gray" class="aspect-[4/5] w-full object-cover grayscale transition duration-700 hover:grayscale-0" />
+            <img src="images/RGprofile pic-color.png" alt="Richie Gray" width="600" height="600" loading="eager" fetchpriority="high" decoding="async" class="aspect-[4/5] w-full object-cover grayscale transition duration-700 hover:grayscale-0" />
           </div>
         </div>
         <div class="reveal grid gap-6 border-t border-white/10 pt-7 md:grid-cols-[1.2fr_.8fr] md:items-end">
@@ -993,7 +995,7 @@
       });
     });
   </script>
-  <script src="js/portfolio-data.js"></script>
-  <script src="js/portfolio.js"></script>
+  <script src="js/portfolio-data.js" defer></script>
+  <script src="js/portfolio.js" defer></script>
 </body>
 </html>
