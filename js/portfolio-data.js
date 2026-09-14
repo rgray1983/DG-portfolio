@@ -7,6 +7,14 @@ window.PortfolioData = {
     { id: 'digital', label: 'Digital' }
   ],
 
+  projectRoutes: {
+    ameriserv: 'work/ameriserv/index.html',
+    earlybird: 'work/early-bird/index.html',
+    signalpoint: 'work/signal-point/index.html',
+    mattress: 'work/hygrocotton/index.html',
+    goatwood: 'work/goatwood/index.html'
+  },
+
   projects: {
     ameriserv: {
       kicker: 'Brand Identity · Web Design · Brand Guidelines',
@@ -75,9 +83,22 @@ window.PortfolioData = {
       title: 'Early Bird',
       intro: 'Corrugated packaging for Cannon Distillery’s cold brew coffee vodka — illustrative, structural, and built for the shelf.',
       meta: ['Client: Cannon Distillery', 'Discipline: Packaging Graphics', 'Format: Corrugated retail carton'],
-      sections: [],
+      sections: [
+        {
+          title: 'The Challenge',
+          copy: 'Create a corrugated retail carton with enough personality to support an unconventional cold brew coffee vodka while keeping the product name and category easy to understand at shelf distance.'
+        },
+        {
+          title: 'Design Approach',
+          copy: 'Built the presentation around an illustrative, character-led identity with bold contrast and a clear front-panel hierarchy. The graphics were composed to remain effective across the carton panels rather than relying on a single hero face.'
+        },
+        {
+          title: 'Production Thinking',
+          copy: 'Prepared the artwork around the realities of corrugated printing, folding, panel transitions, and registration so the visual idea could survive the move from flat artwork to a finished physical package.'
+        }
+      ],
       images: [
-        { src: 'images/display/early-bird-box.jpg', alt: 'Early Bird packaging box design', layout: 'full' },
+        { src: 'images/display/early-bird-box.jpg', alt: 'Early Bird packaging box design', layout: 'full', caption: 'Finished corrugated carton showing the primary display panels, illustration, and shelf-facing hierarchy.' },
         { src: 'images/display/signal-point-box.jpg', alt: 'Related Cannon Distillery packaging: Signal Point vodka', layout: 'large', caption: 'Related distillery packaging from the same body of retail work.' }
       ]
     },
@@ -87,9 +108,22 @@ window.PortfolioData = {
       title: 'Signal Point',
       intro: 'Retail carton design for Cannon Distillery vodka, built around a lighthouse illustration and strong shelf-read typography.',
       meta: ['Client: Cannon Distillery', 'Discipline: Packaging Graphics', 'Format: Corrugated retail carton'],
-      sections: [],
+      sections: [
+        {
+          title: 'The Challenge',
+          copy: 'Develop a distinctive retail carton for Signal Point vodka that could communicate place, product, and personality quickly while remaining visually related to the distillery’s broader packaging family.'
+        },
+        {
+          title: 'Design Approach',
+          copy: 'Centered the system on a lighthouse illustration, strong vertical movement, and bold shelf-read typography. The restrained palette keeps the package recognizable while allowing the illustration to carry the story.'
+        },
+        {
+          title: 'Production Thinking',
+          copy: 'Balanced illustration detail with the reproduction limits of corrugated output and organized the artwork so key elements remain clear across folds, seams, and multiple visible panels.'
+        }
+      ],
       images: [
-        { src: 'images/display/signal-point-box.jpg', alt: 'Signal Point vodka box packaging', layout: 'full' },
+        { src: 'images/display/signal-point-box.jpg', alt: 'Signal Point vodka box packaging', layout: 'full', caption: 'Finished retail carton with lighthouse illustration and typography coordinated across the visible panels.' },
         { src: 'images/display/early-bird-box.jpg', alt: 'Related Cannon Distillery packaging: Early Bird', layout: 'large' }
       ]
     },
@@ -99,9 +133,22 @@ window.PortfolioData = {
       title: 'HygroCotton Cuddlebed',
       intro: 'Retail packaging for Martha Stewart HygroCotton Cuddlebed — structure, die-cut window, and production-ready corrugated graphics.',
       meta: ['Brand: Martha Stewart', 'Discipline: Packaging & Production Design', 'Format: Corrugated retail carton'],
-      sections: [],
+      sections: [
+        {
+          title: 'The Challenge',
+          copy: 'Translate a nationally recognized home-goods brand into a large corrugated retail package that communicates comfort and quality while working around a prominent die-cut product window.'
+        },
+        {
+          title: 'Design Approach',
+          copy: 'Used a clean, premium hierarchy that gives the Martha Stewart name, product story, and photography room to breathe. The layout treats the window as part of the composition instead of as an obstruction.'
+        },
+        {
+          title: 'Production Thinking',
+          copy: 'Coordinated graphics with the structural format, window placement, folds, and manufacturing tolerances to keep critical information protected and the assembled carton visually balanced.'
+        }
+      ],
       images: [
-        { src: 'images/display/mattress-box.jpg', alt: 'Martha Stewart HygroCotton Cuddlebed packaging', layout: 'full' }
+        { src: 'images/display/mattress-box.jpg', alt: 'Martha Stewart HygroCotton Cuddlebed packaging', layout: 'full', caption: 'Production-ready retail packaging composed around the structural window and major display panels.' }
       ]
     },
 
