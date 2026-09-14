@@ -8,11 +8,11 @@ window.PortfolioData = {
   ],
 
   projectRoutes: {
-    ameriserv: 'work/ameriserv/',
-    earlybird: 'work/early-bird/',
-    signalpoint: 'work/signal-point/',
-    mattress: 'work/hygrocotton/',
-    goatwood: 'work/goatwood/'
+    ameriserv: 'work/ameriserv/index.html',
+    earlybird: 'work/early-bird/index.html',
+    signalpoint: 'work/signal-point/index.html',
+    mattress: 'work/hygrocotton/index.html',
+    goatwood: 'work/goatwood/index.html'
   },
 
   projects: {
