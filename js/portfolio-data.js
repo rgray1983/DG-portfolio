@@ -11,7 +11,7 @@ window.PortfolioData = {
     ameriserv: {
       kicker: 'Brand Identity · Web Design · Brand Guidelines',
       title: 'AmeriServ Rebrand',
-      intro: 'A full brand refresh for a small-town print and promotional company, including identity design, website design, and brand guidelines.',
+      intro: 'A complete identity system for a local print and promotional company, spanning strategy, logo development, print applications, brand guidelines, and a responsive website.',
       meta: ['Client: AmeriServ Printers', 'Year: 2026', 'Role: Identity, Web, Guidelines, Print'],
       sections: [
         {
@@ -130,7 +130,7 @@ window.PortfolioData = {
     branding: {
       kicker: 'Branding · Logos',
       title: 'Marks & Identity',
-      intro: 'A selection of logo systems, identity work, and brand exploration across sports, hospitality, service, and community organizations.',
+      intro: 'A focused selection of identity systems and marks designed for sports, service, hospitality, and community organizations.',
       meta: ['Identity Systems', 'Logo Design', 'Brand Application'],
       sections: [],
       images: [
@@ -179,414 +179,326 @@ window.PortfolioData = {
 
   workLayout: [
     {
-      id: 'r-goatwood-hero',
-      rhythm: 'hero',
-      align: 'end',
-      items: [
-        {
-          id: 'goatwood-sign',
-          project: 'goatwood',
-          title: 'Goatwood Firewood',
-          disciplines: ['Packaging', 'Retail Graphics', 'Display'],
-          image: 'images/display/gw-firewood-sign.jpg',
-          alt: 'Goatwood premium firewood sign artwork',
-          categories: ['packaging'],
-          aspect: '4 / 3',
-          fit: 'contain',
-          tone: 'bleed',
-          span: 12,
-          featured: true,
-          width: 2000,
-          height: 1500
-        }
-      ]
-    },
-    {
-      id: 'r-goatwood-spread',
-      rhythm: 'pair',
-      align: 'end',
-      items: [
-        {
-          id: 'goatwood-label',
-          project: 'goatwood',
-          title: 'Goatwood',
-          disciplines: ['Packaging', 'Label', 'Prepress'],
-          image: 'images/display/gw-label.jpg',
-          alt: 'Goatwood one pound fire-starter label',
-          categories: ['packaging'],
-          aspect: '820 / 1132',
-          fit: 'contain',
-          tone: 'ink',
-          span: 4,
-          featured: true,
-          width: 820,
-          height: 1132
+          id: 'r-ameriserv-hero',
+          rhythm: 'hero',
+          align: 'end',
+          items: [
+            {
+              id: 'ameriserv-rebrand',
+              project: 'ameriserv',
+              title: 'AmeriServ Rebrand',
+              disciplines: ['Brand Identity', 'Web Design', 'Guidelines'],
+              image: 'images/display/ameriserv-old-new.jpg',
+              alt: 'AmeriServ logo comparison from 2002 to 2026',
+              categories: ['branding', 'digital'],
+              aspect: '1800 / 1023',
+              fit: 'contain',
+              tone: 'paper',
+              span: 12,
+              featured: true,
+              width: 1800,
+              height: 1023
+            }
+          ]
         },
-        {
-          id: 'goatwood-commercial',
-          project: 'goatwood',
-          title: 'Goatwood',
-          disciplines: ['Retail Graphics', 'Display'],
-          image: 'images/display/gw-commercial.jpg',
-          alt: 'Goatwood commercial firewood sign installed on a bulk bin',
-          categories: ['packaging'],
-          aspect: '1800 / 1663',
-          fit: 'cover',
-          tone: 'photo',
-          span: 8,
-          featured: true,
-          width: 1800,
-          height: 1663
-        }
-      ]
-    },
     {
-      id: 'r-ameriserv-hero',
-      rhythm: 'hero',
-      align: 'end',
-      items: [
-        {
-          id: 'ameriserv-rebrand',
-          project: 'ameriserv',
-          title: 'AmeriServ Rebrand',
-          disciplines: ['Brand Identity', 'Web Design', 'Guidelines'],
-          image: 'images/display/ameriserv-old-new.jpg',
-          alt: 'AmeriServ logo comparison from 2002 to 2026',
-          categories: ['branding', 'digital'],
-          aspect: '1800 / 1023',
-          fit: 'contain',
-          tone: 'paper',
-          span: 12,
-          featured: true,
-          width: 1800,
-          height: 1023
-        }
-      ]
-    },
-    {
-      id: 'r-ameriserv-cards',
-      rhythm: 'aside',
-      align: 'start',
-      items: [
-        {
-          id: 'ameriserv-cards',
-          project: 'ameriserv',
-          title: 'AmeriServ',
-          disciplines: ['Print', 'Identity System'],
-          image: 'images/display/ameriserv-bc-mockup.jpg',
-          alt: 'AmeriServ business card mockup',
-          categories: ['branding'],
-          aspect: '4 / 3',
-          fit: 'cover',
-          tone: 'photo',
-          span: 7,
-          start: 6,
-          featured: true,
-          width: 1800,
-          height: 1350
-        }
-      ]
-    },
-    {
-      id: 'r-cannon',
-      rhythm: 'pair',
-      align: 'end',
-      items: [
-        {
-          id: 'early-bird',
-          project: 'earlybird',
-          title: 'Early Bird',
-          disciplines: ['Packaging', 'Corrugated', 'Prepress'],
-          image: 'images/display/early-bird-box.jpg',
-          alt: 'Early Bird cold brew vodka corrugated packaging',
-          categories: ['packaging'],
-          aspect: '16 / 9',
-          fit: 'cover',
-          tone: 'ink',
-          span: 7,
-          featured: true,
-          width: 1200,
-          height: 675
+          id: 'r-cannon',
+          rhythm: 'pair',
+          align: 'end',
+          items: [
+            {
+              id: 'early-bird',
+              project: 'earlybird',
+              title: 'Early Bird',
+              disciplines: ['Packaging', 'Corrugated', 'Prepress'],
+              image: 'images/display/early-bird-box.jpg',
+              alt: 'Early Bird cold brew vodka corrugated packaging',
+              categories: ['packaging'],
+              aspect: '16 / 9',
+              fit: 'cover',
+              tone: 'ink',
+              span: 7,
+              featured: true,
+              width: 1200,
+              height: 675
+            },
+            {
+              id: 'signal-point',
+              project: 'signalpoint',
+              title: 'Signal Point',
+              disciplines: ['Packaging', 'Corrugated'],
+              image: 'images/display/signal-point-box.jpg',
+              alt: 'Signal Point vodka box packaging',
+              categories: ['packaging'],
+              aspect: '16 / 9',
+              fit: 'cover',
+              tone: 'ink',
+              span: 5,
+              featured: true,
+              width: 1200,
+              height: 675
+            }
+          ]
         },
-        {
-          id: 'signal-point',
-          project: 'signalpoint',
-          title: 'Signal Point',
-          disciplines: ['Packaging', 'Corrugated'],
-          image: 'images/display/signal-point-box.jpg',
-          alt: 'Signal Point vodka box packaging',
-          categories: ['packaging'],
-          aspect: '16 / 9',
-          fit: 'cover',
-          tone: 'ink',
-          span: 5,
-          featured: true,
-          width: 1200,
-          height: 675
-        }
-      ]
-    },
     {
-      id: 'r-mattress',
-      rhythm: 'chapter',
-      align: 'end',
-      items: [
-        {
-          id: 'mattress',
-          project: 'mattress',
-          title: 'HygroCotton Cuddlebed',
-          disciplines: ['Packaging', 'Corrugated', 'Production'],
-          image: 'images/display/mattress-box.jpg',
-          alt: 'Martha Stewart HygroCotton Cuddlebed packaging',
-          categories: ['packaging'],
-          aspect: '16 / 9',
-          fit: 'contain',
-          tone: 'paper',
-          span: 12,
-          featured: true,
-          width: 1200,
-          height: 675
-        }
-      ]
-    },
-    {
-      id: 'r-marks',
-      rhythm: 'cluster',
-      align: 'end',
-      items: [
-        {
-          id: 'carolina-chaos',
-          project: 'branding',
-          title: 'Carolina Chaos',
-          disciplines: ['Brand Identity', 'Apparel'],
-          image: 'images/display/carolina-chaos.jpg',
-          alt: 'Carolina Chaos logo system and jersey application',
-          categories: ['branding', 'apparel'],
-          aspect: '16 / 9',
-          fit: 'cover',
-          tone: 'ink',
-          span: 5,
-          featured: true,
-          width: 1200,
-          height: 675
+          id: 'r-mattress',
+          rhythm: 'chapter',
+          align: 'end',
+          items: [
+            {
+              id: 'mattress',
+              project: 'mattress',
+              title: 'HygroCotton Cuddlebed',
+              disciplines: ['Packaging', 'Corrugated', 'Production'],
+              image: 'images/display/mattress-box.jpg',
+              alt: 'Martha Stewart HygroCotton Cuddlebed packaging',
+              categories: ['packaging'],
+              aspect: '16 / 9',
+              fit: 'contain',
+              tone: 'paper',
+              span: 12,
+              featured: true,
+              width: 1200,
+              height: 675
+            }
+          ]
         },
-        {
-          id: 'carolina-elite',
-          project: 'branding',
-          title: 'Carolina Elite',
-          disciplines: ['Logo', 'Application'],
-          image: 'images/display/ce-logo.jpg',
-          alt: 'Carolina Elite logo and hat mockup',
-          categories: ['branding', 'apparel'],
-          aspect: '16 / 9',
-          fit: 'cover',
-          tone: 'ink',
-          span: 3,
-          width: 1200,
-          height: 675
+    {
+          id: 'r-goatwood-hero',
+          rhythm: 'hero',
+          align: 'end',
+          items: [
+            {
+              id: 'goatwood-sign',
+              project: 'goatwood',
+              title: 'Goatwood Firewood',
+              disciplines: ['Packaging', 'Retail Graphics', 'Display'],
+              image: 'images/display/gw-firewood-sign.jpg',
+              alt: 'Goatwood premium firewood sign artwork',
+              categories: ['packaging'],
+              aspect: '4 / 3',
+              fit: 'contain',
+              tone: 'bleed',
+              span: 12,
+              featured: true,
+              width: 2000,
+              height: 1500
+            }
+          ]
         },
-        {
-          id: 'pgs',
-          project: 'branding',
-          title: 'Pawleys Island Guide Service',
-          disciplines: ['Logo', 'Illustration'],
-          image: 'images/display/pgs-logo.jpg',
-          alt: 'Pawleys Island Guide Service illustrated logo',
-          categories: ['branding'],
-          aspect: '16 / 9',
-          fit: 'cover',
-          tone: 'ink',
-          span: 4,
-          width: 1200,
-          height: 675
-        }
-      ]
-    },
     {
-      id: 'r-herbies',
-      rhythm: 'chapter',
-      align: 'start',
-      items: [
-        {
-          id: 'herbies',
-          project: 'herbies',
-          title: 'Herbie’s Fireworks',
-          disciplines: ['Packaging', 'POP Display'],
-          image: 'images/display/herbies-box.jpg',
-          alt: 'Herbie’s Fireworks American Celebration display packaging',
-          categories: ['packaging'],
-          aspect: '16 / 9',
-          fit: 'cover',
-          tone: 'ink',
-          span: 8,
-          featured: true,
-          width: 1200,
-          height: 675
-        }
-      ]
-    },
-    {
-      id: 'r-digital-pack',
-      rhythm: 'pair',
-      align: 'center',
-      items: [
-        {
-          id: 'playhouse',
-          project: 'web',
-          title: 'Palmetto Playhouse',
-          disciplines: ['Web Design', 'Interface'],
-          image: 'images/display/pph-site.jpg',
-          alt: 'Palmetto Playhouse website design',
-          categories: ['digital'],
-          aspect: '1800 / 1209',
-          fit: 'cover',
-          position: 'top',
-          tone: 'paper',
-          span: 8,
-          featured: true,
-          width: 1800,
-          height: 1209
+          id: 'r-marks',
+          rhythm: 'cluster',
+          align: 'end',
+          items: [
+            {
+              id: 'carolina-chaos',
+              project: 'branding',
+              title: 'Carolina Chaos',
+              disciplines: ['Brand Identity', 'Apparel'],
+              image: 'images/display/carolina-chaos.jpg',
+              alt: 'Carolina Chaos logo system and jersey application',
+              categories: ['branding', 'apparel'],
+              aspect: '16 / 9',
+              fit: 'cover',
+              tone: 'ink',
+              span: 5,
+              featured: true,
+              width: 1200,
+              height: 675
+            },
+            {
+              id: 'carolina-elite',
+              project: 'branding',
+              title: 'Carolina Elite',
+              disciplines: ['Logo', 'Application'],
+              image: 'images/display/ce-logo.jpg',
+              alt: 'Carolina Elite logo and hat mockup',
+              categories: ['branding', 'apparel'],
+              aspect: '16 / 9',
+              fit: 'cover',
+              tone: 'ink',
+              span: 3,
+              width: 1200,
+              height: 675
+            },
+            {
+              id: 'pgs',
+              project: 'branding',
+              title: 'Pawleys Island Guide Service',
+              disciplines: ['Logo', 'Illustration'],
+              image: 'images/display/pgs-logo.jpg',
+              alt: 'Pawleys Island Guide Service illustrated logo',
+              categories: ['branding'],
+              aspect: '16 / 9',
+              fit: 'cover',
+              tone: 'ink',
+              span: 4,
+              width: 1200,
+              height: 675
+            }
+          ]
         },
-        {
-          id: 'holiday',
-          project: 'holiday',
-          title: 'Hampton Acres',
-          disciplines: ['Packaging', 'Seasonal'],
-          image: 'images/display/ha-holiday-box.jpg',
-          alt: 'Hampton Acres Holiday Box packaging',
-          categories: ['packaging'],
-          aspect: '16 / 9',
-          fit: 'cover',
-          tone: 'ink',
-          span: 4,
-          width: 1200,
-          height: 675
-        }
-      ]
-    },
     {
-      id: 'r-box-web',
-      rhythm: 'pair',
-      align: 'end',
-      items: [
-        {
-          id: 'gw-fancy',
-          project: 'goatwood',
-          title: 'Goatwood Boom',
-          disciplines: ['Packaging', 'Corrugated'],
-          image: 'images/display/gw-fancy-box.jpg',
-          alt: 'Goatwood Boom premium corrugated packaging',
-          categories: ['packaging'],
-          aspect: '16 / 9',
-          fit: 'contain',
-          tone: 'paper',
-          span: 6,
-          featured: true,
-          width: 1200,
-          height: 675
+          id: 'r-herbies',
+          rhythm: 'chapter',
+          align: 'start',
+          items: [
+            {
+              id: 'herbies',
+              project: 'herbies',
+              title: 'Herbie’s Fireworks',
+              disciplines: ['Packaging', 'POP Display'],
+              image: 'images/display/herbies-box.jpg',
+              alt: 'Herbie’s Fireworks American Celebration display packaging',
+              categories: ['packaging'],
+              aspect: '16 / 9',
+              fit: 'cover',
+              tone: 'ink',
+              span: 8,
+              featured: true,
+              width: 1200,
+              height: 675
+            }
+          ]
         },
-        {
-          id: 'southern-asphalt',
-          project: 'web',
-          title: 'Southern Asphalt',
-          disciplines: ['Web Design', 'Brand'],
-          image: 'images/display/southern-asphalt.jpg',
-          alt: 'Southern Asphalt website design',
-          categories: ['digital'],
-          aspect: '1234 / 1019',
-          fit: 'cover',
-          position: 'top',
-          tone: 'paper',
-          span: 6,
-          width: 1234,
-          height: 1019
-        }
-      ]
-    },
     {
-      id: 'r-turbine',
-      rhythm: 'aside',
-      align: 'end',
-      items: [
-        {
-          id: 'turbine',
-          project: 'branding',
-          title: 'Fleet Turbine Services',
-          disciplines: ['Logo', 'Identity'],
-          image: 'images/display/turbine.jpg',
-          alt: 'Fleet Turbine Services logo',
-          categories: ['branding'],
-          aspect: '16 / 9',
-          fit: 'cover',
-          tone: 'ink',
-          span: 5,
-          start: 8,
-          width: 1200,
-          height: 675
-        }
-      ]
-    },
-    {
-      id: 'r-apparel',
-      rhythm: 'cluster',
-      align: 'end',
-      items: [
-        {
-          id: 'als-shirt',
-          project: 'apparel',
-          title: 'ALS Walk',
-          disciplines: ['Apparel', 'Identity'],
-          image: 'images/display/als-shirt.jpg',
-          alt: 'ALS Walk shirt design',
-          categories: ['apparel'],
-          aspect: '16 / 9',
-          fit: 'cover',
-          tone: 'ink',
-          span: 7,
-          width: 1200,
-          height: 675
+          id: 'r-digital-pack',
+          rhythm: 'pair',
+          align: 'center',
+          items: [
+            {
+              id: 'playhouse',
+              project: 'web',
+              title: 'Palmetto Playhouse',
+              disciplines: ['Web Design', 'Interface'],
+              image: 'images/display/pph-site.jpg',
+              alt: 'Palmetto Playhouse website design',
+              categories: ['digital'],
+              aspect: '1800 / 1209',
+              fit: 'cover',
+              position: 'top',
+              tone: 'paper',
+              span: 8,
+              featured: true,
+              width: 1800,
+              height: 1209
+            },
+            {
+              id: 'holiday',
+              project: 'holiday',
+              title: 'Hampton Acres',
+              disciplines: ['Packaging', 'Seasonal'],
+              image: 'images/display/ha-holiday-box.jpg',
+              alt: 'Hampton Acres Holiday Box packaging',
+              categories: ['packaging'],
+              aspect: '16 / 9',
+              fit: 'cover',
+              tone: 'ink',
+              span: 4,
+              width: 1200,
+              height: 675
+            }
+          ]
         },
-        {
-          id: 'coker-shirt',
-          project: 'apparel',
-          title: 'Coker Singers',
-          disciplines: ['Apparel', 'Print'],
-          image: 'images/display/coker-shirt.jpg',
-          alt: 'Coker Singers choir tour shirt',
-          categories: ['apparel'],
-          aspect: '16 / 9',
-          fit: 'cover',
-          tone: 'ink',
-          span: 5,
-          width: 1200,
-          height: 675
-        }
-      ]
-    },
     {
-      id: 'r-ameriserv-web',
-      rhythm: 'closing',
-      align: 'end',
-      items: [
-        {
-          id: 'ameriserv-web',
-          project: 'ameriserv',
-          title: 'AmeriServ',
-          disciplines: ['Web Design', 'Brand System'],
-          image: 'images/display/ameriserv-newsite.jpg',
-          alt: 'AmeriServ Printers website design',
-          categories: ['digital', 'branding'],
-          aspect: '1455 / 1210',
-          fit: 'cover',
-          position: 'top',
-          tone: 'ink',
-          span: 10,
-          start: 2,
-          featured: true,
-          width: 1455,
-          height: 1210
+          id: 'r-box-web',
+          rhythm: 'pair',
+          align: 'end',
+          items: [
+            {
+              id: 'gw-fancy',
+              project: 'goatwood',
+              title: 'Goatwood Boom',
+              disciplines: ['Packaging', 'Corrugated'],
+              image: 'images/display/gw-fancy-box.jpg',
+              alt: 'Goatwood Boom premium corrugated packaging',
+              categories: ['packaging'],
+              aspect: '16 / 9',
+              fit: 'contain',
+              tone: 'paper',
+              span: 6,
+              featured: true,
+              width: 1200,
+              height: 675
+            },
+            {
+              id: 'southern-asphalt',
+              project: 'web',
+              title: 'Southern Asphalt',
+              disciplines: ['Web Design', 'Brand'],
+              image: 'images/display/southern-asphalt.jpg',
+              alt: 'Southern Asphalt website design',
+              categories: ['digital'],
+              aspect: '1234 / 1019',
+              fit: 'cover',
+              position: 'top',
+              tone: 'paper',
+              span: 6,
+              width: 1234,
+              height: 1019
+            }
+          ]
+        },
+    {
+          id: 'r-turbine',
+          rhythm: 'aside',
+          align: 'end',
+          items: [
+            {
+              id: 'turbine',
+              project: 'branding',
+              title: 'Fleet Turbine Services',
+              disciplines: ['Logo', 'Identity'],
+              image: 'images/display/turbine.jpg',
+              alt: 'Fleet Turbine Services logo',
+              categories: ['branding'],
+              aspect: '16 / 9',
+              fit: 'cover',
+              tone: 'ink',
+              span: 5,
+              start: 8,
+              width: 1200,
+              height: 675
+            }
+          ]
+        },
+    {
+          id: 'r-apparel',
+          rhythm: 'cluster',
+          align: 'end',
+          items: [
+            {
+              id: 'als-shirt',
+              project: 'apparel',
+              title: 'ALS Walk',
+              disciplines: ['Apparel', 'Identity'],
+              image: 'images/display/als-shirt.jpg',
+              alt: 'ALS Walk shirt design',
+              categories: ['apparel'],
+              aspect: '16 / 9',
+              fit: 'cover',
+              tone: 'ink',
+              span: 7,
+              width: 1200,
+              height: 675
+            },
+            {
+              id: 'coker-shirt',
+              project: 'apparel',
+              title: 'Coker Singers',
+              disciplines: ['Apparel', 'Print'],
+              image: 'images/display/coker-shirt.jpg',
+              alt: 'Coker Singers choir tour shirt',
+              categories: ['apparel'],
+              aspect: '16 / 9',
+              fit: 'cover',
+              tone: 'ink',
+              span: 5,
+              width: 1200,
+              height: 675
+            }
+          ]
         }
-      ]
-    }
   ]
 };
