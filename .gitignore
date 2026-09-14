@@ -1,2 +1,5 @@
 MOCKUP-TEMPLATE.ai
 *.ai
+
+.DS_Store
+**/.DS_Store
