@@ -82,10 +82,15 @@
   function renderItem(item, number, total, position) {
     const eager = number <= 2 && activeFilter === 'all';
     const objectPos = item.position === 'top' ? 'object-position:top' : '';
+    const route = data.projectRoutes && data.projectRoutes[item.project];
+    const openHit = route
+      ? `<a class="ed-hit" href="${route}" aria-label="View case study: ${item.title}">`
+      : `<button class="ed-hit" type="button" data-item="${item.id}" aria-label="View project: ${item.title}">`;
+    const closeHit = route ? '</a>' : '</button>';
 
     return `
       <article class="ed-item reveal" style="${columnStyle(item, position, total)}">
-        <button class="ed-hit" type="button" data-item="${item.id}" aria-label="View project: ${item.title}">
+        ${openHit}
           <div class="${frameClass(item)}" style="aspect-ratio:${item.aspect}">
             <img
               src="${item.image}"
@@ -104,10 +109,10 @@
             </div>
             <div class="ed-meta-side">
               <span class="ed-num">${pad(number)} / ${pad(total)}</span>
-              <span class="ed-view" aria-hidden="true">View</span>
+              <span class="ed-view" aria-hidden="true">${route ? 'Case Study' : 'View'}</span>
             </div>
           </div>
-        </button>
+        ${closeHit}
       </article>
     `;
   }
