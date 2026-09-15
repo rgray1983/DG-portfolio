@@ -300,8 +300,9 @@
     const lightboxOpen = !document.getElementById('lightbox')?.classList.contains('hidden');
     if (lightboxOpen) return;
     if (event.key === 'Escape') closeProject();
-    if (event.key === 'ArrowLeft') stepProject(-1);
-    if (event.key === 'ArrowRight') stepProject(1);
+    else if (event.key === 'ArrowLeft') stepProject(-1);
+    else if (event.key === 'ArrowRight') stepProject(1);
+    else if (window.trapFocus) window.trapFocus(modal, event);
   });
 
   window.closePortfolioProject = closeProject;
