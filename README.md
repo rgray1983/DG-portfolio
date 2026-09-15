@@ -23,3 +23,17 @@ Add project copy and image references in `js/portfolio-data.js`. Keep web images
 ## Deployment
 
 The site is published through GitHub Pages from the `main` branch.
+
+## Analytics
+
+Google Analytics 4 records page views and privacy-conscious portfolio interaction events:
+
+- `portfolio_case_study_open`
+- `portfolio_case_navigation`
+- `portfolio_filter`
+- `portfolio_resume`
+- `portfolio_contact`
+- `portfolio_image_expand`
+- `portfolio_scroll_depth`
+
+Event labels identify the project, filter, résumé action, contact channel, or scroll milestone without sending form input or personal visitor information.
