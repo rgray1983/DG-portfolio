@@ -31,6 +31,16 @@ npm run check:js
 
 No dependency installation is required. The checks validate required pages, local links and images, structured data, duplicate IDs, external-link safety, image file sizes, and JavaScript syntax. GitHub Actions runs them automatically for pull requests and pushes to `main`.
 
+## Performance audits
+
+Run Lighthouse against the homepage and every flagship case study:
+
+```bash
+npm run audit
+```
+
+The audit checks minimum scores for performance, accessibility, best practices, and SEO. GitHub Actions runs the same audit automatically for pull requests and pushes to `main`. Lighthouse reports are written to `.lighthouseci/` and are ignored by Git.
+
 ## Deployment
 
 The site is published through GitHub Pages from the `main` branch.
