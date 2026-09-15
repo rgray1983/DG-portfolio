@@ -461,3 +461,7 @@ body { background: #080808; color: #f4f1e8; }
 	    text-decoration: none !important;
 	  }
 	}
+
+.skip-link { position: fixed; left: 1rem; top: 1rem; z-index: 200; transform: translateY(-160%); border: 2px solid #f04b23; background: #080808; color: #f4f1e8; padding: .75rem 1rem; font-size: .75rem; font-weight: 800; letter-spacing: .08em; text-transform: uppercase; transition: transform .2s ease; }
+.skip-link:focus { transform: translateY(0); }
+.no-script-message { margin: 0 auto 3rem; padding: 1rem; border: 1px solid #252525; background: #111; }
