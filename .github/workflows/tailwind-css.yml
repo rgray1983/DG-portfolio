@@ -1,4 +1,4 @@
-name: Build Tailwind CSS
+name: Tailwind CSS consistency
 
 on:
   pull_request:
@@ -6,40 +6,32 @@ on:
       - "index.html"
       - "js/**"
       - "css/tailwind-input.css"
+      - "css/tailwind.css"
       - "tailwind.config.cjs"
       - "package.json"
       - ".github/workflows/tailwind-css.yml"
+  push:
+    branches:
+      - main
+  workflow_dispatch:
 
 permissions:
-  contents: write
+  contents: read
 
 jobs:
-  build:
-    if: github.event.pull_request.head.repo.full_name == github.repository
+  verify:
     runs-on: ubuntu-latest
     steps:
-      - name: Check out pull request branch
+      - name: Check out repository
         uses: actions/checkout@v5
-        with:
-          ref: ${{ github.event.pull_request.head.ref }}
 
       - name: Set up Node
         uses: actions/setup-node@v5
         with:
           node-version: 24
 
-      - name: Compile Tailwind CSS
+      - name: Rebuild Tailwind CSS
         run: npm run build:css
 
-      - name: Commit generated stylesheet
-        shell: bash
-        run: |
-          git add css/tailwind.css
-          if git diff --cached --quiet; then
-            echo "Compiled stylesheet is current."
-            exit 0
-          fi
-          git config user.name "github-actions[bot]"
-          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git commit -m "Compile production Tailwind stylesheet"
-          git push
+      - name: Verify compiled stylesheet is current
+        run: git diff --exit-code -- css/tailwind.css
