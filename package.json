@@ -5,6 +5,7 @@
   "description": "Portfolio website for senior packaging and brand designer Richie Gray.",
   "scripts": {
     "test": "node scripts/validate-site.mjs",
-    "check:js": "node --check js/analytics.js && node --check js/portfolio-data.js && node --check js/portfolio.js && node --check js/project-page.js && node --check js/site.js && node --check js/tailwind-config.js"
+    "check:js": "node --check js/analytics.js && node --check js/portfolio-data.js && node --check js/portfolio.js && node --check js/project-page.js && node --check js/site.js && node --check js/tailwind-config.js",
+    "audit": "npx --yes @lhci/cli@0.15.1 autorun"
   }
 }
