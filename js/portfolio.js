@@ -80,7 +80,6 @@
   }
 
   function renderItem(item, number, total, position) {
-    const eager = number <= 2 && activeFilter === 'all';
     const objectPos = item.position === 'top' ? 'object-position:top' : '';
     const route = data.projectRoutes && data.projectRoutes[item.project];
     const openHit = route
@@ -97,7 +96,7 @@
               alt="${item.alt}"
               width="${item.width}"
               height="${item.height}"
-              loading="${eager ? 'eager' : 'lazy'}"
+              loading="lazy"
               decoding="async"
               style="${objectPos}"
             />

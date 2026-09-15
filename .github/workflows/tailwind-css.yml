@@ -1,0 +1,37 @@
+name: Tailwind CSS consistency
+
+on:
+  pull_request:
+    paths:
+      - "index.html"
+      - "js/**"
+      - "css/tailwind-input.css"
+      - "css/tailwind.css"
+      - "tailwind.config.cjs"
+      - "package.json"
+      - ".github/workflows/tailwind-css.yml"
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v5
+
+      - name: Set up Node
+        uses: actions/setup-node@v5
+        with:
+          node-version: 24
+
+      - name: Rebuild Tailwind CSS
+        run: npm run build:css
+
+      - name: Verify compiled stylesheet is current
+        run: git diff --exit-code -- css/tailwind.css
