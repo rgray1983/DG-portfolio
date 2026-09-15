@@ -51,6 +51,18 @@ npm run audit
 
 The audit checks minimum scores for performance, accessibility, best practices, and SEO. GitHub Actions runs the same audit automatically for pull requests and pushes to `main`. Lighthouse reports are written to `.lighthouseci/` and are ignored by Git.
 
+## Browser smoke tests
+
+Install the pinned browser-testing dependency, then run the portfolio interaction suite:
+
+```bash
+npm install
+npx playwright install chromium
+npm run test:browser
+```
+
+The suite checks desktop and mobile layouts, filters, navigation, dialogs, case-study rendering, and lightboxes. Failed GitHub Actions runs retain screenshots, traces, and an HTML report for seven days.
+
 ## Deployment
 
 The site is published through GitHub Pages from the `main` branch.
