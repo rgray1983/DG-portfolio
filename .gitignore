@@ -5,3 +5,6 @@ MOCKUP-TEMPLATE.ai
 **/.DS_Store
 
 .lighthouseci/
+
+playwright-report/
+test-results/
