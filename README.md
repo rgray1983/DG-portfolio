@@ -20,6 +20,17 @@ Open the repository in VS Code and use the Live Server extension on `index.html`
 
 Add project copy and image references in `js/portfolio-data.js`. Keep web images in `images/display/`, use lowercase filenames, and avoid committing production source files or duplicate full-resolution exports.
 
+## Quality checks
+
+Run the same checks used by GitHub Actions before opening a pull request:
+
+```bash
+npm test
+npm run check:js
+```
+
+No dependency installation is required. The checks validate required pages, local links and images, structured data, duplicate IDs, external-link safety, image file sizes, and JavaScript syntax. GitHub Actions runs them automatically for pull requests and pushes to `main`.
+
 ## Deployment
 
 The site is published through GitHub Pages from the `main` branch.
