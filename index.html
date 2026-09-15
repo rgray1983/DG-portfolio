@@ -30,6 +30,7 @@
   
 </head>
 <body class="grain font-sans antialiased">
+  <a class="skip-link" href="#top">Skip to main content</a>
   <header class="fixed top-0 left-0 right-0 z-50 border-b border-white/10 bg-ink/75 backdrop-blur-xl">
     <nav class="mx-auto flex max-w-7xl items-center justify-between px-5 py-5 md:px-8">
       <a href="#top" class="flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-soft">
@@ -56,7 +57,7 @@
     </div>
   </header>
 
-  <main id="top">
+  <main id="top" tabindex="-1">
     <section class="relative flex min-h-screen items-center overflow-hidden px-5 pt-28 md:px-8">
       <div class="absolute inset-0 opacity-30">
         <div class="absolute left-1/2 top-1/2 h-[680px] w-[680px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-accent/10 blur-3xl"></div>
@@ -94,10 +95,11 @@
         <p class="ed-lede">A focused collection of packaging, brand systems, production, print, and digital work created across more than two decades.</p>
         <div class="ed-toolbar">
           <nav id="workFilters" class="ed-filters" aria-label="Filter selected work"></nav>
-          <p class="ed-count"><span id="workCount">00</span> selected</p>
+          <p class="ed-count" role="status" aria-live="polite"><span id="workCount">00</span> selected</p>
         </div>
       </header>
 
+      <noscript><p class="ed-lede no-script-message">JavaScript is required to filter and open the project gallery. The flagship case studies remain available from their direct links.</p></noscript>
       <div id="workGallery" class="ed-stage"></div>
     </section>
 
@@ -394,7 +396,7 @@
     </div>
   </div>
 
-  <div id="lightbox" class="fixed inset-0 z-[100] hidden items-center justify-center bg-black/90 p-4 backdrop-blur-md">
+  <div id="lightbox" class="fixed inset-0 z-[100] hidden items-center justify-center bg-black/90 p-4 backdrop-blur-md" role="dialog" aria-modal="true" aria-label="Expanded project image" aria-hidden="true">
     <button id="closeLightbox" type="button" class="absolute right-5 top-5 rounded-full border border-white/15 px-4 py-2 text-xs font-bold uppercase tracking-wide text-soft transition hover:border-accent hover:text-accent">Close</button>
     <img id="lightboxImg" src="" alt="Expanded portfolio image" class="max-h-full max-w-full object-contain shadow-2xl" />
   </div>
