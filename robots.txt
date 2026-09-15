@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://rgray1983.github.io/DG-portfolio/sitemap.xml
