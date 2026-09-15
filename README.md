@@ -31,6 +31,16 @@ npm run check:js
 
 No dependency installation is required. The checks validate required pages, local links and images, structured data, duplicate IDs, external-link safety, image file sizes, and JavaScript syntax. GitHub Actions runs them automatically for pull requests and pushes to `main`.
 
+## Stylesheets
+
+The homepage uses a precompiled, minified Tailwind stylesheet instead of the browser runtime. After changing utility classes in `index.html` or homepage JavaScript, rebuild it with:
+
+```bash
+npm run build:css
+```
+
+Commit the resulting `css/tailwind.css` with the source change. GitHub Actions verifies that the compiled stylesheet remains current.
+
 ## Performance audits
 
 Run Lighthouse against the homepage and every flagship case study:
