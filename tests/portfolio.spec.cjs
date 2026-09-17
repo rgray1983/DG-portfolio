@@ -1,5 +1,27 @@
 const { test, expect } = require('@playwright/test');
 
+async function decodedImageSources(page) {
+  await page.evaluate(async () => {
+    const images = [...document.images];
+    images.forEach((img) => {
+      img.loading = 'eager';
+    });
+    await Promise.all(images.map((img) => {
+      if (img.complete) return Promise.resolve();
+      return new Promise((resolve) => {
+        img.addEventListener('load', resolve, { once: true });
+        img.addEventListener('error', resolve, { once: true });
+      });
+    }));
+  });
+
+  return page.evaluate(() =>
+    [...document.images]
+      .filter((img) => img.getAttribute('src') && img.naturalWidth === 0)
+      .map((img) => img.getAttribute('src'))
+  );
+}
+
 test('homepage loads its primary content and portfolio', async ({ page }) => {
   await page.goto('/');
 
@@ -7,6 +29,7 @@ test('homepage loads its primary content and portfolio', async ({ page }) => {
   await expect(page.getByRole('heading', { level: 1, name: /Richie Gray/i })).toBeVisible();
   await expect(page.getByRole('heading', { level: 2, name: 'Selected Work' })).toBeVisible();
   await expect(page.locator('#workGallery .ed-item')).not.toHaveCount(0);
+  await expect(await decodedImageSources(page)).toEqual([]);
 });
 
 test('portfolio filters update the visible work', async ({ page }) => {
@@ -75,6 +98,7 @@ for (const [route, title] of caseStudies) {
     await expect(page.getByRole('heading', { level: 1, name: title })).toBeVisible();
     await expect(page.locator('#story .story-card')).not.toHaveCount(0);
     await expect(page.locator('#gallery figure')).not.toHaveCount(0);
+    await expect(await decodedImageSources(page)).toEqual([]);
   });
 }
 

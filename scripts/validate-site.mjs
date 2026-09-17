@@ -85,9 +85,26 @@ if (fs.existsSync(portfolioData)) {
   }
 }
 
+function fileHeader(file, length) {
+  const fd = fs.openSync(file, 'r');
+  const buffer = Buffer.alloc(length);
+  fs.readSync(fd, buffer, 0, length, 0);
+  fs.closeSync(fd);
+  return buffer;
+}
+
 for (const file of imageFiles) {
   const size = fs.statSync(file).size;
   if (size > 750 * 1024) fail(file, `image is ${Math.round(size / 1024)} KB; keep web images below 750 KB`);
+
+  const ext = path.extname(file).toLowerCase();
+  const header = fileHeader(file, 8);
+  if ((ext === '.jpg' || ext === '.jpeg') && (header[0] !== 0xff || header[1] !== 0xd8)) {
+    fail(file, 'file extension is .jpg but the contents are not JPEG data');
+  }
+  if (ext === '.png' && !(header[0] === 0x89 && header[1] === 0x50 && header[2] === 0x4e && header[3] === 0x47)) {
+    fail(file, 'file extension is .png but the contents are not PNG data');
+  }
 }
 
 const requiredPages = [
