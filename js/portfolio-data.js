@@ -36,14 +36,14 @@ window.PortfolioData = {
         }
       ],
       images: [
-        { src: 'images/display/ameriserv-old-new.jpg', alt: 'Old and new AmeriServ logo comparison', layout: 'full' },
+        { src: 'images/display/ameriserv-old-new.jpg', alt: 'AmeriServ identity presentation', layout: 'full' },
         { src: 'images/display/ameriserv-logo-h.jpg', alt: 'AmeriServ horizontal logo lockup', layout: 'wide' },
         { src: 'images/display/ameriserv-logo-v.jpg', alt: 'AmeriServ vertical logo lockup', layout: 'portrait' },
         { src: 'images/display/ameriserv-bc-mockup.jpg', alt: 'AmeriServ business card mockup', layout: 'full' },
         { src: 'images/display/ameriserv-newsite.jpg', alt: 'AmeriServ website design', layout: 'large', caption: 'Responsive website designed to carry the new identity into a customer-facing digital experience.' },
         { src: 'images/display/ameriserv-guidelines.jpg', alt: 'AmeriServ brand guidelines', layout: 'large', caption: 'Structured brand guidelines for practical, production-ready use.' },
         { src: 'images/display/ameriserv-bc-front.jpg', alt: 'AmeriServ business card front', layout: 'half' },
-        { src: 'images/display/ameriserv-bc-back.jpg', alt: 'AmeriServ business card back', layout: 'half' }
+        { src: 'images/display/ameriserv-bc-back.jpg', alt: 'AmeriServ branded apparel and promotional merchandise', layout: 'half' }
       ]
     },
 
@@ -68,12 +68,12 @@ window.PortfolioData = {
       ],
       images: [
         { src: 'images/display/gw-firewood-sign.jpg', alt: 'Goatwood firewood sign artwork', layout: 'full' },
-        { src: 'images/display/gw-commercial.jpg', alt: 'Goatwood commercial sign in a real-world setting', layout: 'large' },
+        { src: 'images/display/gw-commercial.jpg', alt: 'Goatwood retail sign mockup', layout: 'large' },
         { src: 'images/display/gw-label.jpg', alt: 'Goatwood 1lb fire-starter label', layout: 'portrait' },
         { src: 'images/display/gw-fancy-box.jpg', alt: 'Goatwood premium box packaging', layout: 'large' },
         { src: 'images/display/gw-kraft-box.jpg', alt: 'Goatwood kraft box packaging', layout: 'half' },
         { src: 'images/display/gw-fatwood.jpg', alt: 'Goatwood BBQ product promotional graphic', layout: 'portrait' },
-        { src: 'images/display/gw-commercial-art.jpg', alt: 'Goatwood commercial sign artwork', layout: 'half' },
+        { src: 'images/display/gw-commercial-art.jpg', alt: 'Goatwood storefront display mockup', layout: 'half' },
         { src: 'images/display/gw-rack.jpg', alt: 'Goatwood retail firewood rack concept', layout: 'full' }
       ]
     },
@@ -174,6 +174,17 @@ window.PortfolioData = {
       ]
     },
 
+    edisto: {
+      kicker: 'Packaging · Gift Box',
+      title: 'ACE Basin Gift Box',
+      intro: 'Gift-box packaging for honey, rice, and pecans, presented as an assembled packaging mockup.',
+      meta: ['Discipline: Packaging Graphics', 'Format: Gift Box'],
+      sections: [],
+      images: [
+        { src: 'images/display/edisto-honey-gift-box.jpg', alt: 'ACE Basin gift box front and reverse packaging mockups', layout: 'full' }
+      ]
+    },
+
     branding: {
       kicker: 'Branding · Logos',
       title: 'Marks & Identity',
@@ -183,6 +194,7 @@ window.PortfolioData = {
       images: [
         { src: 'images/display/carolina-chaos.jpg', alt: 'Carolina Chaos branding and apparel concept', layout: 'full' },
         { src: 'images/display/ce-logo.jpg', alt: 'Carolina Elite logo and hat mockup', layout: 'half' },
+        { src: 'images/display/cms-site.jpg', alt: 'Community Museum Society Bean Market identity presentation', layout: 'large' },
         { src: 'images/display/pgs-logo.jpg', alt: 'Pawleys Island Guide Service logo', layout: 'half' },
         { src: 'images/display/pp-logo.jpg', alt: 'Palmetto Punishers logo', layout: 'half' },
         { src: 'images/display/randr-logo.jpg', alt: 'Rhythm & Q’s event branding', layout: 'half' },
@@ -218,7 +230,6 @@ window.PortfolioData = {
         { src: 'images/display/southern-asphalt.jpg', alt: 'Southern Asphalt website', layout: 'large', caption: 'Brand-forward website layout created to communicate services clearly and quickly.' },
         { src: 'images/display/spc-site.jpg', alt: 'Sumter Packaging website', layout: 'half', caption: 'Corporate website redesign focused on clearer structure and a stronger digital presence.' },
         { src: 'images/display/sunpak-site.jpg', alt: 'SunPak website', layout: 'half', caption: 'Packaging company website designed for clean presentation and customer-facing clarity.' },
-        { src: 'images/display/cms-site.jpg', alt: 'Internal CMS', layout: 'half', caption: 'Custom internal system design focused on making content and workflow easier to navigate.' },
         { src: 'images/display/ameriserv-newsite.jpg', alt: 'AmeriServ website', layout: 'large', caption: 'Digital expression of the AmeriServ rebrand.' }
       ]
     }
@@ -233,18 +244,18 @@ window.PortfolioData = {
             {
               id: 'ameriserv-rebrand',
               project: 'ameriserv',
-              title: 'AmeriServ Rebrand',
+              title: "AmeriServ Rebrand",
               disciplines: ['Brand Identity', 'Web Design', 'Guidelines'],
               image: 'images/display/ameriserv-old-new.jpg',
-              alt: 'AmeriServ logo comparison from 2002 to 2026',
-              categories: ['branding', 'digital'],
-              aspect: '1800 / 1023',
+              alt: 'AmeriServ identity presentation',
+              categories: ["branding"],
+              aspect: '1536 / 1024',
               fit: 'contain',
               tone: 'paper',
               span: 12,
               featured: true,
-              width: 1800,
-              height: 1023
+              width: 1536,
+              height: 1024
             }
           ]
         },
@@ -256,34 +267,34 @@ window.PortfolioData = {
             {
               id: 'early-bird',
               project: 'earlybird',
-              title: 'Early Bird',
+              title: "Early Bird",
               disciplines: ['Packaging', 'Corrugated', 'Prepress'],
               image: 'images/display/early-bird-box.jpg',
               alt: 'Early Bird cold brew vodka corrugated packaging',
-              categories: ['packaging'],
-              aspect: '16 / 9',
-              fit: 'cover',
+              categories: ["packaging"],
+              aspect: '1672 / 941',
+              fit: 'contain',
               tone: 'ink',
               span: 7,
               featured: true,
-              width: 1200,
-              height: 675
+              width: 1672,
+              height: 941
             },
             {
               id: 'signal-point',
               project: 'signalpoint',
-              title: 'Signal Point',
+              title: "Signal Point",
               disciplines: ['Packaging', 'Corrugated'],
               image: 'images/display/signal-point-box.jpg',
               alt: 'Signal Point vodka box packaging',
-              categories: ['packaging'],
-              aspect: '16 / 9',
-              fit: 'cover',
+              categories: ["packaging"],
+              aspect: '1672 / 941',
+              fit: 'contain',
               tone: 'ink',
               span: 5,
               featured: true,
-              width: 1200,
-              height: 675
+              width: 1672,
+              height: 941
             }
           ]
         },
@@ -295,18 +306,18 @@ window.PortfolioData = {
             {
               id: 'mattress',
               project: 'mattress',
-              title: 'HygroCotton Cuddlebed',
+              title: "HygroCotton Cuddlebed",
               disciplines: ['Packaging', 'Corrugated', 'Production'],
               image: 'images/display/mattress-box.jpg',
               alt: 'Martha Stewart HygroCotton Cuddlebed packaging',
-              categories: ['packaging'],
-              aspect: '16 / 9',
+              categories: ["packaging"],
+              aspect: '1672 / 941',
               fit: 'contain',
               tone: 'paper',
               span: 12,
               featured: true,
-              width: 1200,
-              height: 675
+              width: 1672,
+              height: 941
             }
           ]
         },
@@ -318,18 +329,18 @@ window.PortfolioData = {
             {
               id: 'goatwood-sign',
               project: 'goatwood',
-              title: 'Goatwood Firewood',
-              disciplines: ['Packaging', 'Retail Graphics', 'Display'],
+              title: "Goatwood Firewood Sign",
+              disciplines: ['Branding', 'Retail Graphics', 'Signage'],
               image: 'images/display/gw-firewood-sign.jpg',
               alt: 'Goatwood premium firewood sign artwork',
-              categories: ['packaging'],
-              aspect: '4 / 3',
+              categories: ["branding"],
+              aspect: '1536 / 1024',
               fit: 'contain',
               tone: 'bleed',
               span: 12,
               featured: true,
-              width: 2000,
-              height: 1500
+              width: 1536,
+              height: 1024
             }
           ]
         },
@@ -341,48 +352,48 @@ window.PortfolioData = {
             {
               id: 'carolina-chaos',
               project: 'branding',
-              title: 'Carolina Chaos',
+              title: "Carolina Chaos",
               disciplines: ['Brand Identity', 'Apparel'],
               image: 'images/display/carolina-chaos.jpg',
               alt: 'Carolina Chaos logo system and jersey application',
-              categories: ['branding', 'apparel'],
-              aspect: '16 / 9',
-              fit: 'cover',
+              categories: ["branding", "apparel"],
+              aspect: '1536 / 1024',
+              fit: 'contain',
               tone: 'ink',
               span: 5,
               featured: true,
-              width: 1200,
-              height: 675
+              width: 1536,
+              height: 1024
             },
             {
               id: 'carolina-elite',
               project: 'branding',
-              title: 'Carolina Elite',
+              title: "Carolina Elite",
               disciplines: ['Logo', 'Application'],
               image: 'images/display/ce-logo.jpg',
               alt: 'Carolina Elite logo and hat mockup',
-              categories: ['branding', 'apparel'],
-              aspect: '16 / 9',
-              fit: 'cover',
+              categories: ["branding", "apparel"],
+              aspect: '1536 / 1024',
+              fit: 'contain',
               tone: 'ink',
               span: 3,
-              width: 1200,
-              height: 675
+              width: 1536,
+              height: 1024
             },
             {
               id: 'pgs',
               project: 'branding',
-              title: 'Pawleys Island Guide Service',
+              title: "Pawleys Island Guide Service",
               disciplines: ['Logo', 'Illustration'],
               image: 'images/display/pgs-logo.jpg',
               alt: 'Pawleys Island Guide Service illustrated logo',
-              categories: ['branding'],
-              aspect: '16 / 9',
-              fit: 'cover',
+              categories: ["branding"],
+              aspect: '1536 / 1024',
+              fit: 'contain',
               tone: 'ink',
               span: 4,
-              width: 1200,
-              height: 675
+              width: 1536,
+              height: 1024
             }
           ]
         },
@@ -394,18 +405,18 @@ window.PortfolioData = {
             {
               id: 'herbies',
               project: 'herbies',
-              title: 'Herbie’s Fireworks',
+              title: "Herbie’s Fireworks",
               disciplines: ['Packaging', 'POP Display'],
               image: 'images/display/herbies-box.jpg',
               alt: 'Herbie’s Fireworks American Celebration display packaging',
-              categories: ['packaging'],
-              aspect: '16 / 9',
-              fit: 'cover',
+              categories: ["packaging"],
+              aspect: '1672 / 941',
+              fit: 'contain',
               tone: 'ink',
               span: 8,
               featured: true,
-              width: 1200,
-              height: 675
+              width: 1672,
+              height: 941
             }
           ]
         },
@@ -417,34 +428,34 @@ window.PortfolioData = {
             {
               id: 'playhouse',
               project: 'web',
-              title: 'Palmetto Playhouse',
+              title: "Palmetto Playhouse",
               disciplines: ['Web Design', 'Interface'],
               image: 'images/display/pph-site.jpg',
               alt: 'Palmetto Playhouse website design',
-              categories: ['digital'],
-              aspect: '1800 / 1209',
-              fit: 'cover',
+              categories: ["digital"],
+              aspect: '1536 / 1024',
+              fit: 'contain',
               position: 'top',
               tone: 'paper',
               span: 8,
               featured: true,
-              width: 1800,
-              height: 1209
+              width: 1536,
+              height: 1024
             },
             {
               id: 'holiday',
               project: 'holiday',
-              title: 'Hampton Acres',
+              title: "Hampton Acres Holiday Box",
               disciplines: ['Packaging', 'Seasonal'],
               image: 'images/display/ha-holiday-box.jpg',
               alt: 'Hampton Acres Holiday Box packaging',
-              categories: ['packaging'],
-              aspect: '16 / 9',
-              fit: 'cover',
+              categories: ["packaging"],
+              aspect: '1672 / 941',
+              fit: 'contain',
               tone: 'ink',
               span: 4,
-              width: 1200,
-              height: 675
+              width: 1672,
+              height: 941
             }
           ]
         },
@@ -456,34 +467,34 @@ window.PortfolioData = {
             {
               id: 'gw-fancy',
               project: 'goatwood',
-              title: 'Goatwood Boom',
+              title: "Goatwood Premium Packaging",
               disciplines: ['Packaging', 'Corrugated'],
               image: 'images/display/gw-fancy-box.jpg',
-              alt: 'Goatwood Boom premium corrugated packaging',
-              categories: ['packaging'],
-              aspect: '16 / 9',
+              alt: 'Goatwood premium corrugated packaging',
+              categories: ["packaging"],
+              aspect: '1672 / 941',
               fit: 'contain',
               tone: 'paper',
               span: 6,
               featured: true,
-              width: 1200,
-              height: 675
+              width: 1672,
+              height: 941
             },
             {
               id: 'southern-asphalt',
               project: 'web',
-              title: 'Southern Asphalt',
+              title: "Southern Asphalt",
               disciplines: ['Web Design', 'Brand'],
               image: 'images/display/southern-asphalt.jpg',
               alt: 'Southern Asphalt website design',
-              categories: ['digital'],
-              aspect: '1234 / 1019',
-              fit: 'cover',
+              categories: ["digital"],
+              aspect: '1536 / 1024',
+              fit: 'contain',
               position: 'top',
               tone: 'paper',
               span: 6,
-              width: 1234,
-              height: 1019
+              width: 1536,
+              height: 1024
             }
           ]
         },
@@ -495,18 +506,18 @@ window.PortfolioData = {
             {
               id: 'turbine',
               project: 'branding',
-              title: 'Fleet Turbine Services',
+              title: "Fleet Turbine Services",
               disciplines: ['Logo', 'Identity'],
               image: 'images/display/turbine.jpg',
               alt: 'Fleet Turbine Services logo',
-              categories: ['branding'],
-              aspect: '16 / 9',
-              fit: 'cover',
+              categories: ["branding", "apparel"],
+              aspect: '1536 / 1024',
+              fit: 'contain',
               tone: 'ink',
               span: 5,
               start: 8,
-              width: 1200,
-              height: 675
+              width: 1536,
+              height: 1024
             }
           ]
         },
@@ -518,34 +529,569 @@ window.PortfolioData = {
             {
               id: 'als-shirt',
               project: 'apparel',
-              title: 'ALS Walk',
+              title: "ALS Walk",
               disciplines: ['Apparel', 'Identity'],
               image: 'images/display/als-shirt.jpg',
               alt: 'ALS Walk shirt design',
-              categories: ['apparel'],
-              aspect: '16 / 9',
-              fit: 'cover',
+              categories: ["apparel"],
+              aspect: '1536 / 1024',
+              fit: 'contain',
               tone: 'ink',
               span: 7,
-              width: 1200,
-              height: 675
+              width: 1536,
+              height: 1024
             },
             {
               id: 'coker-shirt',
               project: 'apparel',
-              title: 'Coker Singers',
+              title: "Coker Singers",
               disciplines: ['Apparel', 'Print'],
               image: 'images/display/coker-shirt.jpg',
               alt: 'Coker Singers choir tour shirt',
-              categories: ['apparel'],
-              aspect: '16 / 9',
-              fit: 'cover',
+              categories: ["apparel"],
+              aspect: '1536 / 1024',
+              fit: 'contain',
               tone: 'ink',
               span: 5,
-              width: 1200,
-              height: 675
+              width: 1536,
+              height: 1024
             }
           ]
+        },
+    {
+      "id": "r-more-1",
+      "rhythm": "pair",
+      "align": "end",
+      "items": [
+        {
+          "id": "ameriserv-logo-h",
+          "project": "ameriserv",
+          "title": "AmeriServ Horizontal Identity",
+          "disciplines": [
+            "Branding"
+          ],
+          "image": "images/display/ameriserv-logo-h.jpg",
+          "alt": "AmeriServ horizontal logo lockup",
+          "categories": [
+            "branding"
+          ],
+          "aspect": "1599 / 518",
+          "fit": "contain",
+          "tone": "ink",
+          "span": 6,
+          "width": 1599,
+          "height": 518
+        },
+        {
+          "id": "ameriserv-logo-v",
+          "project": "ameriserv",
+          "title": "AmeriServ Vertical Identity",
+          "disciplines": [
+            "Branding"
+          ],
+          "image": "images/display/ameriserv-logo-v.jpg",
+          "alt": "AmeriServ vertical logo lockup",
+          "categories": [
+            "branding"
+          ],
+          "aspect": "1035 / 1171",
+          "fit": "contain",
+          "tone": "ink",
+          "span": 6,
+          "width": 1035,
+          "height": 1171
         }
+      ]
+    },
+    {
+      "id": "r-more-2",
+      "rhythm": "pair",
+      "align": "end",
+      "items": [
+        {
+          "id": "ameriserv-bc-mockup",
+          "project": "ameriserv",
+          "title": "AmeriServ Business Cards",
+          "disciplines": [
+            "Branding"
+          ],
+          "image": "images/display/ameriserv-bc-mockup.jpg",
+          "alt": "AmeriServ business card mockup",
+          "categories": [
+            "branding"
+          ],
+          "aspect": "1536 / 1024",
+          "fit": "contain",
+          "tone": "ink",
+          "span": 6,
+          "width": 1536,
+          "height": 1024
+        },
+        {
+          "id": "ameriserv-newsite",
+          "project": "ameriserv",
+          "title": "AmeriServ Website",
+          "disciplines": [
+            "Digital"
+          ],
+          "image": "images/display/ameriserv-newsite.jpg",
+          "alt": "AmeriServ website design",
+          "categories": [
+            "digital"
+          ],
+          "aspect": "1536 / 1024",
+          "fit": "contain",
+          "tone": "ink",
+          "span": 6,
+          "width": 1536,
+          "height": 1024
+        }
+      ]
+    },
+    {
+      "id": "r-more-3",
+      "rhythm": "pair",
+      "align": "end",
+      "items": [
+        {
+          "id": "ameriserv-guidelines",
+          "project": "ameriserv",
+          "title": "AmeriServ Brand Guidelines",
+          "disciplines": [
+            "Branding"
+          ],
+          "image": "images/display/ameriserv-guidelines.jpg",
+          "alt": "AmeriServ brand guidelines",
+          "categories": [
+            "branding"
+          ],
+          "aspect": "1536 / 1024",
+          "fit": "contain",
+          "tone": "ink",
+          "span": 6,
+          "width": 1536,
+          "height": 1024
+        },
+        {
+          "id": "ameriserv-bc-front",
+          "project": "ameriserv",
+          "title": "AmeriServ Brand and QR Card",
+          "disciplines": [
+            "Branding"
+          ],
+          "image": "images/display/ameriserv-bc-front.jpg",
+          "alt": "AmeriServ business card front",
+          "categories": [
+            "branding"
+          ],
+          "aspect": "1050 / 600",
+          "fit": "contain",
+          "tone": "ink",
+          "span": 6,
+          "width": 1050,
+          "height": 600
+        }
+      ]
+    },
+    {
+      "id": "r-more-4",
+      "rhythm": "pair",
+      "align": "end",
+      "items": [
+        {
+          "id": "ameriserv-bc-back",
+          "project": "ameriserv",
+          "title": "AmeriServ Branded Merchandise",
+          "disciplines": [
+            "Branding",
+            "Apparel"
+          ],
+          "image": "images/display/ameriserv-bc-back.jpg",
+          "alt": "AmeriServ branded apparel and promotional merchandise",
+          "categories": [
+            "branding",
+            "apparel"
+          ],
+          "aspect": "1536 / 1024",
+          "fit": "contain",
+          "tone": "ink",
+          "span": 6,
+          "width": 1536,
+          "height": 1024
+        },
+        {
+          "id": "gw-commercial",
+          "project": "goatwood",
+          "title": "Goatwood Retail Signage",
+          "disciplines": [
+            "Branding"
+          ],
+          "image": "images/display/gw-commercial.jpg",
+          "alt": "Goatwood retail sign mockup",
+          "categories": [
+            "branding"
+          ],
+          "aspect": "1536 / 1024",
+          "fit": "contain",
+          "tone": "ink",
+          "span": 6,
+          "width": 1536,
+          "height": 1024
+        }
+      ]
+    },
+    {
+      "id": "r-more-5",
+      "rhythm": "pair",
+      "align": "end",
+      "items": [
+        {
+          "id": "gw-label",
+          "project": "goatwood",
+          "title": "Goatwood Fire-Starter Packaging",
+          "disciplines": [
+            "Packaging",
+            "Branding"
+          ],
+          "image": "images/display/gw-label.jpg",
+          "alt": "Goatwood 1lb fire-starter label",
+          "categories": [
+            "packaging",
+            "branding"
+          ],
+          "aspect": "1448 / 1086",
+          "fit": "contain",
+          "tone": "ink",
+          "span": 6,
+          "width": 1448,
+          "height": 1086
+        },
+        {
+          "id": "gw-kraft-box",
+          "project": "goatwood",
+          "title": "Goatwood Kraft Packaging",
+          "disciplines": [
+            "Packaging"
+          ],
+          "image": "images/display/gw-kraft-box.jpg",
+          "alt": "Goatwood kraft box packaging",
+          "categories": [
+            "packaging"
+          ],
+          "aspect": "1672 / 941",
+          "fit": "contain",
+          "tone": "ink",
+          "span": 6,
+          "width": 1672,
+          "height": 941
+        }
+      ]
+    },
+    {
+      "id": "r-more-6",
+      "rhythm": "pair",
+      "align": "end",
+      "items": [
+        {
+          "id": "gw-fatwood",
+          "project": "goatwood",
+          "title": "Goatwood Fatwood Campaign",
+          "disciplines": [
+            "Packaging",
+            "Branding"
+          ],
+          "image": "images/display/gw-fatwood.jpg",
+          "alt": "Goatwood BBQ product promotional graphic",
+          "categories": [
+            "packaging",
+            "branding"
+          ],
+          "aspect": "1664 / 945",
+          "fit": "contain",
+          "tone": "ink",
+          "span": 6,
+          "width": 1664,
+          "height": 945
+        },
+        {
+          "id": "gw-commercial-art",
+          "project": "goatwood",
+          "title": "Goatwood Storefront Display",
+          "disciplines": [
+            "Branding"
+          ],
+          "image": "images/display/gw-commercial-art.jpg",
+          "alt": "Goatwood storefront display mockup",
+          "categories": [
+            "branding"
+          ],
+          "aspect": "1536 / 1024",
+          "fit": "contain",
+          "tone": "ink",
+          "span": 6,
+          "width": 1536,
+          "height": 1024
+        }
+      ]
+    },
+    {
+      "id": "r-more-7",
+      "rhythm": "pair",
+      "align": "end",
+      "items": [
+        {
+          "id": "gw-rack",
+          "project": "goatwood",
+          "title": "Goatwood Retail Display",
+          "disciplines": [
+            "Branding"
+          ],
+          "image": "images/display/gw-rack.jpg",
+          "alt": "Goatwood retail firewood rack concept",
+          "categories": [
+            "branding"
+          ],
+          "aspect": "1536 / 1024",
+          "fit": "contain",
+          "tone": "ink",
+          "span": 6,
+          "width": 1536,
+          "height": 1024
+        },
+        {
+          "id": "edisto-honey-gift-box",
+          "project": "edisto",
+          "title": "ACE Basin Gift Box",
+          "disciplines": [
+            "Packaging"
+          ],
+          "image": "images/display/edisto-honey-gift-box.jpg",
+          "alt": "ACE Basin gift box front and reverse packaging mockups",
+          "categories": [
+            "packaging"
+          ],
+          "aspect": "1672 / 941",
+          "fit": "contain",
+          "tone": "ink",
+          "span": 6,
+          "width": 1672,
+          "height": 941
+        }
+      ]
+    },
+    {
+      "id": "r-more-8",
+      "rhythm": "pair",
+      "align": "end",
+      "items": [
+        {
+          "id": "cms-site",
+          "project": "branding",
+          "title": "Community Museum Society · Bean Market",
+          "disciplines": [
+            "Branding"
+          ],
+          "image": "images/display/cms-site.jpg",
+          "alt": "Community Museum Society Bean Market identity presentation",
+          "categories": [
+            "branding"
+          ],
+          "aspect": "1536 / 1024",
+          "fit": "contain",
+          "tone": "ink",
+          "span": 6,
+          "width": 1536,
+          "height": 1024
+        },
+        {
+          "id": "pp-logo",
+          "project": "branding",
+          "title": "Palmetto Punishers",
+          "disciplines": [
+            "Branding",
+            "Apparel"
+          ],
+          "image": "images/display/pp-logo.jpg",
+          "alt": "Palmetto Punishers logo",
+          "categories": [
+            "branding",
+            "apparel"
+          ],
+          "aspect": "1536 / 1024",
+          "fit": "contain",
+          "tone": "ink",
+          "span": 6,
+          "width": 1536,
+          "height": 1024
+        }
+      ]
+    },
+    {
+      "id": "r-more-9",
+      "rhythm": "pair",
+      "align": "end",
+      "items": [
+        {
+          "id": "randr-logo",
+          "project": "branding",
+          "title": "Rhythm & Q’s",
+          "disciplines": [
+            "Branding",
+            "Apparel"
+          ],
+          "image": "images/display/randr-logo.jpg",
+          "alt": "Rhythm & Q’s event branding",
+          "categories": [
+            "branding",
+            "apparel"
+          ],
+          "aspect": "1536 / 1024",
+          "fit": "contain",
+          "tone": "ink",
+          "span": 6,
+          "width": 1536,
+          "height": 1024
+        },
+        {
+          "id": "st-peters",
+          "project": "branding",
+          "title": "St. Peter’s Anglican Church",
+          "disciplines": [
+            "Branding",
+            "Apparel"
+          ],
+          "image": "images/display/st-peters.jpg",
+          "alt": "St. Peter’s Anglican Church logo concepts",
+          "categories": [
+            "branding",
+            "apparel"
+          ],
+          "aspect": "1536 / 1024",
+          "fit": "contain",
+          "tone": "ink",
+          "span": 6,
+          "width": 1536,
+          "height": 1024
+        }
+      ]
+    },
+    {
+      "id": "r-more-10",
+      "rhythm": "pair",
+      "align": "end",
+      "items": [
+        {
+          "id": "urgent-care-logo",
+          "project": "branding",
+          "title": "Hometown Urgent Care",
+          "disciplines": [
+            "Branding",
+            "Apparel"
+          ],
+          "image": "images/display/urgent-care-logo.jpg",
+          "alt": "Hometown Urgent Care identity",
+          "categories": [
+            "branding",
+            "apparel"
+          ],
+          "aspect": "1536 / 1024",
+          "fit": "contain",
+          "tone": "ink",
+          "span": 6,
+          "width": 1536,
+          "height": 1024
+        },
+        {
+          "id": "sc-allstar-shirt",
+          "project": "apparel",
+          "title": "South Carolina All-Stars",
+          "disciplines": [
+            "Apparel"
+          ],
+          "image": "images/display/sc-allstar-shirt.jpg",
+          "alt": "South Carolina All-Stars shirt design",
+          "categories": [
+            "apparel"
+          ],
+          "aspect": "1536 / 1024",
+          "fit": "contain",
+          "tone": "ink",
+          "span": 6,
+          "width": 1536,
+          "height": 1024
+        }
+      ]
+    },
+    {
+      "id": "r-more-11",
+      "rhythm": "pair",
+      "align": "end",
+      "items": [
+        {
+          "id": "pma-shirt",
+          "project": "apparel",
+          "title": "PMA Class 69",
+          "disciplines": [
+            "Apparel"
+          ],
+          "image": "images/display/pma-shirt.jpg",
+          "alt": "PMA shirt design",
+          "categories": [
+            "apparel"
+          ],
+          "aspect": "1536 / 1024",
+          "fit": "contain",
+          "tone": "ink",
+          "span": 6,
+          "width": 1536,
+          "height": 1024
+        },
+        {
+          "id": "spc-site",
+          "project": "web",
+          "title": "Sumter Packaging",
+          "disciplines": [
+            "Digital"
+          ],
+          "image": "images/display/spc-site.jpg",
+          "alt": "Sumter Packaging website",
+          "categories": [
+            "digital"
+          ],
+          "aspect": "1536 / 1024",
+          "fit": "contain",
+          "tone": "ink",
+          "span": 6,
+          "width": 1536,
+          "height": 1024
+        }
+      ]
+    },
+    {
+      "id": "r-more-12",
+      "rhythm": "pair",
+      "align": "end",
+      "items": [
+        {
+          "id": "sunpak-site",
+          "project": "web",
+          "title": "SunPak",
+          "disciplines": [
+            "Digital"
+          ],
+          "image": "images/display/sunpak-site.jpg",
+          "alt": "SunPak website",
+          "categories": [
+            "digital"
+          ],
+          "aspect": "1536 / 1024",
+          "fit": "contain",
+          "tone": "ink",
+          "span": 6,
+          "width": 1536,
+          "height": 1024
+        }
+      ]
+    }
   ]
 };
