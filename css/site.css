@@ -465,3 +465,76 @@ body { background: #080808; color: #f4f1e8; }
 .skip-link { position: fixed; left: 1rem; top: 1rem; z-index: 200; transform: translateY(-160%); border: 2px solid #f04b23; background: #080808; color: #f4f1e8; padding: .75rem 1rem; font-size: .75rem; font-weight: 800; letter-spacing: .08em; text-transform: uppercase; transition: transform .2s ease; }
 .skip-link:focus { transform: translateY(0); }
 .no-script-message { margin: 0 auto 3rem; padding: 1rem; border: 1px solid #252525; background: #111; }
+
+/* Match the case-study desktop scaling without shrinking body text or controls. */
+@media screen and (min-width: 1024px) {
+  body > header > nav,
+  #top .max-w-7xl {
+    max-width: clamp(960px, 50vw, 1280px);
+  }
+
+  #top > section:first-child {
+    padding-top: clamp(5.25rem, 4.375vw, 7rem);
+    padding-bottom: clamp(2rem, 2.5vw, 4rem);
+  }
+  #top > section:first-child > .relative {
+    gap: clamp(2rem, 1.875vw, 3rem);
+  }
+  #top .hero-name {
+    font-size: clamp(5rem, 7.5vw, 12rem);
+  }
+  #top > section:first-child .justify-self-end {
+    max-width: clamp(240px, 16.40625vw, 420px);
+  }
+  #top > section:first-child .border-t {
+    padding-top: clamp(1.25rem, 1.09375vw, 1.75rem);
+  }
+  #top > section:first-child .max-w-3xl {
+    font-size: clamp(1.5rem, 1.5625vw, 2.5rem);
+  }
+
+  #work .ed-intro,
+  #work .ed-stage {
+    width: min(clamp(960px, 65.625vw, 1680px), calc(100% - 5.5rem));
+  }
+  #work {
+    padding-top: clamp(4rem, 5.3125vw, 8.5rem);
+    padding-bottom: clamp(4.5rem, 5.625vw, 9rem);
+  }
+  #work .ed-intro {
+    margin-bottom: clamp(2.5rem, 3.4375vw, 5.5rem);
+  }
+  #work .ed-row {
+    gap: clamp(1.15rem, 1.5vw, 2.4rem);
+    margin-bottom: clamp(3rem, 4.6875vw, 7.5rem);
+  }
+  #work .ed-row--hero,
+  #work .ed-row--cluster {
+    margin-bottom: clamp(3rem, 5vw, 8rem);
+  }
+  #work .ed-row--chapter {
+    margin-bottom: clamp(3.5rem, 5.625vw, 9rem);
+  }
+  #work .ed-row--pair {
+    margin-bottom: clamp(3rem, 4.375vw, 7rem);
+  }
+  #work .ed-row--aside {
+    margin-bottom: clamp(2.5rem, 3.90625vw, 6.25rem);
+  }
+  #work .ed-row--closing { margin-bottom: 0; }
+
+  #about > div,
+  #resume {
+    padding-top: clamp(4rem, 5vw, 8rem);
+    padding-bottom: clamp(4rem, 5vw, 8rem);
+  }
+  #contact {
+    padding-top: clamp(3rem, 3.125vw, 5rem);
+    padding-bottom: clamp(3rem, 3.125vw, 5rem);
+  }
+  #about h2,
+  #resume h2,
+  #contact h2 {
+    font-size: clamp(2.5rem, 2.8125vw, 4.5rem);
+  }
+}
